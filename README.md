@@ -5,7 +5,8 @@ An R package to easily retrieve ERVISS (European Respiratory Virus Surveillance 
 ## Installation
 
 ```r
-devtools::install_github("Epiconcept-Paris/ervissexplore")
+install.packages("pak")
+pak::pak("Epiconcept-Paris/ervissexplore")
 ```
 
 ## Quick Start
@@ -141,11 +142,14 @@ data <- get_erviss_variants(
 )
 ```
 
-## Dependencies
+## Contributing to `{ervissexplore}`
 
-- data.table
-- ggplot2
+New contributors are welcome !
 
-## License
+You can contribute to the package in many ways:
 
-TBD
+- By reporting bugs, issues or feature requests: please open an issue on
+  the [GitHub
+  repository](https://github.com/Epiconcept-Paris/ervissexplore/issues).
+- By fixing bugs or improving the package: please clone or fork the
+  repository, work on a dedicated branch and create a pull request.
