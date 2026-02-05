@@ -119,6 +119,10 @@ data <- get_sentineltests_positivity(
 )
 ```
 
+To get the list of available snapshots, visit the [EU-ECDC Respiratory
+Viruses Weekly Data
+repository](https://github.com/EU-ECDC/Respiratory_viruses_weekly_data/tree/main/data/snapshots).
+
 ## Main Functions
 
 ### Data retrieval
