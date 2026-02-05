@@ -172,6 +172,30 @@ analyze with data.table syntax:</p>
 <span><span class="op">]</span></span></code></pre></div>
 </div>
 <div class="section level2">
+<h2 id="generic-function">Generic function<a class="anchor" aria-label="anchor" href="#generic-function"></a>
+</h2>
+<p>The <code><a href="../reference/get_erviss_data.html">get_erviss_data()</a></code> function allows you to specify the
+dataset type:</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Get positivity data</span></span>
+<span><span class="va">positivity_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_erviss_data.html">get_erviss_data</a></span><span class="op">(</span></span>
+<span>  type <span class="op">=</span> <span class="st">"positivity"</span>,</span>
+<span>  date_min <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-01-01"</span><span class="op">)</span>,</span>
+<span>  date_max <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-12-31"</span><span class="op">)</span>,</span>
+<span>  pathogen <span class="op">=</span> <span class="st">"SARS-CoV-2"</span>,</span>
+<span>  countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"France"</span>, <span class="st">"Germany"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Get variant data</span></span>
+<span><span class="va">variant_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_erviss_data.html">get_erviss_data</a></span><span class="op">(</span></span>
+<span>  type <span class="op">=</span> <span class="st">"variants"</span>,</span>
+<span>  date_min <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2025-06-01"</span><span class="op">)</span>,</span>
+<span>  date_max <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2025-12-31"</span><span class="op">)</span>,</span>
+<span>  variant <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"XFG"</span>, <span class="st">"LP.8.1"</span><span class="op">)</span>,</span>
+<span>  countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Belgium"</span>, <span class="st">"Denmark"</span>, <span class="st">"France"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
 <h2 id="visualization-optional">Visualization (Optional)<a class="anchor" aria-label="anchor" href="#visualization-optional"></a>
 </h2>
 <p>The package provides optional visualization functions for quick
@@ -179,7 +203,7 @@ exploration.</p>
 <div class="section level3">
 <h3 id="using-plot-functions">Using plot functions<a class="anchor" aria-label="anchor" href="#using-plot-functions"></a>
 </h3>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Get data first</span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_sentineltests_positivity.html">get_sentineltests_positivity</a></span><span class="op">(</span></span>
 <span>  date_min <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-01-01"</span><span class="op">)</span>,</span>
@@ -195,7 +219,7 @@ exploration.</p>
 <h3 id="quick-plotting">Quick plotting<a class="anchor" aria-label="anchor" href="#quick-plotting"></a>
 </h3>
 <p>For a quick visualization without saving the data:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/quick_plot_erviss_positivity.html">quick_plot_erviss_positivity</a></span><span class="op">(</span></span>
 <span>  date_min <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-01-01"</span><span class="op">)</span>,</span>
 <span>  date_max <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-12-31"</span><span class="op">)</span>,</span>
@@ -217,7 +241,7 @@ exploration.</p>
 <h3 id="custom-ggplot2-visualizations">Custom ggplot2 visualizations<a class="anchor" aria-label="anchor" href="#custom-ggplot2-visualizations"></a>
 </h3>
 <p>You can also create your own visualizations:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_sentineltests_positivity.html">get_sentineltests_positivity</a></span><span class="op">(</span></span>
@@ -242,7 +266,7 @@ exploration.</p>
 </h2>
 <p>You can retrieve the data URLs directly if you prefer to download
 files manually:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Latest data URLs</span></span>
 <span><span class="fu"><a href="../reference/get_sentineltests_positivity_url.html">get_sentineltests_positivity_url</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "https://raw.githubusercontent.com/EU-ECDC/Respiratory_viruses_weekly_data/refs/heads/main/data/sentinelTestsDetectionsPositivity.csv"</span></span>
@@ -265,7 +289,7 @@ files manually:</p>
 <h2 id="complete-example">Complete Example<a class="anchor" aria-label="anchor" href="#complete-example"></a>
 </h2>
 <p>Here’s a complete workflow for analyzing variant data:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">ervissexplore</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># 1. Define parameters</span></span>
@@ -308,7 +332,7 @@ files manually:</p>
 <div class="section level2">
 <h2 id="session-info">Session Info<a class="anchor" aria-label="anchor" href="#session-info"></a>
 </h2>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; R version 4.5.2 (2025-10-31)</span></span>
 <span><span class="co">#&gt; Platform: x86_64-pc-linux-gnu</span></span>
