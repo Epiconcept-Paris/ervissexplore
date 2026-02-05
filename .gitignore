@@ -1,0 +1,6 @@
+.Rproj.user
+inst/erviss_data/*
+erviss_analyse.Rproj
+.claude/settings.local.json
+.vscode/settings.json
+docs

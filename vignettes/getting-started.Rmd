@@ -1,0 +1,254 @@
+---
+title: "Getting Started with ervissexplore"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Getting Started with ervissexplore}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.width = 10,
+  fig.height = 6
+)
+```
+
+## Introduction
+
+The `ervissexplore` package makes it easy to retrieve ERVISS (European Respiratory
+Virus Surveillance Summary) data from the EU-ECDC. It provides functions to fetch
+and filter data, plus optional visualization tools.
+
+The package works with two data sources from the
+[EU-ECDC Respiratory Viruses Weekly Data](https://github.com/EU-ECDC/Respiratory_viruses_weekly_data) repository:
+
+- **Positivity data** (`sentinelTestsDetectionsPositivity.csv`): Test positivity rates by pathogen and country
+- **Variants data** (`variants.csv`): SARS-CoV-2 variant proportions by country
+
+```{r setup}
+library(ervissexplore)
+```
+
+## Retrieving Positivity Data
+
+Positivity data comes from the `sentinelTestsDetectionsPositivity.csv` file.
+
+### Basic usage
+
+Use `get_sentineltests_positivity()` to fetch positivity data:
+
+```{r get-positivity, eval=FALSE}
+# Get SARS-CoV-2 positivity data for specific countries
+data <- get_sentineltests_positivity(
+  date_min = as.Date("2024-01-01"),
+  date_max = as.Date("2024-12-31"),
+  pathogen = "SARS-CoV-2",
+  countries = c("France", "Germany", "Italy", "Spain")
+)
+
+# Explore the data
+head(data)
+str(data)
+```
+
+### Using a historical snapshot
+
+For reproducible analyses, you can fetch data from a specific snapshot:
+
+```{r get-positivity-snapshot, eval=FALSE}
+data <- get_sentineltests_positivity(
+  date_min = as.Date("2023-01-01"),
+  date_max = as.Date("2023-12-31"),
+  pathogen = "Influenza",
+  use_snapshot = TRUE,
+  snapshot_date = as.Date("2024-02-23")
+)
+```
+
+## Retrieving Variant Data
+
+Variant data comes from the `variants.csv` file.
+
+### Basic usage
+
+Use `get_erviss_variants()` to fetch SARS-CoV-2 variant data:
+
+```{r get-variants, eval=FALSE}
+# Get specific variants
+data <- get_erviss_variants(
+  date_min = as.Date("2024-06-01"),
+  date_max = as.Date("2024-12-31"),
+  variant = c("XFG", "LP.8.1", "BA.2.86"),
+  countries = c("Belgium", "Denmark", "France")
+)
+
+# Get all variants with minimum proportion threshold
+data <- get_erviss_variants(
+  date_min = as.Date("2024-01-01"),
+  date_max = as.Date("2024-12-31"),
+  min_value = 5 # Only variants with >= 5% proportion
+)
+```
+
+## Analyzing the Data
+
+The data is returned as a `data.table`, which you can analyze with data.table syntax:
+
+```{r analyze-data, eval=FALSE}
+# Get positivity data (returns a data.table)
+data <- get_sentineltests_positivity(
+  date_min = as.Date("2024-01-01"),
+  date_max = as.Date("2024-06-30"),
+  pathogen = "SARS-CoV-2"
+)
+
+# Calculate summary statistics by country
+data[,
+  .(
+    mean_positivity = mean(value, na.rm = TRUE),
+    max_positivity = max(value, na.rm = TRUE),
+    n_weeks = .N
+  ),
+  by = countryname
+]
+```
+
+## Visualization (Optional)
+
+The package provides optional visualization functions for quick exploration.
+
+### Using plot functions
+
+```{r plot-data, eval=FALSE}
+# Get data first
+data <- get_sentineltests_positivity(
+  date_min = as.Date("2024-01-01"),
+  date_max = as.Date("2024-06-30"),
+  pathogen = "SARS-CoV-2",
+  countries = c("France", "Germany")
+)
+
+# Then plot
+plot_erviss_positivity(data, date_breaks = "1 month")
+```
+
+### Quick plotting
+
+For a quick visualization without saving the data:
+
+```{r quick-plot, eval=FALSE}
+quick_plot_erviss_positivity(
+  date_min = as.Date("2024-01-01"),
+  date_max = as.Date("2024-12-31"),
+  pathogen = "SARS-CoV-2",
+  countries = c("France", "Germany", "Italy"),
+  date_breaks = "1 month",
+  date_format = "%b %Y"
+)
+
+quick_plot_erviss_variants(
+  date_min = as.Date("2025-06-01"),
+  date_max = as.Date("2025-12-31"),
+  variant = c("XFG", "LP.8.1"),
+  date_breaks = "1 month",
+  countries = c("Belgium", "Denmark", "France")
+)
+```
+
+### Custom ggplot2 visualizations
+
+You can also create your own visualizations:
+
+```{r custom-plot, eval=FALSE}
+library(ggplot2)
+
+data <- get_sentineltests_positivity(
+  date_min = as.Date("2024-01-01"),
+  date_max = as.Date("2024-06-30"),
+  pathogen = "SARS-CoV-2"
+)
+
+ggplot(data, aes(x = date, y = value, color = countryname)) +
+  geom_line(linewidth = 1) +
+  labs(
+    title = "SARS-CoV-2 Positivity Rates",
+    x = "Date",
+    y = "Positivity (%)",
+    color = "Country"
+  ) +
+  theme_minimal()
+```
+
+## URL Helpers
+
+You can retrieve the data URLs directly if you prefer to download files manually:
+
+```{r urls}
+# Latest data URLs
+get_sentineltests_positivity_url()
+get_erviss_variants_url()
+
+# Snapshot URLs
+get_sentineltests_positivity_url(
+  use_snapshot = TRUE,
+  snapshot_date = as.Date("2023-11-24")
+)
+get_erviss_variants_url(
+  use_snapshot = TRUE,
+  snapshot_date = as.Date("2023-11-24")
+)
+```
+
+## Complete Example
+
+Here's a complete workflow for analyzing variant data:
+
+```{r complete-example, eval=FALSE}
+library(ervissexplore)
+
+# 1. Define parameters
+countries <- c("France", "Germany", "Italy", "Spain", "Belgium")
+start_date <- as.Date("2024-06-01")
+end_date <- as.Date("2024-12-31")
+
+# 2. Retrieve data
+variant_data <- get_erviss_variants(
+  date_min = start_date,
+  date_max = end_date,
+  countries = countries,
+  min_value = 1
+)
+
+# 3. Explore the data
+cat("Number of observations:", nrow(variant_data), "\n")
+cat("Countries:", unique(variant_data$countryname), "\n")
+cat("Variants:", unique(variant_data$variant), "\n")
+
+# 4. Find the dominant variants (data.table syntax)
+dominant <- variant_data[, .(mean_proportion = mean(value)), by = variant][
+  order(-mean_proportion)
+][1:5]
+
+print(dominant)
+
+# 5. Visualize top variants
+top_variants <- dominant$variant
+
+quick_plot_erviss_variants(
+  date_min = start_date,
+  date_max = end_date,
+  variant = top_variants,
+  countries = countries,
+  date_breaks = "1 month",
+  min_value = 1
+)
+```
+
+## Session Info
+
+```{r session-info}
+sessionInfo()
+```
