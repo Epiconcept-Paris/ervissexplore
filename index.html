@@ -53,6 +53,8 @@
   <main id="main" class="col-md-9"><div class="section level1">
 <div class="page-header"><h1 id="ervissexplore">ervissexplore<a class="anchor" aria-label="anchor" href="#ervissexplore"></a>
 </h1></div>
+<!-- badges: start -->
+<!-- badges: end -->
 <p>An R package to easily retrieve ERVISS (European Respiratory Virus Surveillance Summary) data from the EU-ECDC. Provides functions to fetch, filter, and optionally visualize respiratory virus positivity rates and SARS-CoV-2 variant proportions across European countries.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -69,10 +71,10 @@
 <span></span>
 <span><span class="co"># Retrieve SARS-CoV-2 positivity data</span></span>
 <span><span class="va">positivity_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_sentineltests_positivity.html">get_sentineltests_positivity</a></span><span class="op">(</span></span>
-<span> date_min <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-01-01"</span><span class="op">)</span>,</span>
-<span> date_max <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-12-31"</span><span class="op">)</span>,</span>
-<span> pathogen <span class="op">=</span> <span class="st">"SARS-CoV-2"</span>,</span>
-<span> countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"France"</span>, <span class="st">"Germany"</span>, <span class="st">"Italy"</span><span class="op">)</span></span>
+<span>  date_min <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-01-01"</span><span class="op">)</span>,</span>
+<span>  date_max <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-12-31"</span><span class="op">)</span>,</span>
+<span>  pathogen <span class="op">=</span> <span class="st">"SARS-CoV-2"</span>,</span>
+<span>  countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"France"</span>, <span class="st">"Germany"</span>, <span class="st">"Italy"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Retrieve variant data</span></span>
@@ -84,13 +86,54 @@
 <span></span>
 <span><span class="co"># The data is ready for your own analysis</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">positivity_data</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">variant_data</span><span class="op">)</span></span></code></pre></div>
+<span><span class="co">#&gt;                 survtype countryname yearweek   pathogen pathogentype</span></span>
+<span><span class="co">#&gt;                   &lt;char&gt;      &lt;char&gt;   &lt;char&gt;     &lt;char&gt;       &lt;char&gt;</span></span>
+<span><span class="co">#&gt; 1: primary care sentinel      France 2024-W52 SARS-CoV-2   SARS-CoV-2</span></span>
+<span><span class="co">#&gt; 2: primary care sentinel      France 2024-W51 SARS-CoV-2   SARS-CoV-2</span></span>
+<span><span class="co">#&gt; 3: primary care sentinel      France 2024-W50 SARS-CoV-2   SARS-CoV-2</span></span>
+<span><span class="co">#&gt; 4: primary care sentinel      France 2024-W49 SARS-CoV-2   SARS-CoV-2</span></span>
+<span><span class="co">#&gt; 5: primary care sentinel      France 2024-W48 SARS-CoV-2   SARS-CoV-2</span></span>
+<span><span class="co">#&gt; 6: primary care sentinel      France 2024-W47 SARS-CoV-2   SARS-CoV-2</span></span>
+<span><span class="co">#&gt;    pathogensubtype  indicator    age value       date</span></span>
+<span><span class="co">#&gt;             &lt;char&gt;     &lt;char&gt; &lt;char&gt; &lt;num&gt;     &lt;Date&gt;</span></span>
+<span><span class="co">#&gt; 1:      SARS-CoV-2 positivity  total   2.1 2024-12-23</span></span>
+<span><span class="co">#&gt; 2:      SARS-CoV-2 positivity  total   4.1 2024-12-16</span></span>
+<span><span class="co">#&gt; 3:      SARS-CoV-2 positivity  total   4.1 2024-12-09</span></span>
+<span><span class="co">#&gt; 4:      SARS-CoV-2 positivity  total   3.8 2024-12-02</span></span>
+<span><span class="co">#&gt; 5:      SARS-CoV-2 positivity  total   6.2 2024-11-25</span></span>
+<span><span class="co">#&gt; 6:      SARS-CoV-2 positivity  total   6.4 2024-11-18</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">variant_data</span><span class="op">)</span></span>
+<span><span class="co">#&gt;    survtype          datasource        countryname          yearweek        </span></span>
+<span><span class="co">#&gt;  Length:4           Length:4           Length:4           Length:4          </span></span>
+<span><span class="co">#&gt;  Class :character   Class :character   Class :character   Class :character  </span></span>
+<span><span class="co">#&gt;  Mode  :character   Mode  :character   Mode  :character   Mode  :character  </span></span>
+<span><span class="co">#&gt;                                                                             </span></span>
+<span><span class="co">#&gt;                                                                             </span></span>
+<span><span class="co">#&gt;                                                                             </span></span>
+<span><span class="co">#&gt;    pathogen           variant           indicator             age           </span></span>
+<span><span class="co">#&gt;  Length:4           Length:4           Length:4           Length:4          </span></span>
+<span><span class="co">#&gt;  Class :character   Class :character   Class :character   Class :character  </span></span>
+<span><span class="co">#&gt;  Mode  :character   Mode  :character   Mode  :character   Mode  :character  </span></span>
+<span><span class="co">#&gt;                                                                             </span></span>
+<span><span class="co">#&gt;                                                                             </span></span>
+<span><span class="co">#&gt;                                                                             </span></span>
+<span><span class="co">#&gt;      value           date           </span></span>
+<span><span class="co">#&gt;  Min.   :0.10   Min.   :2024-10-28  </span></span>
+<span><span class="co">#&gt;  1st Qu.:0.10   1st Qu.:2024-10-28  </span></span>
+<span><span class="co">#&gt;  Median :0.55   Median :2024-10-31  </span></span>
+<span><span class="co">#&gt;  Mean   :0.60   Mean   :2024-10-31  </span></span>
+<span><span class="co">#&gt;  3rd Qu.:1.05   3rd Qu.:2024-11-04  </span></span>
+<span><span class="co">#&gt;  Max.   :1.20   Max.   :2024-11-04</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="data-source">Data Source<a class="anchor" aria-label="anchor" href="#data-source"></a>
 </h2>
 <p>The package fetches data directly from the <a href="https://github.com/EU-ECDC/Respiratory_viruses_weekly_data" class="external-link">EU-ECDC Respiratory Viruses Weekly Data</a> repository.</p>
-<p>Two data types are available: - <strong>Positivity</strong>: Test positivity rates by pathogen and country (from <code>sentinelTestsDetectionsPositivity.csv</code>) - <strong>Variants</strong>: SARS-CoV-2 variant proportions by country (from <code>variants.csv</code>)</p>
+<p>Two data types are available:</p>
+<ul>
+<li><p><strong>Positivity</strong>: Test positivity rates by pathogen and country (from <code>sentinelTestsDetectionsPositivity.csv</code>)</p></li>
+<li><p><strong>Variants</strong>: SARS-CoV-2 variant proportions by country (from <code>variants.csv</code>)</p></li>
+</ul>
 <div class="section level3">
 <h3 id="latest-data-vs-snapshots">Latest Data vs Snapshots<a class="anchor" aria-label="anchor" href="#latest-data-vs-snapshots"></a>
 </h3>
@@ -140,8 +183,8 @@
 </h3>
 <table class="table">
 <colgroup>
-<col width="43%">
-<col width="56%">
+<col width="47%">
+<col width="52%">
 </colgroup>
 <thead><tr class="header">
 <th>Function</th>
@@ -204,10 +247,21 @@
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Your own analysis with data.table syntax</span></span>
-<span><span class="va">data</span><span class="op">[</span>, <span class="fu">.</span><span class="op">(</span></span>
-<span>  mean_positivity <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">value</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
-<span>  max_positivity <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">value</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="op">)</span>, by <span class="op">=</span> <span class="fu">.</span><span class="op">(</span><span class="va">countryname</span>, <span class="va">pathogen</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
+<span><span class="va">data</span><span class="op">[</span>,</span>
+<span>  <span class="fu">.</span><span class="op">(</span></span>
+<span>    mean_positivity <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">value</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>    max_positivity <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">value</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  by <span class="op">=</span> <span class="fu">.</span><span class="op">(</span><span class="va">countryname</span>, <span class="va">pathogen</span><span class="op">)</span></span>
+<span><span class="op">]</span></span>
+<span><span class="co">#&gt;    countryname   pathogen mean_positivity max_positivity</span></span>
+<span><span class="co">#&gt;         &lt;char&gt;     &lt;char&gt;           &lt;num&gt;          &lt;num&gt;</span></span>
+<span><span class="co">#&gt; 1:      France  Influenza       19.223077           58.7</span></span>
+<span><span class="co">#&gt; 2:      France SARS-CoV-2        8.942308           66.7</span></span>
+<span><span class="co">#&gt; 3:       Italy  Influenza       12.670588           40.5</span></span>
+<span><span class="co">#&gt; 4:       Italy SARS-CoV-2        2.247059           10.4</span></span>
+<span><span class="co">#&gt; 5:       Spain  Influenza        7.361538           43.7</span></span>
+<span><span class="co">#&gt; 6:       Spain SARS-CoV-2       10.626923           45.6</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="visualization">Visualization<a class="anchor" aria-label="anchor" href="#visualization"></a>
@@ -217,22 +271,27 @@
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_sentineltests_positivity.html">get_sentineltests_positivity</a></span><span class="op">(</span></span>
 <span>  date_min <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-01-01"</span><span class="op">)</span>,</span>
 <span>  date_max <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-06-30"</span><span class="op">)</span>,</span>
-<span>  pathogen <span class="op">=</span> <span class="st">"SARS-CoV-2"</span></span>
+<span>  pathogen <span class="op">=</span> <span class="st">"SARS-CoV-2"</span>,</span>
+<span>  countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"France"</span>, <span class="st">"Spain"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
-<span><span class="fu"><a href="reference/plot_erviss_positivity.html">plot_erviss_positivity</a></span><span class="op">(</span><span class="va">data</span>, date_breaks <span class="op">=</span> <span class="st">"1 month"</span><span class="op">)</span></span>
-<span></span>
+<span><span class="fu"><a href="reference/plot_erviss_positivity.html">plot_erviss_positivity</a></span><span class="op">(</span><span class="va">data</span>, date_breaks <span class="op">=</span> <span class="st">"1 month"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/README-unnamed-chunk-7-1.png" width="100%"></p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
 <span><span class="co"># Option 2: Quick one-liner</span></span>
 <span><span class="fu"><a href="reference/quick_plot_erviss_positivity.html">quick_plot_erviss_positivity</a></span><span class="op">(</span></span>
 <span>  date_min <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-01-01"</span><span class="op">)</span>,</span>
 <span>  date_max <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-12-31"</span><span class="op">)</span>,</span>
 <span>  pathogen <span class="op">=</span> <span class="st">"SARS-CoV-2"</span>,</span>
-<span>  date_breaks <span class="op">=</span> <span class="st">"1 month"</span></span>
+<span>  date_breaks <span class="op">=</span> <span class="st">"1 month"</span>,</span>
+<span>  countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"France"</span>, <span class="st">"Spain"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/README-unnamed-chunk-7-2.png" width="100%"></p>
 </div>
 <div class="section level3">
 <h3 id="using-a-local-csv-file">Using a local CSV file<a class="anchor" aria-label="anchor" href="#using-a-local-csv-file"></a>
 </h3>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># If you have downloaded the data locally</span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_erviss_variants.html">get_erviss_variants</a></span><span class="op">(</span></span>
 <span>  csv_file <span class="op">=</span> <span class="st">"path/to/local/variants.csv"</span>,</span>

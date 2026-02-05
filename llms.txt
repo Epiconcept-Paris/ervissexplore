@@ -19,10 +19,10 @@ library(ervissexplore)
 
 # Retrieve SARS-CoV-2 positivity data
 positivity_data <- get_sentineltests_positivity(
- date_min = as.Date("2024-01-01"),
- date_max = as.Date("2024-12-31"),
- pathogen = "SARS-CoV-2",
- countries = c("France", "Germany", "Italy")
+  date_min = as.Date("2024-01-01"),
+  date_max = as.Date("2024-12-31"),
+  pathogen = "SARS-CoV-2",
+  countries = c("France", "Germany", "Italy")
 )
 
 # Retrieve variant data
@@ -34,7 +34,44 @@ variant_data <- get_erviss_variants(
 
 # The data is ready for your own analysis
 head(positivity_data)
+#>                 survtype countryname yearweek   pathogen pathogentype
+#>                   <char>      <char>   <char>     <char>       <char>
+#> 1: primary care sentinel      France 2024-W52 SARS-CoV-2   SARS-CoV-2
+#> 2: primary care sentinel      France 2024-W51 SARS-CoV-2   SARS-CoV-2
+#> 3: primary care sentinel      France 2024-W50 SARS-CoV-2   SARS-CoV-2
+#> 4: primary care sentinel      France 2024-W49 SARS-CoV-2   SARS-CoV-2
+#> 5: primary care sentinel      France 2024-W48 SARS-CoV-2   SARS-CoV-2
+#> 6: primary care sentinel      France 2024-W47 SARS-CoV-2   SARS-CoV-2
+#>    pathogensubtype  indicator    age value       date
+#>             <char>     <char> <char> <num>     <Date>
+#> 1:      SARS-CoV-2 positivity  total   2.1 2024-12-23
+#> 2:      SARS-CoV-2 positivity  total   4.1 2024-12-16
+#> 3:      SARS-CoV-2 positivity  total   4.1 2024-12-09
+#> 4:      SARS-CoV-2 positivity  total   3.8 2024-12-02
+#> 5:      SARS-CoV-2 positivity  total   6.2 2024-11-25
+#> 6:      SARS-CoV-2 positivity  total   6.4 2024-11-18
 summary(variant_data)
+#>    survtype          datasource        countryname          yearweek        
+#>  Length:4           Length:4           Length:4           Length:4          
+#>  Class :character   Class :character   Class :character   Class :character  
+#>  Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+#>                                                                             
+#>                                                                             
+#>                                                                             
+#>    pathogen           variant           indicator             age           
+#>  Length:4           Length:4           Length:4           Length:4          
+#>  Class :character   Class :character   Class :character   Class :character  
+#>  Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+#>                                                                             
+#>                                                                             
+#>                                                                             
+#>      value           date           
+#>  Min.   :0.10   Min.   :2024-10-28  
+#>  1st Qu.:0.10   1st Qu.:2024-10-28  
+#>  Median :0.55   Median :2024-10-31  
+#>  Mean   :0.60   Mean   :2024-10-31  
+#>  3rd Qu.:1.05   3rd Qu.:2024-11-04  
+#>  Max.   :1.20   Max.   :2024-11-04
 ```
 
 ## Data Source
@@ -43,10 +80,13 @@ The package fetches data directly from the [EU-ECDC Respiratory Viruses
 Weekly Data](https://github.com/EU-ECDC/Respiratory_viruses_weekly_data)
 repository.
 
-Two data types are available: - **Positivity**: Test positivity rates by
-pathogen and country (from `sentinelTestsDetectionsPositivity.csv`) -
-**Variants**: SARS-CoV-2 variant proportions by country (from
-`variants.csv`)
+Two data types are available:
+
+- **Positivity**: Test positivity rates by pathogen and country (from
+  `sentinelTestsDetectionsPositivity.csv`)
+
+- **Variants**: SARS-CoV-2 variant proportions by country (from
+  `variants.csv`)
 
 ### Latest Data vs Snapshots
 
@@ -111,10 +151,21 @@ data <- get_sentineltests_positivity(
 )
 
 # Your own analysis with data.table syntax
-data[, .(
-  mean_positivity = mean(value, na.rm = TRUE),
-  max_positivity = max(value, na.rm = TRUE)
-), by = .(countryname, pathogen)]
+data[,
+  .(
+    mean_positivity = mean(value, na.rm = TRUE),
+    max_positivity = max(value, na.rm = TRUE)
+  ),
+  by = .(countryname, pathogen)
+]
+#>    countryname   pathogen mean_positivity max_positivity
+#>         <char>     <char>           <num>          <num>
+#> 1:      France  Influenza       19.223077           58.7
+#> 2:      France SARS-CoV-2        8.942308           66.7
+#> 3:       Italy  Influenza       12.670588           40.5
+#> 4:       Italy SARS-CoV-2        2.247059           10.4
+#> 5:       Spain  Influenza        7.361538           43.7
+#> 6:       Spain SARS-CoV-2       10.626923           45.6
 ```
 
 ### Visualization
@@ -124,18 +175,27 @@ data[, .(
 data <- get_sentineltests_positivity(
   date_min = as.Date("2024-01-01"),
   date_max = as.Date("2024-06-30"),
-  pathogen = "SARS-CoV-2"
+  pathogen = "SARS-CoV-2",
+  countries = c("France", "Spain")
 )
 plot_erviss_positivity(data, date_breaks = "1 month")
+```
+
+![](reference/figures/README-unnamed-chunk-7-1.png)
+
+``` r
 
 # Option 2: Quick one-liner
 quick_plot_erviss_positivity(
   date_min = as.Date("2024-01-01"),
   date_max = as.Date("2024-12-31"),
   pathogen = "SARS-CoV-2",
-  date_breaks = "1 month"
+  date_breaks = "1 month",
+  countries = c("France", "Spain")
 )
 ```
+
+![](reference/figures/README-unnamed-chunk-7-2.png)
 
 ### Using a local CSV file
 
