@@ -171,7 +171,7 @@ plot_erviss_data <- function(
   date_format = "%b %Y"
 ) {
   # Auto-detect type if not provided
- if (is.null(type)) {
+  if (is.null(type)) {
     if ("pathogen" %in% names(data)) {
       type <- "positivity"
     } else if ("variant" %in% names(data)) {

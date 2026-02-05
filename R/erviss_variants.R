@@ -72,7 +72,12 @@ get_erviss_variants <- function(
   }
 
   indicator_filter <- indicator
-  dt[date >= date_min & date <= date_max & indicator == indicator_filter & value >= min_value]
+  dt[
+    date >= date_min &
+      date <= date_max &
+      indicator == indicator_filter &
+      value >= min_value
+  ]
 }
 
 #' Plot ERVISS variants data
