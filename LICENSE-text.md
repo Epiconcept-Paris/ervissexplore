@@ -1,4 +1,3 @@
 # License
 
-    YEAR: 2026
-    COPYRIGHT HOLDER: ervissexplore authors
+    Copyright 2026 Epiconcept. All rights reserved.

@@ -297,7 +297,7 @@ sessionInfo()
 #> [1] stats     graphics  grDevices utils     datasets  methods   base     
 #> 
 #> other attached packages:
-#> [1] ervissexplore_0.0.0.9000
+#> [1] ervissexplore_0.1.0
 #> 
 #> loaded via a namespace (and not attached):
 #>  [1] vctrs_0.7.1         cli_3.6.5           knitr_1.51         
