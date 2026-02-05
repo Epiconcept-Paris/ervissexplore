@@ -116,6 +116,30 @@ data[,
 ]
 ```
 
+## Generic function
+
+The `get_erviss_data()` function allows you to specify the dataset type:
+
+```{r generic-function, eval=FALSE}
+# Get positivity data
+positivity_data <- get_erviss_data(
+  type = "positivity",
+  date_min = as.Date("2024-01-01"),
+  date_max = as.Date("2024-12-31"),
+  pathogen = "SARS-CoV-2",
+  countries = c("France", "Germany")
+)
+
+# Get variant data
+variant_data <- get_erviss_data(
+  type = "variants",
+  date_min = as.Date("2025-06-01"),
+  date_max = as.Date("2025-12-31"),
+  variant = c("XFG", "LP.8.1"),
+  countries = c("Belgium", "Denmark", "France")
+)
+```
+
 ## Visualization (Optional)
 
 The package provides optional visualization functions for quick exploration.

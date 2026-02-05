@@ -1,7 +1,9 @@
-^erviss_analyse\.Rproj$
+^ervissexplore\.Rproj$
 ^\.Rproj\.user$
 ^LICENSE\.md$
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
 ^README\.Rmd$
+^\.github$
+^\.vscode$
