@@ -1,10 +1,18 @@
 Package: ervissexplore
-Title: Analyse of the erviss data
-Version: 0.0.0.9000
+Title: Retrieve and Explore ERVISS Respiratory Virus Surveillance Data
+Version: 0.1.0
 Authors@R: 
     person("Yohann", "Mansiaux", , "yohann.mansiaux@epiconcept.fr", role = c("aut", "cre"))
-Description: Analyse of the erviss data.
-License: MIT + file LICENSE
+Description: Provides easy access to ERVISS (European Respiratory Virus 
+    Surveillance Summary) data from the EU-ECDC. Enables retrieval, filtering,
+    and optional visualization of respiratory virus positivity rates and 
+    SARS-CoV-2 variant proportions across European countries. Data is fetched
+    directly from the EU-ECDC Respiratory Viruses Weekly Data repository, with
+    support for both latest data and historical snapshots for reproducible 
+    analyses.
+License: file LICENSE
+URL: https://github.com/Epiconcept-Paris/ervissexplore
+BugReports: https://github.com/Epiconcept-Paris/ervissexplore/issues
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
