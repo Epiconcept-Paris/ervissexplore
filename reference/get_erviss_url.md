@@ -6,18 +6,16 @@ specific snapshot.
 ## Usage
 
 ``` r
-get_erviss_url(
-  type = c("positivity", "variants"),
-  use_snapshot = FALSE,
-  snapshot_date = NULL
-)
+get_erviss_url(type = ERVISS_TYPES, use_snapshot = FALSE, snapshot_date = NULL)
 ```
 
 ## Arguments
 
 - type:
 
-  Type of data: "positivity" or "variants"
+  Type of data. One of: "positivity", "variants", "ili_ari_rates",
+  "sari_rates", "sari_positivity", "nonsentinel_severity",
+  "nonsentinel_tests".
 
 - use_snapshot:
 
@@ -43,6 +41,10 @@ get_erviss_url("positivity")
 # Get latest variants data URL
 get_erviss_url("variants")
 #> [1] "https://raw.githubusercontent.com/EU-ECDC/Respiratory_viruses_weekly_data/refs/heads/main/data/variants.csv"
+
+# Get latest ILI/ARI rates data URL
+get_erviss_url("ili_ari_rates")
+#> [1] "https://raw.githubusercontent.com/EU-ECDC/Respiratory_viruses_weekly_data/refs/heads/main/data/ILIARIRates.csv"
 
 # Get snapshot URL
 get_erviss_url("variants", use_snapshot = TRUE, snapshot_date = as.Date("2023-11-24"))

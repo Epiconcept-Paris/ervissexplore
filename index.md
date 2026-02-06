@@ -2,8 +2,8 @@
 
 An R package to easily retrieve ERVISS (European Respiratory Virus
 Surveillance Summary) data from the EU-ECDC. Provides functions to
-fetch, filter, and optionally visualize respiratory virus positivity
-rates and SARS-CoV-2 variant proportions across European countries.
+fetch, filter, and optionally visualize respiratory virus surveillance
+data across European countries.
 
 ## Installation
 
@@ -25,14 +25,6 @@ positivity_data <- get_sentineltests_positivity(
   countries = c("France", "Germany", "Italy")
 )
 
-# Retrieve variant data
-variant_data <- get_erviss_variants(
-  date_min = as.Date("2024-06-01"),
-  date_max = as.Date("2024-12-31"),
-  variant = c("XFG", "LP.8.1")
-)
-
-# The data is ready for your own analysis
 head(positivity_data)
 #>                 survtype countryname yearweek   pathogen pathogentype
 #>                   <char>      <char>   <char>     <char>       <char>
@@ -50,57 +42,33 @@ head(positivity_data)
 #> 4:      SARS-CoV-2 positivity  total   3.8 2024-12-02
 #> 5:      SARS-CoV-2 positivity  total   6.2 2024-11-25
 #> 6:      SARS-CoV-2 positivity  total   6.4 2024-11-18
-summary(variant_data)
-#>    survtype          datasource        countryname          yearweek        
-#>  Length:4           Length:4           Length:4           Length:4          
-#>  Class :character   Class :character   Class :character   Class :character  
-#>  Mode  :character   Mode  :character   Mode  :character   Mode  :character  
-#>                                                                             
-#>                                                                             
-#>                                                                             
-#>    pathogen           variant           indicator             age           
-#>  Length:4           Length:4           Length:4           Length:4          
-#>  Class :character   Class :character   Class :character   Class :character  
-#>  Mode  :character   Mode  :character   Mode  :character   Mode  :character  
-#>                                                                             
-#>                                                                             
-#>                                                                             
-#>      value           date           
-#>  Min.   :0.10   Min.   :2024-10-28  
-#>  1st Qu.:0.10   1st Qu.:2024-10-28  
-#>  Median :0.55   Median :2024-10-31  
-#>  Mean   :0.60   Mean   :2024-10-31  
-#>  3rd Qu.:1.05   3rd Qu.:2024-11-04  
-#>  Max.   :1.20   Max.   :2024-11-04
 ```
 
-## Data Source
+## Data Sources
 
 The package fetches data directly from the [EU-ECDC Respiratory Viruses
 Weekly Data](https://github.com/EU-ECDC/Respiratory_viruses_weekly_data)
 repository.
 
-Two data types are available:
+Seven data sources are available:
 
-- **Positivity**: Test positivity rates by pathogen and country (from
-  `sentinelTestsDetectionsPositivity.csv`)
+| Data source           | Function                                                                      | Description                             |
+|-----------------------|-------------------------------------------------------------------------------|-----------------------------------------|
+| Sentinel positivity   | [`get_sentineltests_positivity()`](reference/get_sentineltests_positivity.md) | Test positivity rates by pathogen       |
+| SARS-CoV-2 variants   | [`get_erviss_variants()`](reference/get_erviss_variants.md)                   | Variant proportions and detections      |
+| ILI/ARI rates         | [`get_ili_ari_rates()`](reference/get_ili_ari_rates.md)                       | ILI/ARI consultation rates by age group |
+| SARI rates            | [`get_sari_rates()`](reference/get_sari_rates.md)                             | SARI hospitalisation rates by age group |
+| SARI virological      | [`get_sari_positivity()`](reference/get_sari_positivity.md)                   | SARI tests, detections and positivity   |
+| Non-sentinel severity | [`get_nonsentinel_severity()`](reference/get_nonsentinel_severity.md)         | Deaths, hospital and ICU admissions     |
+| Non-sentinel tests    | [`get_nonsentinel_tests()`](reference/get_nonsentinel_tests.md)               | Non-sentinel tests and detections       |
 
-- **Variants**: SARS-CoV-2 variant proportions by country (from
-  `variants.csv`)
+A generic function `get_erviss_data(type = ...)` can also be used to
+access any of the above sources.
 
 ### Latest Data vs Snapshots
 
-By default, functions fetch the latest available data:
-
-``` r
-# Latest data (default)
-data <- get_sentineltests_positivity(
-  date_min = as.Date("2024-01-01"),
-  date_max = as.Date("2024-12-31")
-)
-```
-
-For reproducibility, you can use historical snapshots:
+By default, functions fetch the latest available data. For
+reproducibility, you can use historical snapshots:
 
 ``` r
 # Use a specific snapshot for reproducible analyses
@@ -112,34 +80,9 @@ data <- get_sentineltests_positivity(
 )
 ```
 
-To get the list of available snapshots, visit the [EU-ECDC Respiratory
-Viruses Weekly Data
+To see available snapshot dates, visit the [EU-ECDC Respiratory Viruses
+Weekly Data
 repository](https://github.com/EU-ECDC/Respiratory_viruses_weekly_data/tree/main/data/snapshots).
-
-## Main Functions
-
-### Data retrieval
-
-| Function                                                                      | Description                      |
-|-------------------------------------------------------------------------------|----------------------------------|
-| [`get_sentineltests_positivity()`](reference/get_sentineltests_positivity.md) | Fetch and filter positivity data |
-| [`get_erviss_variants()`](reference/get_erviss_variants.md)                   | Fetch and filter variant data    |
-
-### Visualization (optional)
-
-| Function                                                                      | Description                         |
-|-------------------------------------------------------------------------------|-------------------------------------|
-| [`plot_erviss_positivity()`](reference/plot_erviss_positivity.md)             | Plot positivity data                |
-| [`plot_erviss_variants()`](reference/plot_erviss_variants.md)                 | Plot variant data                   |
-| [`quick_plot_erviss_positivity()`](reference/quick_plot_erviss_positivity.md) | Fetch + plot positivity in one call |
-| [`quick_plot_erviss_variants()`](reference/quick_plot_erviss_variants.md)     | Fetch + plot variants in one call   |
-
-### URL builders
-
-| Function                                                                              | Description                 |
-|---------------------------------------------------------------------------------------|-----------------------------|
-| [`get_sentineltests_positivity_url()`](reference/get_sentineltests_positivity_url.md) | Get URL for positivity data |
-| [`get_erviss_variants_url()`](reference/get_erviss_variants_url.md)                   | Get URL for variant data    |
 
 ## Examples
 
@@ -172,10 +115,55 @@ data[,
 #> 6:       Spain SARS-CoV-2       10.626923           45.6
 ```
 
-### Visualization
+### Other data sources
 
 ``` r
-# Option 1: Separate steps (more control)
+# ILI consultation rates
+ili_data <- get_ili_ari_rates(
+  date_min = as.Date("2024-01-01"),
+  date_max = as.Date("2024-12-31"),
+  indicator = "ILIconsultationrate",
+  age = c("0-4", "65+"),
+  countries = "France"
+)
+
+# Hospital admissions
+severity_data <- get_nonsentinel_severity(
+  date_min = as.Date("2024-01-01"),
+  date_max = as.Date("2024-12-31"),
+  pathogen = "SARS-CoV-2",
+  indicator = "hospitaladmissions",
+  countries = c("France", "Germany")
+)
+
+# SARI positivity
+sari_data <- get_sari_positivity(
+  date_min = as.Date("2024-01-01"),
+  date_max = as.Date("2024-12-31"),
+  pathogen = "Influenza",
+  indicator = "positivity"
+)
+```
+
+### Using the generic function
+
+``` r
+# All sources accessible via a single function
+data <- get_erviss_data(
+  type = "nonsentinel_severity",
+  date_min = as.Date("2024-01-01"),
+  date_max = as.Date("2024-12-31"),
+  pathogen = "SARS-CoV-2",
+  indicator = "hospitaladmissions"
+)
+```
+
+### Visualization (optional)
+
+The package includes optional plotting functions for quick exploration.
+They return `ggplot2` objects that can be customized freely:
+
+``` r
 data <- get_sentineltests_positivity(
   date_min = as.Date("2024-01-01"),
   date_max = as.Date("2024-06-30"),
@@ -185,21 +173,19 @@ data <- get_sentineltests_positivity(
 plot_erviss_positivity(data, date_breaks = "1 month")
 ```
 
-![](reference/figures/README-unnamed-chunk-7-1.png)
+![](reference/figures/README-unnamed-chunk-8-1.png)
+
+Or use the quick one-liners:
 
 ``` r
-
-# Option 2: Quick one-liner
-quick_plot_erviss_positivity(
+quick_plot_ili_ari_rates(
   date_min = as.Date("2024-01-01"),
   date_max = as.Date("2024-12-31"),
-  pathogen = "SARS-CoV-2",
-  date_breaks = "1 month",
-  countries = c("France", "Spain")
+  indicator = "ILIconsultationrate",
+  countries = c("France", "Germany"),
+  date_breaks = "1 month"
 )
 ```
-
-![](reference/figures/README-unnamed-chunk-7-2.png)
 
 ### Using a local CSV file
 
@@ -211,6 +197,48 @@ data <- get_erviss_variants(
   date_max = as.Date("2024-12-31")
 )
 ```
+
+## Main Functions
+
+### Data retrieval
+
+| Function                                                                      | Description                    |
+|-------------------------------------------------------------------------------|--------------------------------|
+| [`get_sentineltests_positivity()`](reference/get_sentineltests_positivity.md) | Sentinel test positivity rates |
+| [`get_erviss_variants()`](reference/get_erviss_variants.md)                   | SARS-CoV-2 variant data        |
+| [`get_ili_ari_rates()`](reference/get_ili_ari_rates.md)                       | ILI/ARI consultation rates     |
+| [`get_sari_rates()`](reference/get_sari_rates.md)                             | SARI hospitalisation rates     |
+| [`get_sari_positivity()`](reference/get_sari_positivity.md)                   | SARI virological data          |
+| [`get_nonsentinel_severity()`](reference/get_nonsentinel_severity.md)         | Non-sentinel severity data     |
+| [`get_nonsentinel_tests()`](reference/get_nonsentinel_tests.md)               | Non-sentinel tests/detections  |
+| [`get_erviss_data()`](reference/get_erviss_data.md)                           | Generic function (all types)   |
+
+### Visualization (optional)
+
+| Function                                                                | Description                |
+|-------------------------------------------------------------------------|----------------------------|
+| [`plot_erviss_positivity()`](reference/plot_erviss_positivity.md)       | Plot positivity data       |
+| [`plot_erviss_variants()`](reference/plot_erviss_variants.md)           | Plot variant data          |
+| [`plot_ili_ari_rates()`](reference/plot_ili_ari_rates.md)               | Plot ILI/ARI rates         |
+| [`plot_sari_rates()`](reference/plot_sari_rates.md)                     | Plot SARI rates            |
+| [`plot_sari_positivity()`](reference/plot_sari_positivity.md)           | Plot SARI virological data |
+| [`plot_nonsentinel_severity()`](reference/plot_nonsentinel_severity.md) | Plot severity data         |
+| [`plot_nonsentinel_tests()`](reference/plot_nonsentinel_tests.md)       | Plot non-sentinel tests    |
+| [`plot_erviss_data()`](reference/plot_erviss_data.md)                   | Generic plot function      |
+| `quick_plot_*()`                                                        | Fetch + plot in one call   |
+
+### URL builders
+
+| Function                                                                              | Description                     |
+|---------------------------------------------------------------------------------------|---------------------------------|
+| [`get_erviss_url()`](reference/get_erviss_url.md)                                     | Generic URL builder (all types) |
+| [`get_sentineltests_positivity_url()`](reference/get_sentineltests_positivity_url.md) | Positivity data URL             |
+| [`get_erviss_variants_url()`](reference/get_erviss_variants_url.md)                   | Variants data URL               |
+| [`get_ili_ari_rates_url()`](reference/get_ili_ari_rates_url.md)                       | ILI/ARI rates URL               |
+| [`get_sari_rates_url()`](reference/get_sari_rates_url.md)                             | SARI rates URL                  |
+| [`get_sari_positivity_url()`](reference/get_sari_positivity_url.md)                   | SARI virological data URL       |
+| [`get_nonsentinel_severity_url()`](reference/get_nonsentinel_severity_url.md)         | Non-sentinel severity URL       |
+| [`get_nonsentinel_tests_url()`](reference/get_nonsentinel_tests_url.md)               | Non-sentinel tests URL          |
 
 ## Contributing to `{ervissexplore}`
 

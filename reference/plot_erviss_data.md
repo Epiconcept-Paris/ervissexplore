@@ -1,8 +1,8 @@
 # Plot ERVISS data
 
 Creates a ggplot2 visualization of ERVISS data, with facets by country.
-This is a generic function that can plot either positivity or variants
-data.
+This is a generic function that can plot any of the available data
+types.
 
 ## Usage
 
@@ -20,18 +20,21 @@ plot_erviss_data(
 - data:
 
   A data.table or data.frame containing ERVISS data, typically output
-  from [`get_erviss_data`](get_erviss_data.md). Must contain columns:
-  date, value, countryname, and either pathogen or variant.
+  from [`get_erviss_data`](get_erviss_data.md).
 
 - type:
 
-  Type of data: "positivity" or "variants". If NULL (default), the
-  function will attempt to detect the type based on column names.
+  Type of data. One of: "positivity", "variants", "ili_ari_rates",
+  "sari_rates", "sari_positivity", "nonsentinel_severity",
+  "nonsentinel_tests". If NULL (default), the function will attempt to
+  detect the type based on column names (works for "positivity" and
+  "variants" only; other types must be specified explicitly).
 
 - date_breaks:
 
   A string specifying the date breaks for the x-axis (e.g., "1 month",
-  "2 weeks")
+  "2 weeks"). If NULL, a sensible default is chosen based on the data
+  type.
 
 - date_format:
 
@@ -47,21 +50,19 @@ A ggplot2 object
 ``` r
 if (FALSE) { # \dontrun{
 # Plot positivity data
-data <- get_erviss_data(
-  type = "positivity",
+data <- get_erviss_data("positivity",
   date_min = as.Date("2024-01-01"),
   date_max = as.Date("2024-06-30"),
   pathogen = "SARS-CoV-2"
 )
 plot_erviss_data(data)
 
-# Plot variants data
-data <- get_erviss_data(
-  type = "variants",
-  date_min = as.Date("2024-06-01"),
-  date_max = as.Date("2024-12-31"),
-  variant = c("XFG", "LP.8.1")
+# Plot ILI/ARI rates
+data <- get_erviss_data("ili_ari_rates",
+  date_min = as.Date("2024-01-01"),
+  date_max = as.Date("2024-06-30"),
+  indicator = "ILIconsultationrate"
 )
-plot_erviss_data(data)
+plot_erviss_data(data, type = "ili_ari_rates")
 } # }
 ```

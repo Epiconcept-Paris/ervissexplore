@@ -1,8 +1,9 @@
-# Get ERVISS positivity data
+# Get ERVISS sentinel tests data
 
-Retrieves and filters positivity data from the ERVISS (European
-Respiratory Virus Surveillance Summary) for a specified date range,
-pathogen(s), and country(ies).
+Retrieves and filters sentinel surveillance data (positivity,
+detections, tests) from the ERVISS (European Respiratory Virus
+Surveillance Summary) for a specified date range, pathogen(s),
+indicator(s), and country(ies).
 
 ## Usage
 
@@ -12,6 +13,7 @@ get_sentineltests_positivity(
   date_min,
   date_max,
   pathogen = "",
+  indicator = "",
   countries = "",
   use_snapshot = FALSE,
   snapshot_date = NULL
@@ -38,6 +40,12 @@ get_sentineltests_positivity(
   Character vector of pathogen names to filter. Use "" (default) to
   include all pathogens.
 
+- indicator:
+
+  Character vector of indicators to filter: "positivity", "detections",
+  "tests", or any combination. Use "" (default) to include all
+  indicators.
+
 - countries:
 
   Character vector of country names to filter. Use "" (default) to
@@ -55,8 +63,8 @@ get_sentineltests_positivity(
 
 ## Value
 
-A data.table containing the filtered positivity data with columns: date,
-value, pathogen, countryname, and other ERVISS fields.
+A data.table containing the filtered data with columns: date, value,
+pathogen, countryname, indicator, and other ERVISS fields.
 
 ## Examples
 
@@ -68,6 +76,14 @@ data <- get_sentineltests_positivity(
   date_max = as.Date("2024-12-31"),
   pathogen = "SARS-CoV-2",
   countries = "France"
+)
+
+# Get detections and tests
+data <- get_sentineltests_positivity(
+  date_min = as.Date("2024-01-01"),
+  date_max = as.Date("2024-12-31"),
+  pathogen = "Influenza",
+  indicator = c("detections", "tests")
 )
 
 # Get historical data from a specific snapshot

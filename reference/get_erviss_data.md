@@ -1,23 +1,23 @@
 # Get ERVISS data
 
 Retrieves and filters data from the ERVISS (European Respiratory Virus
-Surveillance Summary) for a specified date range, pathogen/variant(s),
-and country(ies). This is a generic function that can retrieve either
-positivity or variants data.
+Surveillance Summary). This is a generic function that can retrieve any
+of the available data types.
 
 ## Usage
 
 ``` r
 get_erviss_data(
-  type = c("positivity", "variants"),
+  type = ERVISS_TYPES,
   csv_file = NULL,
   date_min,
   date_max,
   pathogen = "",
   variant = "",
+  indicator = "",
+  age = "",
   countries = "",
   min_value = 0,
-  indicator = "proportion",
   use_snapshot = FALSE,
   snapshot_date = NULL
 )
@@ -27,7 +27,9 @@ get_erviss_data(
 
 - type:
 
-  Type of data: "positivity" or "variants"
+  Type of data. One of: "positivity", "variants", "ili_ari_rates",
+  "sari_rates", "sari_positivity", "nonsentinel_severity",
+  "nonsentinel_tests".
 
 - csv_file:
 
@@ -44,15 +46,26 @@ get_erviss_data(
 
 - pathogen:
 
-  Character vector of pathogen names to filter (for type =
-  "positivity"). Use "" (default) to include all pathogens. Ignored if
-  type = "variants".
+  Character vector of pathogen names to filter. Used for types:
+  "positivity", "sari_positivity", "nonsentinel_severity",
+  "nonsentinel_tests". Use "" (default) to include all pathogens.
 
 - variant:
 
-  Character vector of variant names to filter (for type = "variants").
-  Use "" (default) to include all variants. Ignored if type =
-  "positivity".
+  Character vector of variant names to filter. Only used for type =
+  "variants". Use "" (default) to include all variants.
+
+- indicator:
+
+  Character vector of indicators to filter. The available values depend
+  on the data type. Use "" (default) to include all indicators.
+
+- age:
+
+  Character vector of age groups to filter. Used for types:
+  "ili_ari_rates", "sari_rates", "sari_positivity",
+  "nonsentinel_severity", "nonsentinel_tests". Use "" (default) to
+  include all age groups.
 
 - countries:
 
@@ -61,13 +74,7 @@ get_erviss_data(
 
 - min_value:
 
-  Minimum value threshold to include in the results (default: 0). Only
-  used for type = "variants".
-
-- indicator:
-
-  Type of indicator for variants: "proportion" (default) or
-  "detections". Only used for type = "variants".
+  Minimum value threshold (default: 0). Only used for type = "variants".
 
 - use_snapshot:
 
@@ -81,8 +88,7 @@ get_erviss_data(
 
 ## Value
 
-A data.table containing the filtered data with columns including: date,
-value, countryname, and other ERVISS fields.
+A data.table containing the filtered data.
 
 ## Examples
 
@@ -97,13 +103,22 @@ data <- get_erviss_data(
   countries = "France"
 )
 
-# Get variants data
+# Get ILI consultation rates
 data <- get_erviss_data(
-  type = "variants",
-  date_min = as.Date("2024-06-01"),
+  type = "ili_ari_rates",
+  date_min = as.Date("2024-01-01"),
   date_max = as.Date("2024-12-31"),
-  variant = c("XFG", "LP.8.1"),
-  min_value = 5
+  indicator = "ILIconsultationrate",
+  age = "total"
+)
+
+# Get non-sentinel severity data
+data <- get_erviss_data(
+  type = "nonsentinel_severity",
+  date_min = as.Date("2024-01-01"),
+  date_max = as.Date("2024-12-31"),
+  pathogen = "SARS-CoV-2",
+  indicator = "hospitaladmissions"
 )
 } # }
 ```

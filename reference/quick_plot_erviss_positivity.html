@@ -22,7 +22,8 @@ plot_erviss_positivity."></head><body>
       <ul class="navbar-nav me-auto"><li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/getting-started.html">Getting Started with ervissexplore</a></li>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/fetching-data.html">Fetching ERVISS Data</a></li>
+    <li><a class="dropdown-item" href="../articles/visualization.html">Visualization</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -54,6 +55,7 @@ For more control, use <code><a href="get_sentineltests_positivity.html">get_sent
 <span>  <span class="va">date_min</span>,</span>
 <span>  <span class="va">date_max</span>,</span>
 <span>  pathogen <span class="op">=</span> <span class="st">""</span>,</span>
+<span>  indicator <span class="op">=</span> <span class="st">""</span>,</span>
 <span>  countries <span class="op">=</span> <span class="st">""</span>,</span>
 <span>  date_breaks <span class="op">=</span> <span class="st">"2 weeks"</span>,</span>
 <span>  date_format <span class="op">=</span> <span class="st">"%b %Y"</span>,</span>
@@ -82,6 +84,12 @@ If NULL (default), data is fetched from the official ERVISS repository.</p></dd>
 <dt id="arg-pathogen">pathogen<a class="anchor" aria-label="anchor" href="#arg-pathogen"></a></dt>
 <dd><p>Character vector of pathogen names to filter.
 Use "" (default) to include all pathogens.</p></dd>
+
+
+<dt id="arg-indicator">indicator<a class="anchor" aria-label="anchor" href="#arg-indicator"></a></dt>
+<dd><p>Character vector of indicators to filter:
+"positivity", "detections", "tests", or any combination.
+Use "" (default) to include all indicators.</p></dd>
 
 
 <dt id="arg-countries">countries<a class="anchor" aria-label="anchor" href="#arg-countries"></a></dt>

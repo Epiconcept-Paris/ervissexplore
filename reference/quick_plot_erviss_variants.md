@@ -15,7 +15,7 @@ quick_plot_erviss_variants(
   variant = "",
   countries = "",
   min_value = 0,
-  indicator = "proportion",
+  indicator = "",
   date_breaks = "1 month",
   date_format = "%b %Y",
   use_snapshot = FALSE,
@@ -54,7 +54,8 @@ quick_plot_erviss_variants(
 
 - indicator:
 
-  Type of indicator: "proportion" (default) or "detections"
+  Type of indicator: "proportion" or "detections". Use "" (default) to
+  include all indicators.
 
 - date_breaks:
 

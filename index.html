@@ -35,7 +35,8 @@
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="articles/getting-started.html">Getting Started with ervissexplore</a></li>
+<li><a class="dropdown-item" href="articles/fetching-data.html">Fetching ERVISS Data</a></li>
+    <li><a class="dropdown-item" href="articles/visualization.html">Visualization</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="news/index.html">Changelog</a></li>
@@ -57,7 +58,7 @@
 </h1></div>
 <!-- badges: start -->
 
-<p>An R package to easily retrieve ERVISS (European Respiratory Virus Surveillance Summary) data from the EU-ECDC. Provides functions to fetch, filter, and optionally visualize respiratory virus positivity rates and SARS-CoV-2 variant proportions across European countries.</p>
+<p>An R package to easily retrieve ERVISS (European Respiratory Virus Surveillance Summary) data from the EU-ECDC. Provides functions to fetch, filter, and optionally visualize respiratory virus surveillance data across European countries.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -79,14 +80,6 @@
 <span>  countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"France"</span>, <span class="st">"Germany"</span>, <span class="st">"Italy"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># Retrieve variant data</span></span>
-<span><span class="va">variant_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_erviss_variants.html">get_erviss_variants</a></span><span class="op">(</span></span>
-<span>  date_min <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-06-01"</span><span class="op">)</span>,</span>
-<span>  date_max <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-12-31"</span><span class="op">)</span>,</span>
-<span>  variant <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"XFG"</span>, <span class="st">"LP.8.1"</span><span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># The data is ready for your own analysis</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">positivity_data</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                 survtype countryname yearweek   pathogen pathogentype</span></span>
 <span><span class="co">#&gt;                   &lt;char&gt;      &lt;char&gt;   &lt;char&gt;     &lt;char&gt;       &lt;char&gt;</span></span>
@@ -103,51 +96,68 @@
 <span><span class="co">#&gt; 3:      SARS-CoV-2 positivity  total   4.1 2024-12-09</span></span>
 <span><span class="co">#&gt; 4:      SARS-CoV-2 positivity  total   3.8 2024-12-02</span></span>
 <span><span class="co">#&gt; 5:      SARS-CoV-2 positivity  total   6.2 2024-11-25</span></span>
-<span><span class="co">#&gt; 6:      SARS-CoV-2 positivity  total   6.4 2024-11-18</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">variant_data</span><span class="op">)</span></span>
-<span><span class="co">#&gt;    survtype          datasource        countryname          yearweek        </span></span>
-<span><span class="co">#&gt;  Length:4           Length:4           Length:4           Length:4          </span></span>
-<span><span class="co">#&gt;  Class :character   Class :character   Class :character   Class :character  </span></span>
-<span><span class="co">#&gt;  Mode  :character   Mode  :character   Mode  :character   Mode  :character  </span></span>
-<span><span class="co">#&gt;                                                                             </span></span>
-<span><span class="co">#&gt;                                                                             </span></span>
-<span><span class="co">#&gt;                                                                             </span></span>
-<span><span class="co">#&gt;    pathogen           variant           indicator             age           </span></span>
-<span><span class="co">#&gt;  Length:4           Length:4           Length:4           Length:4          </span></span>
-<span><span class="co">#&gt;  Class :character   Class :character   Class :character   Class :character  </span></span>
-<span><span class="co">#&gt;  Mode  :character   Mode  :character   Mode  :character   Mode  :character  </span></span>
-<span><span class="co">#&gt;                                                                             </span></span>
-<span><span class="co">#&gt;                                                                             </span></span>
-<span><span class="co">#&gt;                                                                             </span></span>
-<span><span class="co">#&gt;      value           date           </span></span>
-<span><span class="co">#&gt;  Min.   :0.10   Min.   :2024-10-28  </span></span>
-<span><span class="co">#&gt;  1st Qu.:0.10   1st Qu.:2024-10-28  </span></span>
-<span><span class="co">#&gt;  Median :0.55   Median :2024-10-31  </span></span>
-<span><span class="co">#&gt;  Mean   :0.60   Mean   :2024-10-31  </span></span>
-<span><span class="co">#&gt;  3rd Qu.:1.05   3rd Qu.:2024-11-04  </span></span>
-<span><span class="co">#&gt;  Max.   :1.20   Max.   :2024-11-04</span></span></code></pre></div>
+<span><span class="co">#&gt; 6:      SARS-CoV-2 positivity  total   6.4 2024-11-18</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="data-source">Data Source<a class="anchor" aria-label="anchor" href="#data-source"></a>
+<h2 id="data-sources">Data Sources<a class="anchor" aria-label="anchor" href="#data-sources"></a>
 </h2>
 <p>The package fetches data directly from the <a href="https://github.com/EU-ECDC/Respiratory_viruses_weekly_data" class="external-link">EU-ECDC Respiratory Viruses Weekly Data</a> repository.</p>
-<p>Two data types are available:</p>
-<ul>
-<li><p><strong>Positivity</strong>: Test positivity rates by pathogen and country (from <code>sentinelTestsDetectionsPositivity.csv</code>)</p></li>
-<li><p><strong>Variants</strong>: SARS-CoV-2 variant proportions by country (from <code>variants.csv</code>)</p></li>
-</ul>
+<p>Seven data sources are available:</p>
+<table class="table">
+<colgroup>
+<col width="33%">
+<col width="33%">
+<col width="33%">
+</colgroup>
+<thead><tr class="header">
+<th>Data source</th>
+<th>Function</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Sentinel positivity</td>
+<td><code><a href="reference/get_sentineltests_positivity.html">get_sentineltests_positivity()</a></code></td>
+<td>Test positivity rates by pathogen</td>
+</tr>
+<tr class="even">
+<td>SARS-CoV-2 variants</td>
+<td><code><a href="reference/get_erviss_variants.html">get_erviss_variants()</a></code></td>
+<td>Variant proportions and detections</td>
+</tr>
+<tr class="odd">
+<td>ILI/ARI rates</td>
+<td><code><a href="reference/get_ili_ari_rates.html">get_ili_ari_rates()</a></code></td>
+<td>ILI/ARI consultation rates by age group</td>
+</tr>
+<tr class="even">
+<td>SARI rates</td>
+<td><code><a href="reference/get_sari_rates.html">get_sari_rates()</a></code></td>
+<td>SARI hospitalisation rates by age group</td>
+</tr>
+<tr class="odd">
+<td>SARI virological</td>
+<td><code><a href="reference/get_sari_positivity.html">get_sari_positivity()</a></code></td>
+<td>SARI tests, detections and positivity</td>
+</tr>
+<tr class="even">
+<td>Non-sentinel severity</td>
+<td><code><a href="reference/get_nonsentinel_severity.html">get_nonsentinel_severity()</a></code></td>
+<td>Deaths, hospital and ICU admissions</td>
+</tr>
+<tr class="odd">
+<td>Non-sentinel tests</td>
+<td><code><a href="reference/get_nonsentinel_tests.html">get_nonsentinel_tests()</a></code></td>
+<td>Non-sentinel tests and detections</td>
+</tr>
+</tbody>
+</table>
+<p>A generic function <code>get_erviss_data(type = ...)</code> can also be used to access any of the above sources.</p>
 <div class="section level3">
 <h3 id="latest-data-vs-snapshots">Latest Data vs Snapshots<a class="anchor" aria-label="anchor" href="#latest-data-vs-snapshots"></a>
 </h3>
-<p>By default, functions fetch the latest available data:</p>
+<p>By default, functions fetch the latest available data. For reproducibility, you can use historical snapshots:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Latest data (default)</span></span>
-<span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_sentineltests_positivity.html">get_sentineltests_positivity</a></span><span class="op">(</span></span>
-<span>  date_min <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-01-01"</span><span class="op">)</span>,</span>
-<span>  date_max <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-12-31"</span><span class="op">)</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-<p>For reproducibility, you can use historical snapshots:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Use a specific snapshot for reproducible analyses</span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_sentineltests_positivity.html">get_sentineltests_positivity</a></span><span class="op">(</span></span>
 <span>  date_min <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2023-01-01"</span><span class="op">)</span>,</span>
@@ -155,83 +165,7 @@
 <span>  use_snapshot <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  snapshot_date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-02-23"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p>To get the list of available snapshots, visit the <a href="https://github.com/EU-ECDC/Respiratory_viruses_weekly_data/tree/main/data/snapshots" class="external-link">EU-ECDC Respiratory Viruses Weekly Data repository</a>.</p>
-</div>
-</div>
-<div class="section level2">
-<h2 id="main-functions">Main Functions<a class="anchor" aria-label="anchor" href="#main-functions"></a>
-</h2>
-<div class="section level3">
-<h3 id="data-retrieval">Data retrieval<a class="anchor" aria-label="anchor" href="#data-retrieval"></a>
-</h3>
-<table class="table">
-<thead><tr class="header">
-<th>Function</th>
-<th>Description</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td><code><a href="reference/get_sentineltests_positivity.html">get_sentineltests_positivity()</a></code></td>
-<td>Fetch and filter positivity data</td>
-</tr>
-<tr class="even">
-<td><code><a href="reference/get_erviss_variants.html">get_erviss_variants()</a></code></td>
-<td>Fetch and filter variant data</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section level3">
-<h3 id="visualization-optional">Visualization (optional)<a class="anchor" aria-label="anchor" href="#visualization-optional"></a>
-</h3>
-<table class="table">
-<colgroup>
-<col width="47%">
-<col width="52%">
-</colgroup>
-<thead><tr class="header">
-<th>Function</th>
-<th>Description</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td><code><a href="reference/plot_erviss_positivity.html">plot_erviss_positivity()</a></code></td>
-<td>Plot positivity data</td>
-</tr>
-<tr class="even">
-<td><code><a href="reference/plot_erviss_variants.html">plot_erviss_variants()</a></code></td>
-<td>Plot variant data</td>
-</tr>
-<tr class="odd">
-<td><code><a href="reference/quick_plot_erviss_positivity.html">quick_plot_erviss_positivity()</a></code></td>
-<td>Fetch + plot positivity in one call</td>
-</tr>
-<tr class="even">
-<td><code><a href="reference/quick_plot_erviss_variants.html">quick_plot_erviss_variants()</a></code></td>
-<td>Fetch + plot variants in one call</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section level3">
-<h3 id="url-builders">URL builders<a class="anchor" aria-label="anchor" href="#url-builders"></a>
-</h3>
-<table class="table">
-<thead><tr class="header">
-<th>Function</th>
-<th>Description</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td><code><a href="reference/get_sentineltests_positivity_url.html">get_sentineltests_positivity_url()</a></code></td>
-<td>Get URL for positivity data</td>
-</tr>
-<tr class="even">
-<td><code><a href="reference/get_erviss_variants_url.html">get_erviss_variants_url()</a></code></td>
-<td>Get URL for variant data</td>
-</tr>
-</tbody>
-</table>
+<p>To see available snapshot dates, visit the <a href="https://github.com/EU-ECDC/Respiratory_viruses_weekly_data/tree/main/data/snapshots" class="external-link">EU-ECDC Respiratory Viruses Weekly Data repository</a>.</p>
 </div>
 </div>
 <div class="section level2">
@@ -240,7 +174,7 @@
 <div class="section level3">
 <h3 id="retrieve-and-analyze-data">Retrieve and analyze data<a class="anchor" aria-label="anchor" href="#retrieve-and-analyze-data"></a>
 </h3>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Get positivity data (returns a data.table)</span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_sentineltests_positivity.html">get_sentineltests_positivity</a></span><span class="op">(</span></span>
 <span>  date_min <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-01-01"</span><span class="op">)</span>,</span>
@@ -267,40 +201,225 @@
 <span><span class="co">#&gt; 6:       Spain SARS-CoV-2       10.626923           45.6</span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="visualization">Visualization<a class="anchor" aria-label="anchor" href="#visualization"></a>
+<h3 id="other-data-sources">Other data sources<a class="anchor" aria-label="anchor" href="#other-data-sources"></a>
+</h3>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># ILI consultation rates</span></span>
+<span><span class="va">ili_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_ili_ari_rates.html">get_ili_ari_rates</a></span><span class="op">(</span></span>
+<span>  date_min <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-01-01"</span><span class="op">)</span>,</span>
+<span>  date_max <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-12-31"</span><span class="op">)</span>,</span>
+<span>  indicator <span class="op">=</span> <span class="st">"ILIconsultationrate"</span>,</span>
+<span>  age <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"0-4"</span>, <span class="st">"65+"</span><span class="op">)</span>,</span>
+<span>  countries <span class="op">=</span> <span class="st">"France"</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Hospital admissions</span></span>
+<span><span class="va">severity_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_nonsentinel_severity.html">get_nonsentinel_severity</a></span><span class="op">(</span></span>
+<span>  date_min <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-01-01"</span><span class="op">)</span>,</span>
+<span>  date_max <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-12-31"</span><span class="op">)</span>,</span>
+<span>  pathogen <span class="op">=</span> <span class="st">"SARS-CoV-2"</span>,</span>
+<span>  indicator <span class="op">=</span> <span class="st">"hospitaladmissions"</span>,</span>
+<span>  countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"France"</span>, <span class="st">"Germany"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># SARI positivity</span></span>
+<span><span class="va">sari_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_sari_positivity.html">get_sari_positivity</a></span><span class="op">(</span></span>
+<span>  date_min <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-01-01"</span><span class="op">)</span>,</span>
+<span>  date_max <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-12-31"</span><span class="op">)</span>,</span>
+<span>  pathogen <span class="op">=</span> <span class="st">"Influenza"</span>,</span>
+<span>  indicator <span class="op">=</span> <span class="st">"positivity"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="using-the-generic-function">Using the generic function<a class="anchor" aria-label="anchor" href="#using-the-generic-function"></a>
 </h3>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Option 1: Separate steps (more control)</span></span>
-<span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_sentineltests_positivity.html">get_sentineltests_positivity</a></span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="co"># All sources accessible via a single function</span></span>
+<span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_erviss_data.html">get_erviss_data</a></span><span class="op">(</span></span>
+<span>  type <span class="op">=</span> <span class="st">"nonsentinel_severity"</span>,</span>
+<span>  date_min <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-01-01"</span><span class="op">)</span>,</span>
+<span>  date_max <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-12-31"</span><span class="op">)</span>,</span>
+<span>  pathogen <span class="op">=</span> <span class="st">"SARS-CoV-2"</span>,</span>
+<span>  indicator <span class="op">=</span> <span class="st">"hospitaladmissions"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="visualization-optional">Visualization (optional)<a class="anchor" aria-label="anchor" href="#visualization-optional"></a>
+</h3>
+<p>The package includes optional plotting functions for quick exploration. They return <code>ggplot2</code> objects that can be customized freely:</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_sentineltests_positivity.html">get_sentineltests_positivity</a></span><span class="op">(</span></span>
 <span>  date_min <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-01-01"</span><span class="op">)</span>,</span>
 <span>  date_max <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-06-30"</span><span class="op">)</span>,</span>
 <span>  pathogen <span class="op">=</span> <span class="st">"SARS-CoV-2"</span>,</span>
 <span>  countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"France"</span>, <span class="st">"Spain"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/plot_erviss_positivity.html">plot_erviss_positivity</a></span><span class="op">(</span><span class="va">data</span>, date_breaks <span class="op">=</span> <span class="st">"1 month"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-7-1.png" width="100%"></p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="co"># Option 2: Quick one-liner</span></span>
-<span><span class="fu"><a href="reference/quick_plot_erviss_positivity.html">quick_plot_erviss_positivity</a></span><span class="op">(</span></span>
+<p><img src="reference/figures/README-unnamed-chunk-8-1.png" width="100%"></p>
+<p>Or use the quick one-liners:</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/quick_plot_ili_ari_rates.html">quick_plot_ili_ari_rates</a></span><span class="op">(</span></span>
 <span>  date_min <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-01-01"</span><span class="op">)</span>,</span>
 <span>  date_max <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-12-31"</span><span class="op">)</span>,</span>
-<span>  pathogen <span class="op">=</span> <span class="st">"SARS-CoV-2"</span>,</span>
-<span>  date_breaks <span class="op">=</span> <span class="st">"1 month"</span>,</span>
-<span>  countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"France"</span>, <span class="st">"Spain"</span><span class="op">)</span></span>
+<span>  indicator <span class="op">=</span> <span class="st">"ILIconsultationrate"</span>,</span>
+<span>  countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"France"</span>, <span class="st">"Germany"</span><span class="op">)</span>,</span>
+<span>  date_breaks <span class="op">=</span> <span class="st">"1 month"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-7-2.png" width="100%"></p>
 </div>
 <div class="section level3">
 <h3 id="using-a-local-csv-file">Using a local CSV file<a class="anchor" aria-label="anchor" href="#using-a-local-csv-file"></a>
 </h3>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># If you have downloaded the data locally</span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_erviss_variants.html">get_erviss_variants</a></span><span class="op">(</span></span>
 <span>  csv_file <span class="op">=</span> <span class="st">"path/to/local/variants.csv"</span>,</span>
 <span>  date_min <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-01-01"</span><span class="op">)</span>,</span>
 <span>  date_max <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-12-31"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
+</div>
+</div>
+<div class="section level2">
+<h2 id="main-functions">Main Functions<a class="anchor" aria-label="anchor" href="#main-functions"></a>
+</h2>
+<div class="section level3">
+<h3 id="data-retrieval">Data retrieval<a class="anchor" aria-label="anchor" href="#data-retrieval"></a>
+</h3>
+<table class="table">
+<thead><tr class="header">
+<th>Function</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code><a href="reference/get_sentineltests_positivity.html">get_sentineltests_positivity()</a></code></td>
+<td>Sentinel test positivity rates</td>
+</tr>
+<tr class="even">
+<td><code><a href="reference/get_erviss_variants.html">get_erviss_variants()</a></code></td>
+<td>SARS-CoV-2 variant data</td>
+</tr>
+<tr class="odd">
+<td><code><a href="reference/get_ili_ari_rates.html">get_ili_ari_rates()</a></code></td>
+<td>ILI/ARI consultation rates</td>
+</tr>
+<tr class="even">
+<td><code><a href="reference/get_sari_rates.html">get_sari_rates()</a></code></td>
+<td>SARI hospitalisation rates</td>
+</tr>
+<tr class="odd">
+<td><code><a href="reference/get_sari_positivity.html">get_sari_positivity()</a></code></td>
+<td>SARI virological data</td>
+</tr>
+<tr class="even">
+<td><code><a href="reference/get_nonsentinel_severity.html">get_nonsentinel_severity()</a></code></td>
+<td>Non-sentinel severity data</td>
+</tr>
+<tr class="odd">
+<td><code><a href="reference/get_nonsentinel_tests.html">get_nonsentinel_tests()</a></code></td>
+<td>Non-sentinel tests/detections</td>
+</tr>
+<tr class="even">
+<td><code><a href="reference/get_erviss_data.html">get_erviss_data()</a></code></td>
+<td>Generic function (all types)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section level3">
+<h3 id="visualization-optional-1">Visualization (optional)<a class="anchor" aria-label="anchor" href="#visualization-optional-1"></a>
+</h3>
+<table class="table">
+<thead><tr class="header">
+<th>Function</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code><a href="reference/plot_erviss_positivity.html">plot_erviss_positivity()</a></code></td>
+<td>Plot positivity data</td>
+</tr>
+<tr class="even">
+<td><code><a href="reference/plot_erviss_variants.html">plot_erviss_variants()</a></code></td>
+<td>Plot variant data</td>
+</tr>
+<tr class="odd">
+<td><code><a href="reference/plot_ili_ari_rates.html">plot_ili_ari_rates()</a></code></td>
+<td>Plot ILI/ARI rates</td>
+</tr>
+<tr class="even">
+<td><code><a href="reference/plot_sari_rates.html">plot_sari_rates()</a></code></td>
+<td>Plot SARI rates</td>
+</tr>
+<tr class="odd">
+<td><code><a href="reference/plot_sari_positivity.html">plot_sari_positivity()</a></code></td>
+<td>Plot SARI virological data</td>
+</tr>
+<tr class="even">
+<td><code><a href="reference/plot_nonsentinel_severity.html">plot_nonsentinel_severity()</a></code></td>
+<td>Plot severity data</td>
+</tr>
+<tr class="odd">
+<td><code><a href="reference/plot_nonsentinel_tests.html">plot_nonsentinel_tests()</a></code></td>
+<td>Plot non-sentinel tests</td>
+</tr>
+<tr class="even">
+<td><code><a href="reference/plot_erviss_data.html">plot_erviss_data()</a></code></td>
+<td>Generic plot function</td>
+</tr>
+<tr class="odd">
+<td><code>quick_plot_*()</code></td>
+<td>Fetch + plot in one call</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section level3">
+<h3 id="url-builders">URL builders<a class="anchor" aria-label="anchor" href="#url-builders"></a>
+</h3>
+<table class="table">
+<colgroup>
+<col width="53%">
+<col width="46%">
+</colgroup>
+<thead><tr class="header">
+<th>Function</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code><a href="reference/get_erviss_url.html">get_erviss_url()</a></code></td>
+<td>Generic URL builder (all types)</td>
+</tr>
+<tr class="even">
+<td><code><a href="reference/get_sentineltests_positivity_url.html">get_sentineltests_positivity_url()</a></code></td>
+<td>Positivity data URL</td>
+</tr>
+<tr class="odd">
+<td><code><a href="reference/get_erviss_variants_url.html">get_erviss_variants_url()</a></code></td>
+<td>Variants data URL</td>
+</tr>
+<tr class="even">
+<td><code><a href="reference/get_ili_ari_rates_url.html">get_ili_ari_rates_url()</a></code></td>
+<td>ILI/ARI rates URL</td>
+</tr>
+<tr class="odd">
+<td><code><a href="reference/get_sari_rates_url.html">get_sari_rates_url()</a></code></td>
+<td>SARI rates URL</td>
+</tr>
+<tr class="even">
+<td><code><a href="reference/get_sari_positivity_url.html">get_sari_positivity_url()</a></code></td>
+<td>SARI virological data URL</td>
+</tr>
+<tr class="odd">
+<td><code><a href="reference/get_nonsentinel_severity_url.html">get_nonsentinel_severity_url()</a></code></td>
+<td>Non-sentinel severity URL</td>
+</tr>
+<tr class="even">
+<td><code><a href="reference/get_nonsentinel_tests_url.html">get_nonsentinel_tests_url()</a></code></td>
+<td>Non-sentinel tests URL</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="section level2">

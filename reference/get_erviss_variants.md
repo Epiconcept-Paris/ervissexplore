@@ -14,7 +14,7 @@ get_erviss_variants(
   variant = "",
   countries = "",
   min_value = 0,
-  indicator = "proportion",
+  indicator = "",
   use_snapshot = FALSE,
   snapshot_date = NULL
 )
@@ -51,7 +51,8 @@ get_erviss_variants(
 
 - indicator:
 
-  Type of indicator: "proportion" (default) or "detections"
+  Type of indicator: "proportion" or "detections". Use "" (default) to
+  include all indicators.
 
 - use_snapshot:
 
