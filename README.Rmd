@@ -16,6 +16,7 @@ knitr::opts_chunk$set(
 # ervissexplore
 
 <!-- badges: start -->
+[![R-CMD-check](https://github.com/Epiconcept-Paris/ervissexplore/actions/workflows/formatting_and_check.yml/badge.svg)](https://github.com/Epiconcept-Paris/ervissexplore/actions/)
 <!-- badges: end -->
 
 An R package to easily retrieve ERVISS (European Respiratory Virus Surveillance Summary) data from the EU-ECDC. Provides functions to fetch, filter, and optionally visualize respiratory virus positivity rates and SARS-CoV-2 variant proportions across European countries.

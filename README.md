@@ -5,6 +5,7 @@
 
 <!-- badges: start -->
 
+[![R-CMD-check](https://github.com/Epiconcept-Paris/ervissexplore/actions/workflows/formatting_and_check.yml/badge.svg)](https://github.com/Epiconcept-Paris/ervissexplore/actions/)
 <!-- badges: end -->
 
 An R package to easily retrieve ERVISS (European Respiratory Virus
