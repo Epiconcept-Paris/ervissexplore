@@ -11,7 +11,7 @@ get_erviss_variants(
   variant = "",
   countries = "",
   min_value = 0,
-  indicator = "proportion",
+  indicator = "",
   use_snapshot = FALSE,
   snapshot_date = NULL
 )
@@ -32,7 +32,8 @@ Use "" (default) to include all countries.}
 
 \item{min_value}{Minimum value threshold to include in the results (default: 0)}
 
-\item{indicator}{Type of indicator: "proportion" (default) or "detections"}
+\item{indicator}{Type of indicator: "proportion" or "detections".
+Use "" (default) to include all indicators.}
 
 \item{use_snapshot}{Logical. If TRUE, fetches a historical snapshot; if FALSE (default),
 fetches the latest data. Ignored if csv_file is provided.}

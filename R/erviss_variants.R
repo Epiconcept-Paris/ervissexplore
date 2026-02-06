@@ -12,7 +12,8 @@
 #' @param countries Character vector of country names to filter.
 #'   Use "" (default) to include all countries.
 #' @param min_value Minimum value threshold to include in the results (default: 0)
-#' @param indicator Type of indicator: "proportion" (default) or "detections"
+#' @param indicator Type of indicator: "proportion" or "detections".
+#'   Use "" (default) to include all indicators.
 #' @param use_snapshot Logical. If TRUE, fetches a historical snapshot; if FALSE (default),
 #'   fetches the latest data. Ignored if csv_file is provided.
 #' @param snapshot_date Date of the snapshot to retrieve.
@@ -46,7 +47,7 @@ get_erviss_variants <- function(
   variant = "",
   countries = "",
   min_value = 0,
-  indicator = "proportion",
+  indicator = "",
   use_snapshot = FALSE,
   snapshot_date = NULL
 ) {
@@ -57,7 +58,9 @@ get_erviss_variants <- function(
   assert_date(date_min, "date_min")
   assert_date(date_max, "date_max")
 
-  match.arg(indicator, c("proportion", "detections"))
+  if (any(indicator != "")) {
+    assert_indicator(indicator, c("proportion", "detections"))
+  }
 
   dt <- data.table::fread(csv_file)
   dt[, date := yearweek_to_date(yearweek)]
@@ -67,12 +70,22 @@ get_erviss_variants <- function(
     dt <- dt[variant %chin% variant_filter]
   }
 
+  if (any(indicator != "")) {
+    indicator_filter <- indicator
+    dt <- dt[indicator %chin% indicator_filter]
+  }
+
   if (any(countries != "")) {
     dt <- dt[countryname %chin% countries]
   }
 
-  indicator_filter <- indicator
-  dt[date >= date_min & date <= date_max & indicator == indicator_filter & value >= min_value]
+  result <- dt[
+    date >= date_min &
+      date <= date_max &
+      value >= min_value
+  ]
+
+  warn_if_empty(result)
 }
 
 #' Plot ERVISS variants data
@@ -148,7 +161,7 @@ quick_plot_erviss_variants <- function(
   variant = "",
   countries = "",
   min_value = 0,
-  indicator = "proportion",
+  indicator = "",
   date_breaks = "1 month",
   date_format = "%b %Y",
   use_snapshot = FALSE,
