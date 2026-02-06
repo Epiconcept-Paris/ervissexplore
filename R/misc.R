@@ -1,3 +1,6 @@
+# Suppress R CMD check notes for data.table/ggplot2 non-standard evaluation
+utils::globalVariables(c("age"))
+
 # Base URL for ERVISS data
 ERVISS_BASE_URL <- "https://raw.githubusercontent.com/EU-ECDC/Respiratory_viruses_weekly_data/refs/heads/main/data"
 
@@ -76,6 +79,201 @@ get_sentineltests_positivity_url <- function(
     )
   } else {
     paste0(ERVISS_BASE_URL, "/sentinelTestsDetectionsPositivity.csv")
+  }
+}
+
+#' Get ERVISS ILI/ARI rates data URL
+#'
+#' Builds the URL to download ERVISS ILI/ARI consultation rates data, either
+#' the latest batch or a specific snapshot.
+#'
+#' @param use_snapshot Logical. If TRUE, returns a snapshot URL; if FALSE (default),
+#'   returns the URL for the latest data.
+#' @param snapshot_date Date of the snapshot to retrieve (required if use_snapshot = TRUE).
+#'   Must be a Date object.
+#'
+#' @return A character string containing the URL
+#'
+#' @export
+#' @examples
+#' # Get latest data URL
+#' get_ili_ari_rates_url()
+#'
+#' # Get snapshot URL
+#' get_ili_ari_rates_url(use_snapshot = TRUE, snapshot_date = as.Date("2023-11-24"))
+get_ili_ari_rates_url <- function(
+  use_snapshot = FALSE,
+  snapshot_date = NULL
+) {
+  if (use_snapshot) {
+    if (is.null(snapshot_date)) {
+      stop("'snapshot_date' is required when use_snapshot = TRUE")
+    }
+    assert_date(snapshot_date, "snapshot_date")
+    paste0(
+      ERVISS_BASE_URL,
+      "/snapshots/",
+      format(snapshot_date, "%Y-%m-%d"),
+      "_ILIARIRates.csv"
+    )
+  } else {
+    paste0(ERVISS_BASE_URL, "/ILIARIRates.csv")
+  }
+}
+
+#' Get ERVISS SARI rates data URL
+#'
+#' Builds the URL to download ERVISS SARI rates data, either the latest batch
+#' or a specific snapshot.
+#'
+#' @param use_snapshot Logical. If TRUE, returns a snapshot URL; if FALSE (default),
+#'   returns the URL for the latest data.
+#' @param snapshot_date Date of the snapshot to retrieve (required if use_snapshot = TRUE).
+#'   Must be a Date object.
+#'
+#' @return A character string containing the URL
+#'
+#' @export
+#' @examples
+#' # Get latest data URL
+#' get_sari_rates_url()
+#'
+#' # Get snapshot URL
+#' get_sari_rates_url(use_snapshot = TRUE, snapshot_date = as.Date("2023-11-24"))
+get_sari_rates_url <- function(
+  use_snapshot = FALSE,
+  snapshot_date = NULL
+) {
+  if (use_snapshot) {
+    if (is.null(snapshot_date)) {
+      stop("'snapshot_date' is required when use_snapshot = TRUE")
+    }
+    assert_date(snapshot_date, "snapshot_date")
+    paste0(
+      ERVISS_BASE_URL,
+      "/snapshots/",
+      format(snapshot_date, "%Y-%m-%d"),
+      "_SARIRates.csv"
+    )
+  } else {
+    paste0(ERVISS_BASE_URL, "/SARIRates.csv")
+  }
+}
+
+#' Get ERVISS SARI tests/detections/positivity data URL
+#'
+#' Builds the URL to download ERVISS SARI virological data, either the latest
+#' batch or a specific snapshot.
+#'
+#' @param use_snapshot Logical. If TRUE, returns a snapshot URL; if FALSE (default),
+#'   returns the URL for the latest data.
+#' @param snapshot_date Date of the snapshot to retrieve (required if use_snapshot = TRUE).
+#'   Must be a Date object.
+#'
+#' @return A character string containing the URL
+#'
+#' @export
+#' @examples
+#' # Get latest data URL
+#' get_sari_positivity_url()
+#'
+#' # Get snapshot URL
+#' get_sari_positivity_url(use_snapshot = TRUE, snapshot_date = as.Date("2023-11-24"))
+get_sari_positivity_url <- function(
+  use_snapshot = FALSE,
+  snapshot_date = NULL
+) {
+  if (use_snapshot) {
+    if (is.null(snapshot_date)) {
+      stop("'snapshot_date' is required when use_snapshot = TRUE")
+    }
+    assert_date(snapshot_date, "snapshot_date")
+    paste0(
+      ERVISS_BASE_URL,
+      "/snapshots/",
+      format(snapshot_date, "%Y-%m-%d"),
+      "_SARITestsDetectionsPositivity.csv"
+    )
+  } else {
+    paste0(ERVISS_BASE_URL, "/SARITestsDetectionsPositivity.csv")
+  }
+}
+
+#' Get ERVISS non-sentinel severity data URL
+#'
+#' Builds the URL to download ERVISS non-sentinel severity data, either the
+#' latest batch or a specific snapshot.
+#'
+#' @param use_snapshot Logical. If TRUE, returns a snapshot URL; if FALSE (default),
+#'   returns the URL for the latest data.
+#' @param snapshot_date Date of the snapshot to retrieve (required if use_snapshot = TRUE).
+#'   Must be a Date object.
+#'
+#' @return A character string containing the URL
+#'
+#' @export
+#' @examples
+#' # Get latest data URL
+#' get_nonsentinel_severity_url()
+#'
+#' # Get snapshot URL
+#' get_nonsentinel_severity_url(use_snapshot = TRUE, snapshot_date = as.Date("2023-11-24"))
+get_nonsentinel_severity_url <- function(
+  use_snapshot = FALSE,
+  snapshot_date = NULL
+) {
+  if (use_snapshot) {
+    if (is.null(snapshot_date)) {
+      stop("'snapshot_date' is required when use_snapshot = TRUE")
+    }
+    assert_date(snapshot_date, "snapshot_date")
+    paste0(
+      ERVISS_BASE_URL,
+      "/snapshots/",
+      format(snapshot_date, "%Y-%m-%d"),
+      "_nonSentinelSeverity.csv"
+    )
+  } else {
+    paste0(ERVISS_BASE_URL, "/nonSentinelSeverity.csv")
+  }
+}
+
+#' Get ERVISS non-sentinel tests/detections data URL
+#'
+#' Builds the URL to download ERVISS non-sentinel tests/detections data, either
+#' the latest batch or a specific snapshot.
+#'
+#' @param use_snapshot Logical. If TRUE, returns a snapshot URL; if FALSE (default),
+#'   returns the URL for the latest data.
+#' @param snapshot_date Date of the snapshot to retrieve (required if use_snapshot = TRUE).
+#'   Must be a Date object.
+#'
+#' @return A character string containing the URL
+#'
+#' @export
+#' @examples
+#' # Get latest data URL
+#' get_nonsentinel_tests_url()
+#'
+#' # Get snapshot URL
+#' get_nonsentinel_tests_url(use_snapshot = TRUE, snapshot_date = as.Date("2023-11-24"))
+get_nonsentinel_tests_url <- function(
+  use_snapshot = FALSE,
+  snapshot_date = NULL
+) {
+  if (use_snapshot) {
+    if (is.null(snapshot_date)) {
+      stop("'snapshot_date' is required when use_snapshot = TRUE")
+    }
+    assert_date(snapshot_date, "snapshot_date")
+    paste0(
+      ERVISS_BASE_URL,
+      "/snapshots/",
+      format(snapshot_date, "%Y-%m-%d"),
+      "_nonSentinelTestsDetections.csv"
+    )
+  } else {
+    paste0(ERVISS_BASE_URL, "/nonSentinelTestsDetections.csv")
   }
 }
 

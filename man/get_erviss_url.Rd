@@ -4,14 +4,11 @@
 \alias{get_erviss_url}
 \title{Get ERVISS data URL}
 \usage{
-get_erviss_url(
-  type = c("positivity", "variants"),
-  use_snapshot = FALSE,
-  snapshot_date = NULL
-)
+get_erviss_url(type = ERVISS_TYPES, use_snapshot = FALSE, snapshot_date = NULL)
 }
 \arguments{
-\item{type}{Type of data: "positivity" or "variants"}
+\item{type}{Type of data. One of: "positivity", "variants", "ili_ari_rates",
+"sari_rates", "sari_positivity", "nonsentinel_severity", "nonsentinel_tests".}
 
 \item{use_snapshot}{Logical. If TRUE, returns a snapshot URL; if FALSE (default),
 returns the URL for the latest data.}
@@ -32,6 +29,9 @@ get_erviss_url("positivity")
 
 # Get latest variants data URL
 get_erviss_url("variants")
+
+# Get latest ILI/ARI rates data URL
+get_erviss_url("ili_ari_rates")
 
 # Get snapshot URL
 get_erviss_url("variants", use_snapshot = TRUE, snapshot_date = as.Date("2023-11-24"))
