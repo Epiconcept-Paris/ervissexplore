@@ -43,13 +43,17 @@ get_erviss_url <- function(
 ) {
   type <- match.arg(type)
 
-  switch(type,
+  switch(
+    type,
     positivity = get_sentineltests_positivity_url(use_snapshot, snapshot_date),
     variants = get_erviss_variants_url(use_snapshot, snapshot_date),
     ili_ari_rates = get_ili_ari_rates_url(use_snapshot, snapshot_date),
     sari_rates = get_sari_rates_url(use_snapshot, snapshot_date),
     sari_positivity = get_sari_positivity_url(use_snapshot, snapshot_date),
-    nonsentinel_severity = get_nonsentinel_severity_url(use_snapshot, snapshot_date),
+    nonsentinel_severity = get_nonsentinel_severity_url(
+      use_snapshot,
+      snapshot_date
+    ),
     nonsentinel_tests = get_nonsentinel_tests_url(use_snapshot, snapshot_date)
   )
 }
@@ -133,7 +137,8 @@ get_erviss_data <- function(
 ) {
   type <- match.arg(type)
 
-  switch(type,
+  switch(
+    type,
     positivity = get_sentineltests_positivity(
       csv_file = csv_file,
       date_min = date_min,
@@ -273,19 +278,21 @@ plot_erviss_data <- function(
 
   # Set default date_breaks based on type
   if (is.null(date_breaks)) {
-    date_breaks <- switch(type,
-      positivity = "2 weeks",
-      "1 month"
-    )
+    date_breaks <- switch(type, positivity = "2 weeks", "1 month")
   }
 
-  switch(type,
+  switch(
+    type,
     positivity = plot_erviss_positivity(data, date_breaks, date_format),
     variants = plot_erviss_variants(data, date_breaks, date_format),
     ili_ari_rates = plot_ili_ari_rates(data, date_breaks, date_format),
     sari_rates = plot_sari_rates(data, date_breaks, date_format),
     sari_positivity = plot_sari_positivity(data, date_breaks, date_format),
-    nonsentinel_severity = plot_nonsentinel_severity(data, date_breaks, date_format),
+    nonsentinel_severity = plot_nonsentinel_severity(
+      data,
+      date_breaks,
+      date_format
+    ),
     nonsentinel_tests = plot_nonsentinel_tests(data, date_breaks, date_format)
   )
 }
