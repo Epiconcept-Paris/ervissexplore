@@ -1,0 +1,322 @@
+---
+title: "Fetching ERVISS Data"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Fetching ERVISS Data}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Introduction
+
+The `ervissexplore` package provides easy access to all data published in the
+[EU-ECDC Respiratory Viruses Weekly Data](https://github.com/EU-ECDC/Respiratory_viruses_weekly_data)
+repository. Data is returned as `data.table` objects, ready for your own
+analysis.
+
+```{r setup}
+library(ervissexplore)
+```
+
+## Available data sources
+
+The package supports **7 data sources** from ERVISS:
+
+| Type | Function | CSV file | Description |
+|------|----------|----------|-------------|
+| `"positivity"` | `get_sentineltests_positivity()` | `sentinelTestsDetectionsPositivity.csv` | Sentinel test positivity rates by pathogen |
+| `"variants"` | `get_erviss_variants()` | `variants.csv` | SARS-CoV-2 variant proportions |
+| `"ili_ari_rates"` | `get_ili_ari_rates()` | `ILIARIRates.csv` | ILI/ARI consultation rates by age group |
+| `"sari_rates"` | `get_sari_rates()` | `SARIRates.csv` | SARI rates by age group |
+| `"sari_positivity"` | `get_sari_positivity()` | `SARITestsDetectionsPositivity.csv` | SARI virological data (tests, detections, positivity) |
+| `"nonsentinel_severity"` | `get_nonsentinel_severity()` | `nonSentinelSeverity.csv` | Non-sentinel severity (deaths, hospitalisations, ICU) |
+| `"nonsentinel_tests"` | `get_nonsentinel_tests()` | `nonSentinelTestsDetections.csv` | Non-sentinel tests and detections |
+
+Each source has a dedicated `get_*()` function, or you can use the generic
+`get_erviss_data(type = ...)` function.
+
+## Sentinel test positivity
+
+Positivity rates for respiratory pathogens from sentinel surveillance.
+
+```{r positivity, eval=FALSE}
+data <- get_sentineltests_positivity(
+  date_min = as.Date("2024-01-01"),
+  date_max = as.Date("2024-12-31"),
+  pathogen = "SARS-CoV-2",
+  countries = c("France", "Germany", "Italy"),
+  indicator = "positivity"
+)
+
+head(data)
+```
+
+You can filter on multiple pathogens at once:
+
+```{r positivity-multi, eval=FALSE}
+data <- get_sentineltests_positivity(
+  date_min = as.Date("2024-01-01"),
+  date_max = as.Date("2024-06-30"),
+  pathogen = c("SARS-CoV-2", "Influenza", "RSV"),
+  indicator = "detections"
+)
+```
+
+## SARS-CoV-2 variants
+
+Variant proportions and detection counts.
+
+```{r variants, eval=FALSE}
+data <- get_erviss_variants(
+  date_min = as.Date("2025-06-01"),
+  date_max = as.Date("2025-12-31"),
+  variant = c("XFG", "LP.8.1"),
+  countries = c("France", "Belgium"),
+  indicator = "detections"
+)
+
+# Filter variants with a minimum proportion
+data <- get_erviss_variants(
+  date_min = as.Date("2024-01-01"),
+  date_max = as.Date("2024-12-31"),
+  min_value = 5,
+  indicator = "proportion"
+)
+```
+
+## ILI/ARI consultation rates
+
+ILI (Influenza-Like Illness) and ARI (Acute Respiratory Infection)
+consultation rates from primary care, stratified by age group.
+
+```{r ili-ari, eval=FALSE}
+# Get ILI consultation rates
+data <- get_ili_ari_rates(
+  date_min = as.Date("2024-01-01"),
+  date_max = as.Date("2024-12-31"),
+  indicator = "ILIconsultationrate",
+  countries = "France"
+)
+
+# Get both ILI and ARI rates for specific age groups
+data <- get_ili_ari_rates(
+  date_min = as.Date("2024-01-01"),
+  date_max = as.Date("2024-12-31"),
+  age = c("0-4", "65+")
+)
+```
+
+## SARI rates
+
+SARI (Severe Acute Respiratory Infection) hospitalisation rates,
+stratified by age group.
+
+```{r sari-rates, eval=FALSE}
+data <- get_sari_rates(
+  date_min = as.Date("2024-01-01"),
+  date_max = as.Date("2024-12-31"),
+  age = c("0-4", "15-64", "65+"),
+  countries = c("France", "Belgium")
+)
+```
+
+## SARI virological data
+
+Tests, detections, and positivity rates from SARI virological surveillance.
+
+```{r sari-positivity, eval=FALSE}
+# Get positivity for Influenza
+data <- get_sari_positivity(
+  date_min = as.Date("2024-01-01"),
+  date_max = as.Date("2024-12-31"),
+  pathogen = "Influenza",
+  indicator = "positivity",
+  countries = "Belgium"
+)
+
+# Get detections for all pathogens
+data <- get_sari_positivity(
+  date_min = as.Date("2024-01-01"),
+  date_max = as.Date("2024-12-31"),
+  indicator = "detections"
+)
+```
+
+## Non-sentinel severity
+
+Hospital admissions, ICU admissions, ICU inpatients, hospital inpatients,
+and deaths from non-sentinel sources.
+
+```{r nonsentinel-severity, eval=FALSE}
+# Get hospital admissions for SARS-CoV-2
+data <- get_nonsentinel_severity(
+  date_min = as.Date("2024-01-01"),
+  date_max = as.Date("2024-12-31"),
+  pathogen = "SARS-CoV-2",
+  indicator = "hospitaladmissions",
+  countries = "France"
+)
+
+# Get multiple severity indicators
+data <- get_nonsentinel_severity(
+  date_min = as.Date("2024-01-01"),
+  date_max = as.Date("2024-12-31"),
+  pathogen = "SARS-CoV-2",
+  indicator = c("hospitaladmissions", "ICUadmissions", "deaths")
+)
+```
+
+## Non-sentinel tests and detections
+
+Tests and detections from non-sentinel virological surveillance.
+
+```{r nonsentinel-tests, eval=FALSE}
+data <- get_nonsentinel_tests(
+  date_min = as.Date("2024-01-01"),
+  date_max = as.Date("2024-12-31"),
+  pathogen = "Influenza",
+  indicator = "detections",
+  countries = c("France", "Germany")
+)
+```
+
+## Using the generic function
+
+Instead of remembering each specific function name, you can use
+`get_erviss_data()` with the `type` parameter:
+
+```{r generic, eval=FALSE}
+# These two calls are equivalent:
+data <- get_sentineltests_positivity(
+  date_min = as.Date("2024-01-01"),
+  date_max = as.Date("2024-12-31"),
+  pathogen = "SARS-CoV-2"
+)
+
+data <- get_erviss_data(
+  type = "positivity",
+  date_min = as.Date("2024-01-01"),
+  date_max = as.Date("2024-12-31"),
+  pathogen = "SARS-CoV-2"
+)
+```
+
+This makes it easy to switch between data sources while keeping the same
+workflow:
+
+```{r generic-switch, eval=FALSE}
+types <- c("positivity", "sari_positivity", "nonsentinel_tests")
+
+results <- lapply(types, function(t) {
+  get_erviss_data(
+    type = t,
+    date_min = as.Date("2024-01-01"),
+    date_max = as.Date("2024-12-31"),
+    pathogen = "Influenza",
+    countries = "Belgium"
+  )
+})
+
+names(results) <- types
+```
+
+## Historical snapshots
+
+All functions support fetching historical snapshots for **reproducible
+analyses**. The ERVISS repository stores weekly snapshots of the data, so
+you can retrieve the exact data that was available at a given date.
+
+```{r snapshot, eval=FALSE}
+# Fetch a specific snapshot
+data <- get_sentineltests_positivity(
+  date_min = as.Date("2023-01-01"),
+  date_max = as.Date("2023-12-31"),
+  use_snapshot = TRUE,
+  snapshot_date = as.Date("2024-02-23")
+)
+```
+
+This works with all data sources:
+
+```{r snapshot-generic, eval=FALSE}
+data <- get_erviss_data(
+  type = "nonsentinel_severity",
+  date_min = as.Date("2023-01-01"),
+  date_max = as.Date("2023-12-31"),
+  pathogen = "SARS-CoV-2",
+  indicator = "hospitaladmissions",
+  use_snapshot = TRUE,
+  snapshot_date = as.Date("2024-02-23")
+)
+```
+
+To see available snapshot dates, visit the
+[EU-ECDC snapshots directory](https://github.com/EU-ECDC/Respiratory_viruses_weekly_data/tree/main/data/snapshots).
+
+## URL helpers
+
+If you prefer to download the data files yourself, you can retrieve the
+URLs directly:
+
+```{r urls}
+# Latest data URLs
+get_erviss_url("positivity")
+get_erviss_url("ili_ari_rates")
+get_erviss_url("nonsentinel_severity")
+
+# Snapshot URL
+get_erviss_url(
+  "variants",
+  use_snapshot = TRUE,
+  snapshot_date = as.Date("2023-11-24")
+)
+```
+
+Each source also has a dedicated URL function (e.g.,
+`get_sentineltests_positivity_url()`, `get_ili_ari_rates_url()`, etc.).
+
+## Using a local CSV file
+
+If you have already downloaded the data locally, you can pass the file
+path directly:
+
+```{r local-csv, eval=FALSE}
+data <- get_sentineltests_positivity(
+  csv_file = "path/to/sentinelTestsDetectionsPositivity.csv",
+  date_min = as.Date("2024-01-01"),
+  date_max = as.Date("2024-12-31")
+)
+```
+
+## Analyzing the data
+
+All functions return `data.table` objects. You can use `data.table` syntax
+or convert to a `data.frame` / `tibble` for your preferred workflow:
+
+```{r analysis, eval=FALSE}
+data <- get_sentineltests_positivity(
+  date_min = as.Date("2024-01-01"),
+  date_max = as.Date("2024-06-30"),
+  pathogen = c("SARS-CoV-2", "Influenza")
+)
+
+# data.table syntax
+data[,
+  .(
+    mean_positivity = mean(value, na.rm = TRUE),
+    max_positivity = max(value, na.rm = TRUE),
+    n_weeks = .N
+  ),
+  by = .(countryname, pathogen)
+]
+
+# Or convert to tibble for dplyr
+# tibble::as_tibble(data)
+```

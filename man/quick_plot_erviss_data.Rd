@@ -5,15 +5,16 @@
 \title{Quick plot of ERVISS data}
 \usage{
 quick_plot_erviss_data(
-  type = c("positivity", "variants"),
+  type = ERVISS_TYPES,
   csv_file = NULL,
   date_min,
   date_max,
   pathogen = "",
   variant = "",
+  indicator = "",
+  age = "",
   countries = "",
   min_value = 0,
-  indicator = "proportion",
   date_breaks = NULL,
   date_format = "\%b \%Y",
   use_snapshot = FALSE,
@@ -21,7 +22,8 @@ quick_plot_erviss_data(
 )
 }
 \arguments{
-\item{type}{Type of data: "positivity" or "variants"}
+\item{type}{Type of data. One of: "positivity", "variants", "ili_ari_rates",
+"sari_rates", "sari_positivity", "nonsentinel_severity", "nonsentinel_tests".}
 
 \item{csv_file}{Path to a local CSV file or URL containing the ERVISS data.
 If NULL (default), data is fetched from the official ERVISS repository.}
@@ -30,24 +32,29 @@ If NULL (default), data is fetched from the official ERVISS repository.}
 
 \item{date_max}{End date of the period (Date object)}
 
-\item{pathogen}{Character vector of pathogen names to filter (for type = "positivity").
-Use "" (default) to include all pathogens. Ignored if type = "variants".}
+\item{pathogen}{Character vector of pathogen names to filter. Used for types:
+"positivity", "sari_positivity", "nonsentinel_severity", "nonsentinel_tests".
+Use "" (default) to include all pathogens.}
 
-\item{variant}{Character vector of variant names to filter (for type = "variants").
-Use "" (default) to include all variants. Ignored if type = "positivity".}
+\item{variant}{Character vector of variant names to filter. Only used for
+type = "variants". Use "" (default) to include all variants.}
+
+\item{indicator}{Character vector of indicators to filter. The available values
+depend on the data type. Use "" (default) to include all indicators.}
+
+\item{age}{Character vector of age groups to filter. Used for types:
+"ili_ari_rates", "sari_rates", "sari_positivity", "nonsentinel_severity",
+"nonsentinel_tests". Use "" (default) to include all age groups.}
 
 \item{countries}{Character vector of country names to filter.
 Use "" (default) to include all countries.}
 
-\item{min_value}{Minimum value threshold to include in the results (default: 0).
-Only used for type = "variants".}
-
-\item{indicator}{Type of indicator for variants: "proportion" (default) or "detections".
+\item{min_value}{Minimum value threshold (default: 0).
 Only used for type = "variants".}
 
 \item{date_breaks}{A string specifying the date breaks for the x-axis
-(e.g., "1 month", "2 weeks"). If NULL, defaults to "2 weeks" for positivity
-and "1 month" for variants.}
+(e.g., "1 month", "2 weeks"). If NULL, a sensible default is chosen based
+on the data type.}
 
 \item{date_format}{A string specifying the date format for x-axis labels
 (e.g., \code{"\%b \%Y"} for "Jan 2024")}
@@ -63,7 +70,7 @@ A ggplot2 object showing the data over time by country
 }
 \description{
 Convenience function that fetches and plots ERVISS data in one step.
-This is a generic function that can handle either positivity or variants data.
+This is a generic function that can handle any of the available data types.
 For more control, use \code{\link{get_erviss_data}} followed by
 \code{\link{plot_erviss_data}}.
 }
@@ -74,16 +81,15 @@ quick_plot_erviss_data(
   type = "positivity",
   date_min = as.Date("2024-01-01"),
   date_max = as.Date("2024-12-31"),
-  pathogen = "SARS-CoV-2",
-  date_breaks = "1 month"
+  pathogen = "SARS-CoV-2"
 )
 
-# Quick visualization of variants data
+# Quick visualization of ILI rates
 quick_plot_erviss_data(
-  type = "variants",
-  date_min = as.Date("2024-06-01"),
+  type = "ili_ari_rates",
+  date_min = as.Date("2024-01-01"),
   date_max = as.Date("2024-12-31"),
-  variant = c("XFG", "LP.8.1")
+  indicator = "ILIconsultationrate"
 )
 }
 }

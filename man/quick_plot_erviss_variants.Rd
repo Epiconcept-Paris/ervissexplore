@@ -11,7 +11,7 @@ quick_plot_erviss_variants(
   variant = "",
   countries = "",
   min_value = 0,
-  indicator = "proportion",
+  indicator = "",
   date_breaks = "1 month",
   date_format = "\%b \%Y",
   use_snapshot = FALSE,
@@ -34,7 +34,8 @@ Use "" (default) to include all countries.}
 
 \item{min_value}{Minimum value threshold to include in the results (default: 0)}
 
-\item{indicator}{Type of indicator: "proportion" (default) or "detections"}
+\item{indicator}{Type of indicator: "proportion" or "detections".
+Use "" (default) to include all indicators.}
 
 \item{date_breaks}{A string specifying the date breaks for the x-axis
 (e.g., "1 month", "2 weeks")}

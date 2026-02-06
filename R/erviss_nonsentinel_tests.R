@@ -1,8 +1,9 @@
-#' Get ERVISS sentinel tests data
+#' Get ERVISS non-sentinel tests/detections data
 #'
-#' Retrieves and filters sentinel surveillance data (positivity, detections, tests)
-#' from the ERVISS (European Respiratory Virus Surveillance Summary) for a specified
-#' date range, pathogen(s), indicator(s), and country(ies).
+#' Retrieves and filters non-sentinel virological testing data (tests and
+#' detections) from the ERVISS (European Respiratory Virus Surveillance Summary)
+#' for a specified date range, pathogen(s), indicator(s), age group(s), and
+#' country(ies).
 #'
 #' @param csv_file Path to a local CSV file or URL containing the ERVISS data.
 #'   If NULL (default), data is fetched from the official ERVISS repository.
@@ -11,8 +12,10 @@
 #' @param pathogen Character vector of pathogen names to filter.
 #'   Use "" (default) to include all pathogens.
 #' @param indicator Character vector of indicators to filter:
-#'   "positivity", "detections", "tests", or any combination.
+#'   "detections", "tests", or both.
 #'   Use "" (default) to include all indicators.
+#' @param age Character vector of age groups to filter (e.g., "total").
+#'   Use "" (default) to include all age groups.
 #' @param countries Character vector of country names to filter.
 #'   Use "" (default) to include all countries.
 #' @param use_snapshot Logical. If TRUE, fetches a historical snapshot; if FALSE (default),
@@ -20,55 +23,48 @@
 #' @param snapshot_date Date of the snapshot to retrieve.
 #'   Required if use_snapshot = TRUE and csv_file is NULL.
 #'
-#' @return A data.table containing the filtered data with columns:
-#'   date, value, pathogen, countryname, indicator, and other ERVISS fields.
+#' @return A data.table containing the filtered non-sentinel tests data with columns:
+#'   survtype, countryname, date, pathogen, pathogentype, pathogensubtype,
+#'   indicator, age, value.
 #'
 #' @export
 #' @examples
 #' \dontrun{
-#' # Get latest SARS-CoV-2 positivity data for France
-#' data <- get_sentineltests_positivity(
-#'   date_min = as.Date("2024-01-01"),
-#'   date_max = as.Date("2024-12-31"),
-#'   pathogen = "SARS-CoV-2",
-#'   countries = "France"
-#' )
-#'
-#' # Get detections and tests
-#' data <- get_sentineltests_positivity(
+#' # Get non-sentinel detections for Influenza in France
+#' data <- get_nonsentinel_tests(
 #'   date_min = as.Date("2024-01-01"),
 #'   date_max = as.Date("2024-12-31"),
 #'   pathogen = "Influenza",
-#'   indicator = c("detections", "tests")
+#'   indicator = "detections",
+#'   countries = "France"
 #' )
 #'
-#' # Get historical data from a specific snapshot
-#' data <- get_sentineltests_positivity(
-#'   date_min = as.Date("2023-01-01"),
-#'   date_max = as.Date("2023-12-31"),
-#'   use_snapshot = TRUE,
-#'   snapshot_date = as.Date("2024-02-23")
+#' # Get all non-sentinel test data
+#' data <- get_nonsentinel_tests(
+#'   date_min = as.Date("2024-01-01"),
+#'   date_max = as.Date("2024-12-31")
 #' )
 #' }
-get_sentineltests_positivity <- function(
+get_nonsentinel_tests <- function(
   csv_file = NULL,
   date_min,
   date_max,
   pathogen = "",
   indicator = "",
+  age = "",
   countries = "",
   use_snapshot = FALSE,
   snapshot_date = NULL
 ) {
   if (is.null(csv_file)) {
-    csv_file <- get_sentineltests_positivity_url(use_snapshot, snapshot_date)
+    csv_file <- get_nonsentinel_tests_url(use_snapshot, snapshot_date)
   }
   assert_file_or_url(csv_file, "csv_file")
   assert_date(date_min, "date_min")
   assert_date(date_max, "date_max")
 
   if (any(indicator != "")) {
-    assert_indicator(indicator, c("positivity", "detections", "tests"))
+    assert_indicator(indicator, c("detections", "tests"))
   }
 
   dt <- data.table::fread(csv_file)
@@ -84,6 +80,11 @@ get_sentineltests_positivity <- function(
     dt <- dt[indicator %chin% indicator_filter]
   }
 
+  if (any(age != "")) {
+    age_filter <- age
+    dt <- dt[age %chin% age_filter]
+  }
+
   if (any(countries != "")) {
     dt <- dt[countryname %chin% countries]
   }
@@ -93,14 +94,14 @@ get_sentineltests_positivity <- function(
   warn_if_empty(result)
 }
 
-#' Plot ERVISS positivity data
+#' Plot ERVISS non-sentinel tests/detections data
 #'
-#' Creates a ggplot2 visualization of positivity data, with facets by country
-#' and colored by pathogen. The plot title displays mean, min and max positivity values.
+#' Creates a ggplot2 visualization of non-sentinel tests/detections data,
+#' with facets by country and colored by pathogen.
 #'
-#' @param data A data.table or data.frame containing positivity data, typically output from
-#'   \code{\link{get_sentineltests_positivity}}. Must contain columns: date, value,
-#'   pathogen, countryname.
+#' @param data A data.table or data.frame containing non-sentinel tests data,
+#'   typically output from \code{\link{get_nonsentinel_tests}}. Must contain
+#'   columns: date, value, pathogen, countryname.
 #' @param date_breaks A string specifying the date breaks for the x-axis
 #'   (e.g., "1 month", "2 weeks")
 #' @param date_format A string specifying the date format for x-axis labels
@@ -111,86 +112,80 @@ get_sentineltests_positivity <- function(
 #' @export
 #' @examples
 #' \dontrun{
-#' data <- get_sentineltests_positivity(
+#' data <- get_nonsentinel_tests(
 #'   date_min = as.Date("2024-01-01"),
 #'   date_max = as.Date("2024-06-30"),
-#'   pathogen = "SARS-CoV-2"
+#'   pathogen = "Influenza",
+#'   indicator = "detections"
 #' )
-#' plot_erviss_positivity(data, date_breaks = "1 month")
+#' plot_nonsentinel_tests(data, date_breaks = "1 month")
 #' }
-plot_erviss_positivity <- function(
+plot_nonsentinel_tests <- function(
   data,
-  date_breaks = "2 weeks",
+  date_breaks = "1 month",
   date_format = "%b %Y"
 ) {
-  mean_positivity <- mean(data$value)
-  min_positivity <- min(data$value)
-  max_positivity <- max(data$value)
-
   ggplot(data, aes(x = date, y = value, color = pathogen)) +
     geom_line() +
     xlab("") +
-    ylab("Positivity") +
-    facet_wrap(~countryname, scales = "free_x", ncol = 3) +
+    ylab("Count") +
+    facet_wrap(~countryname, scales = "free", ncol = 3) +
     scale_x_date(date_breaks = date_breaks, date_labels = date_format) +
     scale_colour_viridis_d(name = "Pathogen") +
-    theme_erviss() +
-    labs(
-      title = sprintf(
-        "Mean positivity: %.2f (Min %.2f - Max %.2f)",
-        mean_positivity,
-        min_positivity,
-        max_positivity
-      )
-    )
+    theme_erviss()
 }
 
-#' Quick plot of ERVISS positivity data
+#' Quick plot of ERVISS non-sentinel tests/detections data
 #'
-#' Convenience function that fetches and plots ERVISS positivity data in one step.
-#' For more control, use \code{\link{get_sentineltests_positivity}} followed by
-#' \code{\link{plot_erviss_positivity}}.
+#' Convenience function that fetches and plots ERVISS non-sentinel tests/detections
+#' data in one step.
+#' For more control, use \code{\link{get_nonsentinel_tests}} followed by
+#' \code{\link{plot_nonsentinel_tests}}.
 #'
-#' @inheritParams get_sentineltests_positivity
-#' @inheritParams plot_erviss_positivity
+#' @inheritParams get_nonsentinel_tests
+#' @inheritParams plot_nonsentinel_tests
 #'
-#' @return A ggplot2 object showing positivity over time by country and pathogen
+#' @return A ggplot2 object showing non-sentinel tests/detections over time
+#'   by country and pathogen
 #'
 #' @import ggplot2
 #' @import data.table
 #' @export
 #' @examples
 #' \dontrun{
-#' # Quick visualization of latest data
-#' quick_plot_erviss_positivity(
+#' # Quick visualization of non-sentinel detections
+#' quick_plot_nonsentinel_tests(
 #'   date_min = as.Date("2024-01-01"),
 #'   date_max = as.Date("2024-12-31"),
-#'   pathogen = "SARS-CoV-2",
+#'   pathogen = "Influenza",
+#'   indicator = "detections",
 #'   date_breaks = "1 month"
 #' )
 #' }
-quick_plot_erviss_positivity <- function(
+quick_plot_nonsentinel_tests <- function(
   csv_file = NULL,
   date_min,
   date_max,
   pathogen = "",
   indicator = "",
+  age = "",
   countries = "",
-  date_breaks = "2 weeks",
+  date_breaks = "1 month",
   date_format = "%b %Y",
   use_snapshot = FALSE,
   snapshot_date = NULL
 ) {
-  data <- get_sentineltests_positivity(
+  data <- get_nonsentinel_tests(
     csv_file,
     date_min,
     date_max,
     pathogen,
     indicator,
+    age,
     countries,
     use_snapshot,
     snapshot_date
   )
 
-  plot_erviss_positivity(data, date_breaks, date_format)
+  plot_nonsentinel_tests(data, date_breaks, date_format)
 }

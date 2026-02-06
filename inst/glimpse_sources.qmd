@@ -1,0 +1,52 @@
+---
+title: "Untitled"
+format: html
+---
+
+```{r}
+library(data.table)
+library(dplyr)
+```
+```{r, echo=FALSE}
+ili_ari_rates <- data.table::fread("https://raw.githubusercontent.com/EU-ECDC/Respiratory_viruses_weekly_data/refs/heads/main/data/ILIARIRates.csv")
+```
+
+```{r}
+glimpse(ili_ari_rates)
+```
+
+
+```{r, echo=FALSE}
+sari_rates <- data.table::fread("https://raw.githubusercontent.com/EU-ECDC/Respiratory_viruses_weekly_data/refs/heads/main/data/SARIRates.csv")
+```
+
+```{r}
+glimpse(sari_rates)
+```
+
+
+```{r, echo=FALSE}
+sari_tests_detections_positivity <- data.table::fread("https://raw.githubusercontent.com/EU-ECDC/Respiratory_viruses_weekly_data/refs/heads/main/data/SARITestsDetectionsPositivity.csv")
+```
+
+```{r}
+glimpse(sari_tests_detections_positivity)
+```
+
+
+```{r, echo=FALSE}
+nonsentinel_severity <- data.table::fread("https://raw.githubusercontent.com/EU-ECDC/Respiratory_viruses_weekly_data/refs/heads/main/data/nonSentinelSeverity.csv")
+```
+
+```{r}
+glimpse(nonsentinel_severity)
+```
+
+
+```{r}
+nonsentinel_tests_detections <- data.table::fread("https://raw.githubusercontent.com/EU-ECDC/Respiratory_viruses_weekly_data/refs/heads/main/data/nonSentinelTestsDetections.csv")
+```
+
+```{r}
+glimpse(nonsentinel_tests_detections)
+```

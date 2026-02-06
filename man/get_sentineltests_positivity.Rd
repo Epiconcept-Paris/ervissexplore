@@ -2,13 +2,14 @@
 % Please edit documentation in R/erviss_positivity.R
 \name{get_sentineltests_positivity}
 \alias{get_sentineltests_positivity}
-\title{Get ERVISS positivity data}
+\title{Get ERVISS sentinel tests data}
 \usage{
 get_sentineltests_positivity(
   csv_file = NULL,
   date_min,
   date_max,
   pathogen = "",
+  indicator = "",
   countries = "",
   use_snapshot = FALSE,
   snapshot_date = NULL
@@ -25,6 +26,10 @@ If NULL (default), data is fetched from the official ERVISS repository.}
 \item{pathogen}{Character vector of pathogen names to filter.
 Use "" (default) to include all pathogens.}
 
+\item{indicator}{Character vector of indicators to filter:
+"positivity", "detections", "tests", or any combination.
+Use "" (default) to include all indicators.}
+
 \item{countries}{Character vector of country names to filter.
 Use "" (default) to include all countries.}
 
@@ -35,12 +40,13 @@ fetches the latest data. Ignored if csv_file is provided.}
 Required if use_snapshot = TRUE and csv_file is NULL.}
 }
 \value{
-A data.table containing the filtered positivity data with columns:
-date, value, pathogen, countryname, and other ERVISS fields.
+A data.table containing the filtered data with columns:
+date, value, pathogen, countryname, indicator, and other ERVISS fields.
 }
 \description{
-Retrieves and filters positivity data from the ERVISS (European Respiratory
-Virus Surveillance Summary) for a specified date range, pathogen(s), and country(ies).
+Retrieves and filters sentinel surveillance data (positivity, detections, tests)
+from the ERVISS (European Respiratory Virus Surveillance Summary) for a specified
+date range, pathogen(s), indicator(s), and country(ies).
 }
 \examples{
 \dontrun{
@@ -50,6 +56,14 @@ data <- get_sentineltests_positivity(
   date_max = as.Date("2024-12-31"),
   pathogen = "SARS-CoV-2",
   countries = "France"
+)
+
+# Get detections and tests
+data <- get_sentineltests_positivity(
+  date_min = as.Date("2024-01-01"),
+  date_max = as.Date("2024-12-31"),
+  pathogen = "Influenza",
+  indicator = c("detections", "tests")
 )
 
 # Get historical data from a specific snapshot
