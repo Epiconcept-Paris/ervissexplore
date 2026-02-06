@@ -308,6 +308,31 @@ assert_date <- function(x, arg_name) {
 }
 
 #' @noRd
+assert_indicator <- function(indicator, valid_values) {
+  invalid <- indicator[!indicator %in% valid_values]
+  if (length(invalid) > 0) {
+    stop(
+      sprintf(
+        "'indicator' must be one or more of: %s\nInvalid value(s): %s",
+        paste(dQuote(valid_values), collapse = ", "),
+        paste(dQuote(invalid), collapse = ", ")
+      ),
+      call. = FALSE
+    )
+  }
+}
+
+#' @noRd
+warn_if_empty <- function(dt) {
+  if (nrow(dt) == 0) {
+    cli::cli_alert_info(
+      "No data found for the given filters. Try adjusting date range, countries, pathogen, or indicator."
+    )
+  }
+  dt
+}
+
+#' @noRd
 yearweek_to_date <- function(yearweek) {
   # Parse the yearweek string (e.g., "2020-W03")
   year <- as.numeric(substr(yearweek, 1, 4))

@@ -139,6 +139,7 @@ get_erviss_data <- function(
       date_min = date_min,
       date_max = date_max,
       pathogen = pathogen,
+      indicator = indicator,
       countries = countries,
       use_snapshot = use_snapshot,
       snapshot_date = snapshot_date
@@ -150,7 +151,7 @@ get_erviss_data <- function(
       variant = variant,
       countries = countries,
       min_value = min_value,
-      indicator = if (any(indicator != "")) indicator else "proportion",
+      indicator = indicator,
       use_snapshot = use_snapshot,
       snapshot_date = snapshot_date
     ),

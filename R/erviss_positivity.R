@@ -1,7 +1,8 @@
-#' Get ERVISS positivity data
+#' Get ERVISS sentinel tests data
 #'
-#' Retrieves and filters positivity data from the ERVISS (European Respiratory
-#' Virus Surveillance Summary) for a specified date range, pathogen(s), and country(ies).
+#' Retrieves and filters sentinel surveillance data (positivity, detections, tests)
+#' from the ERVISS (European Respiratory Virus Surveillance Summary) for a specified
+#' date range, pathogen(s), indicator(s), and country(ies).
 #'
 #' @param csv_file Path to a local CSV file or URL containing the ERVISS data.
 #'   If NULL (default), data is fetched from the official ERVISS repository.
@@ -9,6 +10,9 @@
 #' @param date_max End date of the period (Date object)
 #' @param pathogen Character vector of pathogen names to filter.
 #'   Use "" (default) to include all pathogens.
+#' @param indicator Character vector of indicators to filter:
+#'   "positivity", "detections", "tests", or any combination.
+#'   Use "" (default) to include all indicators.
 #' @param countries Character vector of country names to filter.
 #'   Use "" (default) to include all countries.
 #' @param use_snapshot Logical. If TRUE, fetches a historical snapshot; if FALSE (default),
@@ -16,8 +20,8 @@
 #' @param snapshot_date Date of the snapshot to retrieve.
 #'   Required if use_snapshot = TRUE and csv_file is NULL.
 #'
-#' @return A data.table containing the filtered positivity data with columns:
-#'   date, value, pathogen, countryname, and other ERVISS fields.
+#' @return A data.table containing the filtered data with columns:
+#'   date, value, pathogen, countryname, indicator, and other ERVISS fields.
 #'
 #' @export
 #' @examples
@@ -28,6 +32,14 @@
 #'   date_max = as.Date("2024-12-31"),
 #'   pathogen = "SARS-CoV-2",
 #'   countries = "France"
+#' )
+#'
+#' # Get detections and tests
+#' data <- get_sentineltests_positivity(
+#'   date_min = as.Date("2024-01-01"),
+#'   date_max = as.Date("2024-12-31"),
+#'   pathogen = "Influenza",
+#'   indicator = c("detections", "tests")
 #' )
 #'
 #' # Get historical data from a specific snapshot
@@ -43,6 +55,7 @@ get_sentineltests_positivity <- function(
   date_min,
   date_max,
   pathogen = "",
+  indicator = "",
   countries = "",
   use_snapshot = FALSE,
   snapshot_date = NULL
@@ -54,6 +67,10 @@ get_sentineltests_positivity <- function(
   assert_date(date_min, "date_min")
   assert_date(date_max, "date_max")
 
+  if (any(indicator != "")) {
+    assert_indicator(indicator, c("positivity", "detections", "tests"))
+  }
+
   dt <- data.table::fread(csv_file)
   dt[, date := yearweek_to_date(yearweek)]
 
@@ -62,11 +79,18 @@ get_sentineltests_positivity <- function(
     dt <- dt[pathogen %chin% pathogen_filter]
   }
 
+  if (any(indicator != "")) {
+    indicator_filter <- indicator
+    dt <- dt[indicator %chin% indicator_filter]
+  }
+
   if (any(countries != "")) {
     dt <- dt[countryname %chin% countries]
   }
 
-  dt[date >= date_min & date <= date_max & indicator == "positivity"]
+  result <- dt[date >= date_min & date <= date_max]
+
+  warn_if_empty(result)
 }
 
 #' Plot ERVISS positivity data
@@ -150,6 +174,7 @@ quick_plot_erviss_positivity <- function(
   date_min,
   date_max,
   pathogen = "",
+  indicator = "",
   countries = "",
   date_breaks = "2 weeks",
   date_format = "%b %Y",
@@ -161,6 +186,7 @@ quick_plot_erviss_positivity <- function(
     date_min,
     date_max,
     pathogen,
+    indicator,
     countries,
     use_snapshot,
     snapshot_date

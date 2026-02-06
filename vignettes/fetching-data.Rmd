@@ -51,7 +51,8 @@ data <- get_sentineltests_positivity(
   date_min = as.Date("2024-01-01"),
   date_max = as.Date("2024-12-31"),
   pathogen = "SARS-CoV-2",
-  countries = c("France", "Germany", "Italy")
+  countries = c("France", "Germany", "Italy"),
+  indicator = "positivity"
 )
 
 head(data)
@@ -63,7 +64,8 @@ You can filter on multiple pathogens at once:
 data <- get_sentineltests_positivity(
   date_min = as.Date("2024-01-01"),
   date_max = as.Date("2024-06-30"),
-  pathogen = c("SARS-CoV-2", "Influenza", "RSV")
+  pathogen = c("SARS-CoV-2", "Influenza", "RSV"),
+  indicator = "detections"
 )
 ```
 
@@ -73,10 +75,11 @@ Variant proportions and detection counts.
 
 ```{r variants, eval=FALSE}
 data <- get_erviss_variants(
-  date_min = as.Date("2024-06-01"),
-  date_max = as.Date("2024-12-31"),
+  date_min = as.Date("2025-06-01"),
+  date_max = as.Date("2025-12-31"),
   variant = c("XFG", "LP.8.1"),
-  countries = c("France", "Belgium")
+  countries = c("France", "Belgium"),
+  indicator = "detections"
 )
 
 # Filter variants with a minimum proportion
@@ -135,7 +138,7 @@ data <- get_sari_positivity(
   date_max = as.Date("2024-12-31"),
   pathogen = "Influenza",
   indicator = "positivity",
-  countries = "France"
+  countries = "Belgium"
 )
 
 # Get detections for all pathogens
@@ -217,7 +220,7 @@ results <- lapply(types, function(t) {
     date_min = as.Date("2024-01-01"),
     date_max = as.Date("2024-12-31"),
     pathogen = "Influenza",
-    countries = "France"
+    countries = "Belgium"
   )
 })
 
@@ -269,7 +272,8 @@ get_erviss_url("ili_ari_rates")
 get_erviss_url("nonsentinel_severity")
 
 # Snapshot URL
-get_erviss_url("variants",
+get_erviss_url(
+  "variants",
   use_snapshot = TRUE,
   snapshot_date = as.Date("2023-11-24")
 )

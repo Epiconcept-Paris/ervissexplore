@@ -65,6 +65,14 @@ get_nonsentinel_severity <- function(
   assert_date(date_min, "date_min")
   assert_date(date_max, "date_max")
 
+  if (any(indicator != "")) {
+    assert_indicator(
+      indicator,
+      c("deaths", "hospitaladmissions", "ICUadmissions",
+        "ICUinpatients", "hospitalinpatients")
+    )
+  }
+
   dt <- data.table::fread(csv_file)
   dt[, date := yearweek_to_date(yearweek)]
 
@@ -87,7 +95,9 @@ get_nonsentinel_severity <- function(
     dt <- dt[countryname %chin% countries]
   }
 
-  dt[date >= date_min & date <= date_max]
+  result <- dt[date >= date_min & date <= date_max]
+
+  warn_if_empty(result)
 }
 
 #' Plot ERVISS non-sentinel severity data

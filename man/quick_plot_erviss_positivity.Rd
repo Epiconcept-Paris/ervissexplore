@@ -9,6 +9,7 @@ quick_plot_erviss_positivity(
   date_min,
   date_max,
   pathogen = "",
+  indicator = "",
   countries = "",
   date_breaks = "2 weeks",
   date_format = "\%b \%Y",
@@ -26,6 +27,10 @@ If NULL (default), data is fetched from the official ERVISS repository.}
 
 \item{pathogen}{Character vector of pathogen names to filter.
 Use "" (default) to include all pathogens.}
+
+\item{indicator}{Character vector of indicators to filter:
+"positivity", "detections", "tests", or any combination.
+Use "" (default) to include all indicators.}
 
 \item{countries}{Character vector of country names to filter.
 Use "" (default) to include all countries.}

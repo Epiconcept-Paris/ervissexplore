@@ -66,7 +66,9 @@ get_sari_rates <- function(
     dt <- dt[countryname %chin% countries]
   }
 
-  dt[date >= date_min & date <= date_max]
+  result <- dt[date >= date_min & date <= date_max]
+
+  warn_if_empty(result)
 }
 
 #' Plot ERVISS SARI rates data
