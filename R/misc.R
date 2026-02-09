@@ -17,6 +17,7 @@ ERVISS_BASE_URL <- "https://raw.githubusercontent.com/EU-ECDC/Respiratory_viruse
 #' @return A character string containing the URL
 #'
 #' @export
+#' @importFrom cli cli_abort
 #' @examples
 #' # Get latest data URL
 #' get_erviss_variants_url()
@@ -29,7 +30,7 @@ get_erviss_variants_url <- function(
 ) {
   if (use_snapshot) {
     if (is.null(snapshot_date)) {
-      stop("'snapshot_date' is required when use_snapshot = TRUE")
+      cli_abort("'snapshot_date' is required when use_snapshot = TRUE")
     }
     assert_date(snapshot_date, "snapshot_date")
     paste0(
@@ -56,6 +57,7 @@ get_erviss_variants_url <- function(
 #' @return A character string containing the URL
 #'
 #' @export
+#' @importFrom cli cli_abort
 #' @examples
 #' # Get latest data URL
 #' get_sentineltests_positivity_url()
@@ -68,7 +70,7 @@ get_sentineltests_positivity_url <- function(
 ) {
   if (use_snapshot) {
     if (is.null(snapshot_date)) {
-      stop("'snapshot_date' is required when use_snapshot = TRUE")
+      cli_abort("'snapshot_date' is required when use_snapshot = TRUE")
     }
     assert_date(snapshot_date, "snapshot_date")
     paste0(
@@ -95,6 +97,7 @@ get_sentineltests_positivity_url <- function(
 #' @return A character string containing the URL
 #'
 #' @export
+#' @importFrom cli cli_abort
 #' @examples
 #' # Get latest data URL
 #' get_ili_ari_rates_url()
@@ -107,7 +110,7 @@ get_ili_ari_rates_url <- function(
 ) {
   if (use_snapshot) {
     if (is.null(snapshot_date)) {
-      stop("'snapshot_date' is required when use_snapshot = TRUE")
+      cli_abort("'snapshot_date' is required when use_snapshot = TRUE")
     }
     assert_date(snapshot_date, "snapshot_date")
     paste0(
@@ -134,6 +137,7 @@ get_ili_ari_rates_url <- function(
 #' @return A character string containing the URL
 #'
 #' @export
+#' @importFrom cli cli_abort
 #' @examples
 #' # Get latest data URL
 #' get_sari_rates_url()
@@ -146,7 +150,7 @@ get_sari_rates_url <- function(
 ) {
   if (use_snapshot) {
     if (is.null(snapshot_date)) {
-      stop("'snapshot_date' is required when use_snapshot = TRUE")
+      cli_abort("'snapshot_date' is required when use_snapshot = TRUE")
     }
     assert_date(snapshot_date, "snapshot_date")
     paste0(
@@ -173,6 +177,7 @@ get_sari_rates_url <- function(
 #' @return A character string containing the URL
 #'
 #' @export
+#' @importFrom cli cli_abort
 #' @examples
 #' # Get latest data URL
 #' get_sari_positivity_url()
@@ -185,7 +190,7 @@ get_sari_positivity_url <- function(
 ) {
   if (use_snapshot) {
     if (is.null(snapshot_date)) {
-      stop("'snapshot_date' is required when use_snapshot = TRUE")
+      cli_abort("'snapshot_date' is required when use_snapshot = TRUE")
     }
     assert_date(snapshot_date, "snapshot_date")
     paste0(
@@ -224,7 +229,7 @@ get_nonsentinel_severity_url <- function(
 ) {
   if (use_snapshot) {
     if (is.null(snapshot_date)) {
-      stop("'snapshot_date' is required when use_snapshot = TRUE")
+      cli_abort("'snapshot_date' is required when use_snapshot = TRUE")
     }
     assert_date(snapshot_date, "snapshot_date")
     paste0(
@@ -263,7 +268,7 @@ get_nonsentinel_tests_url <- function(
 ) {
   if (use_snapshot) {
     if (is.null(snapshot_date)) {
-      stop("'snapshot_date' is required when use_snapshot = TRUE")
+      cli_abort("'snapshot_date' is required when use_snapshot = TRUE")
     }
     assert_date(snapshot_date, "snapshot_date")
     paste0(
@@ -296,14 +301,14 @@ theme_erviss <- function() {
 #' @noRd
 assert_file_or_url <- function(path, arg_name = "csv_file") {
   if (!file.exists(path) && !grepl("^https?://", path)) {
-    stop(sprintf("'%s' must be an existing file or a valid URL", arg_name))
+    cli_abort(sprintf("'%s' must be an existing file or a valid URL", arg_name))
   }
 }
 
 #' @noRd
 assert_date <- function(x, arg_name) {
   if (!inherits(x, "Date")) {
-    stop(sprintf("'%s' must be a Date object (use as.Date())", arg_name))
+    cli_abort(sprintf("'%s' must be a Date object (use as.Date())", arg_name))
   }
 }
 
@@ -311,7 +316,7 @@ assert_date <- function(x, arg_name) {
 assert_indicator <- function(indicator, valid_values) {
   invalid <- indicator[!indicator %in% valid_values]
   if (length(invalid) > 0) {
-    stop(
+    cli_abort(
       sprintf(
         "'indicator' must be one or more of: %s\nInvalid value(s): %s",
         paste(dQuote(valid_values), collapse = ", "),
