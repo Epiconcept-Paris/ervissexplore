@@ -175,21 +175,17 @@ data <- get_erviss_data(
 plot_erviss_data(data, type = "sari_rates", date_breaks = "1 month")
 ```
 
-For `"positivity"` and `"variants"`, the type can be auto-detected from
-the column names, so you can omit it:
-
-```{r generic-plot-auto, eval=FALSE}
+```{r generic-plot-positivity, eval=FALSE}
 data <- get_erviss_data(
   type = "positivity",
   date_min = as.Date("2024-01-01"),
   date_max = as.Date("2024-06-30"),
   pathogen = "SARS-CoV-2",
   countries = "EU/EEA",
-  indicator = "tests"
+  indicator = "positivity"
 )
 
-# Type is auto-detected from the "pathogen" column
-plot_erviss_data(data)
+plot_erviss_data(data, type = "positivity")
 ```
 
 ## Customizing plots
