@@ -102,7 +102,10 @@ test_that("assert_file_or_url rejects invalid paths", {
 
 test_that("assert_indicator accepts valid indicators", {
   expect_no_error(
-    ervissexplore:::assert_indicator("positivity", c("positivity", "detections", "tests"))
+    ervissexplore:::assert_indicator(
+      "positivity",
+      c("positivity", "detections", "tests")
+    )
   )
   expect_no_error(
     ervissexplore:::assert_indicator(
@@ -114,7 +117,10 @@ test_that("assert_indicator accepts valid indicators", {
 
 test_that("assert_indicator rejects invalid indicators", {
   expect_error(
-    ervissexplore:::assert_indicator("invalid", c("positivity", "detections", "tests")),
+    ervissexplore:::assert_indicator(
+      "invalid",
+      c("positivity", "detections", "tests")
+    ),
     "Invalid value"
   )
   expect_error(
