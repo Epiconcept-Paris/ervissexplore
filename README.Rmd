@@ -21,6 +21,8 @@ knitr::opts_chunk$set(
 
 An R package to easily retrieve ERVISS (European Respiratory Virus Surveillance Summary) data from the EU-ECDC. Provides functions to fetch, filter, and optionally visualize respiratory virus surveillance data across European countries.
 
+Please visit https://erviss.org/ for a detailed description of the underlying data (see 'Methods' in the footer).
+
 ## Installation
 
 ```{r, eval=FALSE}
@@ -90,12 +92,14 @@ data <- get_sentineltests_positivity(
   date_min = as.Date("2024-01-01"),
   date_max = as.Date("2024-06-30"),
   pathogen = c("SARS-CoV-2", "Influenza"),
-  countries = c("France", "Spain", "Italy")
+  countries = c("France", "Spain", "Italy"),
+  indicator = "positivity"
 )
 
 # Your own analysis with data.table syntax
 data[,
   .(
+    min_positivity = min(value, na.rm = TRUE),
     mean_positivity = mean(value, na.rm = TRUE),
     max_positivity = max(value, na.rm = TRUE)
   ),
@@ -121,7 +125,7 @@ severity_data <- get_nonsentinel_severity(
   date_max = as.Date("2024-12-31"),
   pathogen = "SARS-CoV-2",
   indicator = "hospitaladmissions",
-  countries = c("France", "Germany")
+  countries = c("France", "Spain")
 )
 
 # SARI positivity
@@ -129,7 +133,8 @@ sari_data <- get_sari_positivity(
   date_min = as.Date("2024-01-01"),
   date_max = as.Date("2024-12-31"),
   pathogen = "Influenza",
-  indicator = "positivity"
+  indicator = "positivity",
+  countries = "EU/EEA"
 )
 ```
 
@@ -156,7 +161,8 @@ data <- get_sentineltests_positivity(
   date_min = as.Date("2024-01-01"),
   date_max = as.Date("2024-06-30"),
   pathogen = "SARS-CoV-2",
-  countries = c("France", "Spain")
+  countries = c("France", "Spain"),
+  indicator = "positivity"
 )
 plot_erviss_positivity(data, date_breaks = "1 month")
 ```
@@ -168,7 +174,7 @@ quick_plot_ili_ari_rates(
   date_min = as.Date("2024-01-01"),
   date_max = as.Date("2024-12-31"),
   indicator = "ILIconsultationrate",
-  countries = c("France", "Germany"),
+  countries = c("France", "Spain"),
   date_breaks = "1 month"
 )
 ```
@@ -238,3 +244,7 @@ You can contribute to the package in many ways:
   repository](https://github.com/Epiconcept-Paris/ervissexplore/issues).
 - By fixing bugs or improving the package: please clone or fork the
   repository, work on a dedicated branch and create a pull request.
+
+## Citation
+
+European Centre for Disease Prevention and Control. European Respiratory Virus Surveillance Summary (ERVISS), 2026, Week 05. Available at https://erviss.org/.

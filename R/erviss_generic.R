@@ -43,13 +43,17 @@ get_erviss_url <- function(
 ) {
   type <- match.arg(type)
 
-  switch(type,
+  switch(
+    type,
     positivity = get_sentineltests_positivity_url(use_snapshot, snapshot_date),
     variants = get_erviss_variants_url(use_snapshot, snapshot_date),
     ili_ari_rates = get_ili_ari_rates_url(use_snapshot, snapshot_date),
     sari_rates = get_sari_rates_url(use_snapshot, snapshot_date),
     sari_positivity = get_sari_positivity_url(use_snapshot, snapshot_date),
-    nonsentinel_severity = get_nonsentinel_severity_url(use_snapshot, snapshot_date),
+    nonsentinel_severity = get_nonsentinel_severity_url(
+      use_snapshot,
+      snapshot_date
+    ),
     nonsentinel_tests = get_nonsentinel_tests_url(use_snapshot, snapshot_date)
   )
 }
@@ -133,7 +137,8 @@ get_erviss_data <- function(
 ) {
   type <- match.arg(type)
 
-  switch(type,
+  switch(
+    type,
     positivity = get_sentineltests_positivity(
       csv_file = csv_file,
       date_min = date_min,
@@ -219,9 +224,6 @@ get_erviss_data <- function(
 #'   \code{\link{get_erviss_data}}.
 #' @param type Type of data. One of: "positivity", "variants", "ili_ari_rates",
 #'   "sari_rates", "sari_positivity", "nonsentinel_severity", "nonsentinel_tests".
-#'   If NULL (default), the function will attempt to detect the type based on
-#'   column names (works for "positivity" and "variants" only; other types must
-#'   be specified explicitly).
 #' @param date_breaks A string specifying the date breaks for the x-axis
 #'   (e.g., "1 month", "2 weeks"). If NULL, a sensible default is chosen based
 #'   on the data type.
@@ -239,7 +241,7 @@ get_erviss_data <- function(
 #'   date_max = as.Date("2024-06-30"),
 #'   pathogen = "SARS-CoV-2"
 #' )
-#' plot_erviss_data(data)
+#' plot_erviss_data(data, type = "positivity")
 #'
 #' # Plot ILI/ARI rates
 #' data <- get_erviss_data("ili_ari_rates",
@@ -251,41 +253,29 @@ get_erviss_data <- function(
 #' }
 plot_erviss_data <- function(
   data,
-  type = NULL,
+  type = ERVISS_TYPES,
   date_breaks = NULL,
   date_format = "%b %Y"
 ) {
-  # Auto-detect type if not provided
-  if (is.null(type)) {
-    if ("variant" %in% names(data) && !"pathogen" %in% names(data)) {
-      type <- "variants"
-    } else if ("pathogen" %in% names(data)) {
-      type <- "positivity"
-    } else {
-      stop(
-        "Cannot auto-detect data type. Please specify 'type' parameter.",
-        call. = FALSE
-      )
-    }
-  }
-
-  type <- match.arg(type, ERVISS_TYPES)
+  type <- match.arg(type)
 
   # Set default date_breaks based on type
   if (is.null(date_breaks)) {
-    date_breaks <- switch(type,
-      positivity = "2 weeks",
-      "1 month"
-    )
+    date_breaks <- switch(type, positivity = "2 weeks", "1 month")
   }
 
-  switch(type,
+  switch(
+    type,
     positivity = plot_erviss_positivity(data, date_breaks, date_format),
     variants = plot_erviss_variants(data, date_breaks, date_format),
     ili_ari_rates = plot_ili_ari_rates(data, date_breaks, date_format),
     sari_rates = plot_sari_rates(data, date_breaks, date_format),
     sari_positivity = plot_sari_positivity(data, date_breaks, date_format),
-    nonsentinel_severity = plot_nonsentinel_severity(data, date_breaks, date_format),
+    nonsentinel_severity = plot_nonsentinel_severity(
+      data,
+      date_breaks,
+      date_format
+    ),
     nonsentinel_tests = plot_nonsentinel_tests(data, date_breaks, date_format)
   )
 }

@@ -6,7 +6,7 @@
 \usage{
 plot_erviss_data(
   data,
-  type = NULL,
+  type = ERVISS_TYPES,
   date_breaks = NULL,
   date_format = "\%b \%Y"
 )
@@ -16,10 +16,7 @@ plot_erviss_data(
 \code{\link{get_erviss_data}}.}
 
 \item{type}{Type of data. One of: "positivity", "variants", "ili_ari_rates",
-"sari_rates", "sari_positivity", "nonsentinel_severity", "nonsentinel_tests".
-If NULL (default), the function will attempt to detect the type based on
-column names (works for "positivity" and "variants" only; other types must
-be specified explicitly).}
+"sari_rates", "sari_positivity", "nonsentinel_severity", "nonsentinel_tests".}
 
 \item{date_breaks}{A string specifying the date breaks for the x-axis
 (e.g., "1 month", "2 weeks"). If NULL, a sensible default is chosen based
@@ -43,7 +40,7 @@ data <- get_erviss_data("positivity",
   date_max = as.Date("2024-06-30"),
   pathogen = "SARS-CoV-2"
 )
-plot_erviss_data(data)
+plot_erviss_data(data, type = "positivity")
 
 # Plot ILI/ARI rates
 data <- get_erviss_data("ili_ari_rates",

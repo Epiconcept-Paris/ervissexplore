@@ -11,7 +11,8 @@ Description: Provides easy access to ERVISS (European Respiratory Virus
     support for both latest data and historical snapshots for reproducible 
     analyses.
 License: file LICENSE
-URL: https://github.com/Epiconcept-Paris/ervissexplore
+URL: https://github.com/Epiconcept-Paris/ervissexplore,
+    https://epiconcept-paris.github.io/ervissexplore/
 BugReports: https://github.com/Epiconcept-Paris/ervissexplore/issues
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
@@ -22,5 +23,7 @@ Imports:
     ggplot2
 Suggests:
     knitr,
-    rmarkdown
+    rmarkdown,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
 VignetteBuilder: knitr

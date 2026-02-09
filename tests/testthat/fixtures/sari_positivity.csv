@@ -1,0 +1,14 @@
+survtype,countryname,yearweek,pathogen,pathogentype,pathogensubtype,indicator,age,value
+sentinel,France,2024-W01,Influenza,Influenza A,,positivity,total,15.2
+sentinel,France,2024-W02,Influenza,Influenza A,,positivity,total,14.8
+sentinel,France,2024-W03,Influenza,Influenza A,,positivity,total,13.5
+sentinel,France,2024-W01,SARS-CoV-2,SARS-CoV-2,,positivity,total,10.1
+sentinel,France,2024-W02,SARS-CoV-2,SARS-CoV-2,,positivity,total,9.8
+sentinel,France,2024-W01,Influenza,Influenza A,,detections,total,200
+sentinel,France,2024-W02,Influenza,Influenza A,,detections,total,185
+sentinel,France,2024-W01,Influenza,Influenza A,,tests,total,1300
+sentinel,France,2024-W01,Influenza,Influenza A,,positivity,0-4,18.3
+sentinel,France,2024-W01,Influenza,Influenza A,,positivity,65+,12.1
+sentinel,Germany,2024-W01,Influenza,Influenza A,,positivity,total,11.5
+sentinel,Germany,2024-W02,Influenza,Influenza A,,positivity,total,10.9
+sentinel,France,2025-W10,Influenza,Influenza A,,positivity,total,7.0
