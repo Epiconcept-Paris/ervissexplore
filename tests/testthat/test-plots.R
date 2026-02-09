@@ -150,7 +150,11 @@ test_that("plot functions accept custom date_breaks and date_format", {
     pathogen = rep("SARS-CoV-2", 3),
     countryname = rep("France", 3)
   )
-  p <- plot_erviss_positivity(data, date_breaks = "1 month", date_format = "%Y-%m")
+  p <- plot_erviss_positivity(
+    data,
+    date_breaks = "1 month",
+    date_format = "%Y-%m"
+  )
   expect_s3_class(p, "ggplot")
 })
 
