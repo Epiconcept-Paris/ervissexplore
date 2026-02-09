@@ -103,9 +103,9 @@ or any other plotting library.</p>
 </h3>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_erviss_variants.html">get_erviss_variants</a></span><span class="op">(</span></span>
-<span>  date_min <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-06-01"</span><span class="op">)</span>,</span>
-<span>  date_max <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-12-31"</span><span class="op">)</span>,</span>
-<span>  variant <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"XFG"</span>, <span class="st">"LP.8.1"</span><span class="op">)</span>,</span>
+<span>  date_min <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2025-06-01"</span><span class="op">)</span>,</span>
+<span>  date_max <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2025-12-31"</span><span class="op">)</span>,</span>
+<span>  variant <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"XFG"</span><span class="op">)</span>,</span>
 <span>  countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"France"</span>, <span class="st">"Belgium"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
@@ -119,7 +119,7 @@ or any other plotting library.</p>
 <span>  date_min <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-01-01"</span><span class="op">)</span>,</span>
 <span>  date_max <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-12-31"</span><span class="op">)</span>,</span>
 <span>  indicator <span class="op">=</span> <span class="st">"ILIconsultationrate"</span>,</span>
-<span>  countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"France"</span>, <span class="st">"Germany"</span><span class="op">)</span></span>
+<span>  countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"France"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/plot_ili_ari_rates.html">plot_ili_ari_rates</a></span><span class="op">(</span><span class="va">data</span>, date_breaks <span class="op">=</span> <span class="st">"1 month"</span><span class="op">)</span></span></code></pre></div>
@@ -131,7 +131,7 @@ or any other plotting library.</p>
 <code class="sourceCode R"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_sari_rates.html">get_sari_rates</a></span><span class="op">(</span></span>
 <span>  date_min <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-01-01"</span><span class="op">)</span>,</span>
 <span>  date_max <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-12-31"</span><span class="op">)</span>,</span>
-<span>  countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"France"</span>, <span class="st">"Belgium"</span><span class="op">)</span></span>
+<span>  countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Belgium"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/plot_sari_rates.html">plot_sari_rates</a></span><span class="op">(</span><span class="va">data</span>, date_breaks <span class="op">=</span> <span class="st">"1 month"</span><span class="op">)</span></span></code></pre></div>
@@ -141,11 +141,11 @@ or any other plotting library.</p>
 </h3>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_sari_positivity.html">get_sari_positivity</a></span><span class="op">(</span></span>
-<span>  date_min <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-01-01"</span><span class="op">)</span>,</span>
-<span>  date_max <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-12-31"</span><span class="op">)</span>,</span>
+<span>  date_min <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2025-01-01"</span><span class="op">)</span>,</span>
+<span>  date_max <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2025-12-31"</span><span class="op">)</span>,</span>
 <span>  pathogen <span class="op">=</span> <span class="st">"Influenza"</span>,</span>
 <span>  indicator <span class="op">=</span> <span class="st">"positivity"</span>,</span>
-<span>  countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"France"</span>, <span class="st">"Belgium"</span><span class="op">)</span></span>
+<span>  countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Belgium"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/plot_sari_positivity.html">plot_sari_positivity</a></span><span class="op">(</span><span class="va">data</span>, date_breaks <span class="op">=</span> <span class="st">"1 month"</span><span class="op">)</span></span></code></pre></div>
@@ -159,7 +159,8 @@ or any other plotting library.</p>
 <span>  date_max <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-12-31"</span><span class="op">)</span>,</span>
 <span>  pathogen <span class="op">=</span> <span class="st">"SARS-CoV-2"</span>,</span>
 <span>  indicator <span class="op">=</span> <span class="st">"hospitaladmissions"</span>,</span>
-<span>  countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"France"</span>, <span class="st">"Germany"</span><span class="op">)</span></span>
+<span>  countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"EU/EEA"</span><span class="op">)</span>,</span>
+<span>  age <span class="op">=</span> <span class="st">"total"</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/plot_nonsentinel_severity.html">plot_nonsentinel_severity</a></span><span class="op">(</span><span class="va">data</span>, date_breaks <span class="op">=</span> <span class="st">"1 month"</span><span class="op">)</span></span></code></pre></div>
@@ -190,7 +191,7 @@ plotting in a single call:</p>
 <span>  date_min <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-01-01"</span><span class="op">)</span>,</span>
 <span>  date_max <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-12-31"</span><span class="op">)</span>,</span>
 <span>  indicator <span class="op">=</span> <span class="st">"ILIconsultationrate"</span>,</span>
-<span>  countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"France"</span>, <span class="st">"Germany"</span><span class="op">)</span>,</span>
+<span>  countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"France"</span><span class="op">)</span>,</span>
 <span>  date_breaks <span class="op">=</span> <span class="st">"1 month"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>You can also use the generic
@@ -202,7 +203,7 @@ plotting in a single call:</p>
 <span>  date_max <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-12-31"</span><span class="op">)</span>,</span>
 <span>  pathogen <span class="op">=</span> <span class="st">"SARS-CoV-2"</span>,</span>
 <span>  indicator <span class="op">=</span> <span class="st">"hospitaladmissions"</span>,</span>
-<span>  countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"France"</span>, <span class="st">"Germany"</span><span class="op">)</span>,</span>
+<span>  countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"France"</span>, <span class="st">"Spain"</span><span class="op">)</span>,</span>
 <span>  date_breaks <span class="op">=</span> <span class="st">"1 month"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 </div>
@@ -214,24 +215,23 @@ the <code>type</code> parameter:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_erviss_data.html">get_erviss_data</a></span><span class="op">(</span></span>
 <span>  type <span class="op">=</span> <span class="st">"sari_rates"</span>,</span>
-<span>  date_min <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-01-01"</span><span class="op">)</span>,</span>
-<span>  date_max <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-12-31"</span><span class="op">)</span>,</span>
-<span>  countries <span class="op">=</span> <span class="st">"France"</span></span>
+<span>  date_min <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2025-01-01"</span><span class="op">)</span>,</span>
+<span>  date_max <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2025-12-31"</span><span class="op">)</span>,</span>
+<span>  countries <span class="op">=</span> <span class="st">"Spain"</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/plot_erviss_data.html">plot_erviss_data</a></span><span class="op">(</span><span class="va">data</span>, type <span class="op">=</span> <span class="st">"sari_rates"</span>, date_breaks <span class="op">=</span> <span class="st">"1 month"</span><span class="op">)</span></span></code></pre></div>
-<p>For <code>"positivity"</code> and <code>"variants"</code>, the type
-can be auto-detected from the column names, so you can omit it:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_erviss_data.html">get_erviss_data</a></span><span class="op">(</span></span>
 <span>  type <span class="op">=</span> <span class="st">"positivity"</span>,</span>
 <span>  date_min <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-01-01"</span><span class="op">)</span>,</span>
 <span>  date_max <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-06-30"</span><span class="op">)</span>,</span>
-<span>  pathogen <span class="op">=</span> <span class="st">"SARS-CoV-2"</span></span>
+<span>  pathogen <span class="op">=</span> <span class="st">"SARS-CoV-2"</span>,</span>
+<span>  countries <span class="op">=</span> <span class="st">"EU/EEA"</span>,</span>
+<span>  indicator <span class="op">=</span> <span class="st">"positivity"</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># Type is auto-detected from the "pathogen" column</span></span>
-<span><span class="fu"><a href="../reference/plot_erviss_data.html">plot_erviss_data</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="../reference/plot_erviss_data.html">plot_erviss_data</a></span><span class="op">(</span><span class="va">data</span>, type <span class="op">=</span> <span class="st">"positivity"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="customizing-plots">Customizing plots<a class="anchor" aria-label="anchor" href="#customizing-plots"></a>
@@ -312,7 +312,7 @@ you need:</p>
 <span>  pathogen <span class="op">=</span> <span class="st">"SARS-CoV-2"</span>,</span>
 <span>  indicator <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"hospitaladmissions"</span>, <span class="st">"ICUadmissions"</span><span class="op">)</span>,</span>
 <span>  age <span class="op">=</span> <span class="st">"total"</span>,</span>
-<span>  countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"France"</span>, <span class="st">"Germany"</span><span class="op">)</span></span>
+<span>  countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"France"</span>, <span class="st">"Spain"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">date</span>, y <span class="op">=</span> <span class="va">value</span>, fill <span class="op">=</span> <span class="va">indicator</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -336,7 +336,8 @@ you need:</p>
 <span>  date_min <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-01-01"</span><span class="op">)</span>,</span>
 <span>  date_max <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-12-31"</span><span class="op">)</span>,</span>
 <span>  indicator <span class="op">=</span> <span class="st">"ILIconsultationrate"</span>,</span>
-<span>  age <span class="op">=</span> <span class="st">"total"</span></span>
+<span>  age <span class="op">=</span> <span class="st">"total"</span>,</span>
+<span>  countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Spain"</span>, <span class="st">"Austria"</span>, <span class="st">"Greece"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">date</span>, y <span class="op">=</span> <span class="va">countryname</span>, fill <span class="op">=</span> <span class="va">value</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>

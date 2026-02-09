@@ -38,9 +38,9 @@ plot_erviss_positivity(data, date_breaks = "1 month")
 
 ``` r
 data <- get_erviss_variants(
-  date_min = as.Date("2024-06-01"),
-  date_max = as.Date("2024-12-31"),
-  variant = c("XFG", "LP.8.1"),
+  date_min = as.Date("2025-06-01"),
+  date_max = as.Date("2025-12-31"),
+  variant = c("XFG"),
   countries = c("France", "Belgium")
 )
 
@@ -54,7 +54,7 @@ data <- get_ili_ari_rates(
   date_min = as.Date("2024-01-01"),
   date_max = as.Date("2024-12-31"),
   indicator = "ILIconsultationrate",
-  countries = c("France", "Germany")
+  countries = c("France")
 )
 
 plot_ili_ari_rates(data, date_breaks = "1 month")
@@ -66,7 +66,7 @@ plot_ili_ari_rates(data, date_breaks = "1 month")
 data <- get_sari_rates(
   date_min = as.Date("2024-01-01"),
   date_max = as.Date("2024-12-31"),
-  countries = c("France", "Belgium")
+  countries = c("Belgium")
 )
 
 plot_sari_rates(data, date_breaks = "1 month")
@@ -76,11 +76,11 @@ plot_sari_rates(data, date_breaks = "1 month")
 
 ``` r
 data <- get_sari_positivity(
-  date_min = as.Date("2024-01-01"),
-  date_max = as.Date("2024-12-31"),
+  date_min = as.Date("2025-01-01"),
+  date_max = as.Date("2025-12-31"),
   pathogen = "Influenza",
   indicator = "positivity",
-  countries = c("France", "Belgium")
+  countries = c("Belgium")
 )
 
 plot_sari_positivity(data, date_breaks = "1 month")
@@ -94,7 +94,8 @@ data <- get_nonsentinel_severity(
   date_max = as.Date("2024-12-31"),
   pathogen = "SARS-CoV-2",
   indicator = "hospitaladmissions",
-  countries = c("France", "Germany")
+  countries = c("EU/EEA"),
+  age = "total"
 )
 
 plot_nonsentinel_severity(data, date_breaks = "1 month")
@@ -125,7 +126,7 @@ quick_plot_ili_ari_rates(
   date_min = as.Date("2024-01-01"),
   date_max = as.Date("2024-12-31"),
   indicator = "ILIconsultationrate",
-  countries = c("France", "Germany"),
+  countries = c("France"),
   date_breaks = "1 month"
 )
 ```
@@ -140,7 +141,7 @@ quick_plot_erviss_data(
   date_max = as.Date("2024-12-31"),
   pathogen = "SARS-CoV-2",
   indicator = "hospitaladmissions",
-  countries = c("France", "Germany"),
+  countries = c("France", "Spain"),
   date_breaks = "1 month"
 )
 ```
@@ -153,27 +154,25 @@ The generic function dispatches to the right plot function based on the
 ``` r
 data <- get_erviss_data(
   type = "sari_rates",
-  date_min = as.Date("2024-01-01"),
-  date_max = as.Date("2024-12-31"),
-  countries = "France"
+  date_min = as.Date("2025-01-01"),
+  date_max = as.Date("2025-12-31"),
+  countries = "Spain"
 )
 
 plot_erviss_data(data, type = "sari_rates", date_breaks = "1 month")
 ```
-
-For `"positivity"` and `"variants"`, the type can be auto-detected from
-the column names, so you can omit it:
 
 ``` r
 data <- get_erviss_data(
   type = "positivity",
   date_min = as.Date("2024-01-01"),
   date_max = as.Date("2024-06-30"),
-  pathogen = "SARS-CoV-2"
+  pathogen = "SARS-CoV-2",
+  countries = "EU/EEA",
+  indicator = "positivity"
 )
 
-# Type is auto-detected from the "pathogen" column
-plot_erviss_data(data)
+plot_erviss_data(data, type = "positivity")
 ```
 
 ## Customizing plots
@@ -252,7 +251,7 @@ data <- get_nonsentinel_severity(
   pathogen = "SARS-CoV-2",
   indicator = c("hospitaladmissions", "ICUadmissions"),
   age = "total",
-  countries = c("France", "Germany")
+  countries = c("France", "Spain")
 )
 
 ggplot(data, aes(x = date, y = value, fill = indicator)) +
@@ -278,7 +277,8 @@ data <- get_ili_ari_rates(
   date_min = as.Date("2024-01-01"),
   date_max = as.Date("2024-12-31"),
   indicator = "ILIconsultationrate",
-  age = "total"
+  age = "total",
+  countries = c("Spain", "Austria", "Greece")
 )
 
 ggplot(data, aes(x = date, y = countryname, fill = value)) +

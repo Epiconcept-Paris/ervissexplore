@@ -59,6 +59,7 @@
 <!-- badges: start -->
 
 <p>An R package to easily retrieve ERVISS (European Respiratory Virus Surveillance Summary) data from the EU-ECDC. Provides functions to fetch, filter, and optionally visualize respiratory virus surveillance data across European countries.</p>
+<p>Please visit <a href="https://erviss.org/" class="external-link uri">https://erviss.org/</a> for a detailed description of the underlying data (see ‘Methods’ in the footer).</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -84,19 +85,19 @@
 <span><span class="co">#&gt;                 survtype countryname yearweek   pathogen pathogentype</span></span>
 <span><span class="co">#&gt;                   &lt;char&gt;      &lt;char&gt;   &lt;char&gt;     &lt;char&gt;       &lt;char&gt;</span></span>
 <span><span class="co">#&gt; 1: primary care sentinel      France 2024-W52 SARS-CoV-2   SARS-CoV-2</span></span>
-<span><span class="co">#&gt; 2: primary care sentinel      France 2024-W51 SARS-CoV-2   SARS-CoV-2</span></span>
-<span><span class="co">#&gt; 3: primary care sentinel      France 2024-W50 SARS-CoV-2   SARS-CoV-2</span></span>
-<span><span class="co">#&gt; 4: primary care sentinel      France 2024-W49 SARS-CoV-2   SARS-CoV-2</span></span>
-<span><span class="co">#&gt; 5: primary care sentinel      France 2024-W48 SARS-CoV-2   SARS-CoV-2</span></span>
-<span><span class="co">#&gt; 6: primary care sentinel      France 2024-W47 SARS-CoV-2   SARS-CoV-2</span></span>
+<span><span class="co">#&gt; 2: primary care sentinel      France 2024-W52 SARS-CoV-2   SARS-CoV-2</span></span>
+<span><span class="co">#&gt; 3: primary care sentinel      France 2024-W52 SARS-CoV-2   SARS-CoV-2</span></span>
+<span><span class="co">#&gt; 4: primary care sentinel      France 2024-W51 SARS-CoV-2   SARS-CoV-2</span></span>
+<span><span class="co">#&gt; 5: primary care sentinel      France 2024-W51 SARS-CoV-2   SARS-CoV-2</span></span>
+<span><span class="co">#&gt; 6: primary care sentinel      France 2024-W51 SARS-CoV-2   SARS-CoV-2</span></span>
 <span><span class="co">#&gt;    pathogensubtype  indicator    age value       date</span></span>
 <span><span class="co">#&gt;             &lt;char&gt;     &lt;char&gt; &lt;char&gt; &lt;num&gt;     &lt;Date&gt;</span></span>
-<span><span class="co">#&gt; 1:      SARS-CoV-2 positivity  total   2.1 2024-12-23</span></span>
-<span><span class="co">#&gt; 2:      SARS-CoV-2 positivity  total   4.1 2024-12-16</span></span>
-<span><span class="co">#&gt; 3:      SARS-CoV-2 positivity  total   4.1 2024-12-09</span></span>
-<span><span class="co">#&gt; 4:      SARS-CoV-2 positivity  total   3.8 2024-12-02</span></span>
-<span><span class="co">#&gt; 5:      SARS-CoV-2 positivity  total   6.2 2024-11-25</span></span>
-<span><span class="co">#&gt; 6:      SARS-CoV-2 positivity  total   6.4 2024-11-18</span></span></code></pre></div>
+<span><span class="co">#&gt; 1:      SARS-CoV-2 detections  total   3.0 2024-12-23</span></span>
+<span><span class="co">#&gt; 2:      SARS-CoV-2 positivity  total   2.1 2024-12-23</span></span>
+<span><span class="co">#&gt; 3:      SARS-CoV-2      tests  total 142.0 2024-12-23</span></span>
+<span><span class="co">#&gt; 4:      SARS-CoV-2 detections  total  13.0 2024-12-16</span></span>
+<span><span class="co">#&gt; 5:      SARS-CoV-2 positivity  total   4.1 2024-12-16</span></span>
+<span><span class="co">#&gt; 6:      SARS-CoV-2      tests  total 319.0 2024-12-16</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="data-sources">Data Sources<a class="anchor" aria-label="anchor" href="#data-sources"></a>
@@ -180,25 +181,27 @@
 <span>  date_min <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-01-01"</span><span class="op">)</span>,</span>
 <span>  date_max <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-06-30"</span><span class="op">)</span>,</span>
 <span>  pathogen <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"SARS-CoV-2"</span>, <span class="st">"Influenza"</span><span class="op">)</span>,</span>
-<span>  countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"France"</span>, <span class="st">"Spain"</span>, <span class="st">"Italy"</span><span class="op">)</span></span>
+<span>  countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"France"</span>, <span class="st">"Spain"</span>, <span class="st">"Italy"</span><span class="op">)</span>,</span>
+<span>  indicator <span class="op">=</span> <span class="st">"positivity"</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Your own analysis with data.table syntax</span></span>
 <span><span class="va">data</span><span class="op">[</span>,</span>
 <span>  <span class="fu">.</span><span class="op">(</span></span>
+<span>    min_positivity <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">value</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
 <span>    mean_positivity <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">value</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
 <span>    max_positivity <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">value</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span>  <span class="op">)</span>,</span>
 <span>  by <span class="op">=</span> <span class="fu">.</span><span class="op">(</span><span class="va">countryname</span>, <span class="va">pathogen</span><span class="op">)</span></span>
 <span><span class="op">]</span></span>
-<span><span class="co">#&gt;    countryname   pathogen mean_positivity max_positivity</span></span>
-<span><span class="co">#&gt;         &lt;char&gt;     &lt;char&gt;           &lt;num&gt;          &lt;num&gt;</span></span>
-<span><span class="co">#&gt; 1:      France  Influenza       19.223077           58.7</span></span>
-<span><span class="co">#&gt; 2:      France SARS-CoV-2        8.942308           66.7</span></span>
-<span><span class="co">#&gt; 3:       Italy  Influenza       12.670588           40.5</span></span>
-<span><span class="co">#&gt; 4:       Italy SARS-CoV-2        2.247059           10.4</span></span>
-<span><span class="co">#&gt; 5:       Spain  Influenza        7.361538           43.7</span></span>
-<span><span class="co">#&gt; 6:       Spain SARS-CoV-2       10.626923           45.6</span></span></code></pre></div>
+<span><span class="co">#&gt;    countryname   pathogen min_positivity mean_positivity max_positivity</span></span>
+<span><span class="co">#&gt;         &lt;char&gt;     &lt;char&gt;          &lt;num&gt;           &lt;num&gt;          &lt;num&gt;</span></span>
+<span><span class="co">#&gt; 1:      France  Influenza            0.0       19.223077           58.7</span></span>
+<span><span class="co">#&gt; 2:      France SARS-CoV-2            0.0        8.942308           66.7</span></span>
+<span><span class="co">#&gt; 3:       Italy  Influenza            0.6       12.670588           40.5</span></span>
+<span><span class="co">#&gt; 4:       Italy SARS-CoV-2            0.0        2.247059           10.4</span></span>
+<span><span class="co">#&gt; 5:       Spain  Influenza            0.2        7.361538           43.7</span></span>
+<span><span class="co">#&gt; 6:       Spain SARS-CoV-2            0.8       10.626923           45.6</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="other-data-sources">Other data sources<a class="anchor" aria-label="anchor" href="#other-data-sources"></a>
@@ -219,7 +222,7 @@
 <span>  date_max <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-12-31"</span><span class="op">)</span>,</span>
 <span>  pathogen <span class="op">=</span> <span class="st">"SARS-CoV-2"</span>,</span>
 <span>  indicator <span class="op">=</span> <span class="st">"hospitaladmissions"</span>,</span>
-<span>  countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"France"</span>, <span class="st">"Germany"</span><span class="op">)</span></span>
+<span>  countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"France"</span>, <span class="st">"Spain"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># SARI positivity</span></span>
@@ -227,7 +230,8 @@
 <span>  date_min <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-01-01"</span><span class="op">)</span>,</span>
 <span>  date_max <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-12-31"</span><span class="op">)</span>,</span>
 <span>  pathogen <span class="op">=</span> <span class="st">"Influenza"</span>,</span>
-<span>  indicator <span class="op">=</span> <span class="st">"positivity"</span></span>
+<span>  indicator <span class="op">=</span> <span class="st">"positivity"</span>,</span>
+<span>  countries <span class="op">=</span> <span class="st">"EU/EEA"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
@@ -252,7 +256,8 @@
 <span>  date_min <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-01-01"</span><span class="op">)</span>,</span>
 <span>  date_max <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-06-30"</span><span class="op">)</span>,</span>
 <span>  pathogen <span class="op">=</span> <span class="st">"SARS-CoV-2"</span>,</span>
-<span>  countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"France"</span>, <span class="st">"Spain"</span><span class="op">)</span></span>
+<span>  countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"France"</span>, <span class="st">"Spain"</span><span class="op">)</span>,</span>
+<span>  indicator <span class="op">=</span> <span class="st">"positivity"</span></span>
 <span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/plot_erviss_positivity.html">plot_erviss_positivity</a></span><span class="op">(</span><span class="va">data</span>, date_breaks <span class="op">=</span> <span class="st">"1 month"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-8-1.png" width="100%"></p>
@@ -262,7 +267,7 @@
 <span>  date_min <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-01-01"</span><span class="op">)</span>,</span>
 <span>  date_max <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-12-31"</span><span class="op">)</span>,</span>
 <span>  indicator <span class="op">=</span> <span class="st">"ILIconsultationrate"</span>,</span>
-<span>  countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"France"</span>, <span class="st">"Germany"</span><span class="op">)</span>,</span>
+<span>  countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"France"</span>, <span class="st">"Spain"</span><span class="op">)</span>,</span>
 <span>  date_breaks <span class="op">=</span> <span class="st">"1 month"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 </div>
@@ -433,6 +438,11 @@
 <li>By fixing bugs or improving the package: please clone or fork the repository, work on a dedicated branch and create a pull request.</li>
 </ul>
 </div>
+<div class="section level2">
+<h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
+</h2>
+<p>European Centre for Disease Prevention and Control. European Respiratory Virus Surveillance Summary (ERVISS), 2026, Week 05. Available at <a href="https://erviss.org/" class="external-link uri">https://erviss.org/</a>.</p>
+</div>
 </div>
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
@@ -445,8 +455,8 @@
 <div class="license">
 <h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
-<li><a href="LICENSE.html">Full license</a></li>
-<li><small>file <a href="LICENSE-text.html">LICENSE</a></small></li>
+<li>file <a href="LICENSE-text.html">LICENSE</a>
+</li>
 </ul>
 </div>
 
