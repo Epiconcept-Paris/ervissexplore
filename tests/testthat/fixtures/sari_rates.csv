@@ -1,0 +1,10 @@
+survtype,countryname,yearweek,indicator,age,value
+sentinel,France,2024-W01,SARIrate,total,5.2
+sentinel,France,2024-W02,SARIrate,total,5.8
+sentinel,France,2024-W03,SARIrate,total,6.1
+sentinel,France,2024-W01,SARIrate,0-4,8.3
+sentinel,France,2024-W02,SARIrate,0-4,9.1
+sentinel,France,2024-W01,SARIrate,65+,12.5
+sentinel,Germany,2024-W01,SARIrate,total,4.9
+sentinel,Germany,2024-W02,SARIrate,total,5.3
+sentinel,France,2025-W10,SARIrate,total,3.0

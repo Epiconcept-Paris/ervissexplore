@@ -1,0 +1,13 @@
+survtype,countryname,yearweek,pathogen,pathogentype,pathogensubtype,indicator,age,value
+nonsentinel,France,2024-W01,Influenza,Influenza A,,detections,total,500
+nonsentinel,France,2024-W02,Influenza,Influenza A,,detections,total,480
+nonsentinel,France,2024-W03,Influenza,Influenza A,,detections,total,450
+nonsentinel,France,2024-W01,Influenza,Influenza A,,tests,total,2500
+nonsentinel,France,2024-W02,Influenza,Influenza A,,tests,total,2400
+nonsentinel,France,2024-W01,SARS-CoV-2,SARS-CoV-2,,detections,total,800
+nonsentinel,France,2024-W02,SARS-CoV-2,SARS-CoV-2,,detections,total,750
+nonsentinel,France,2024-W01,Influenza,Influenza A,,detections,0-4,120
+nonsentinel,France,2024-W01,Influenza,Influenza A,,detections,65+,150
+nonsentinel,Germany,2024-W01,Influenza,Influenza A,,detections,total,600
+nonsentinel,Germany,2024-W02,Influenza,Influenza A,,detections,total,580
+nonsentinel,France,2025-W10,Influenza,Influenza A,,detections,total,300

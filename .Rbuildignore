@@ -6,4 +6,5 @@
 ^pkgdown$
 ^README\.Rmd$
 ^\.github$
+^\.claude$
 ^\.vscode$

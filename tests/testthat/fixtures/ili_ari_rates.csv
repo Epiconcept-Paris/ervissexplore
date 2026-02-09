@@ -1,0 +1,12 @@
+survtype,countryname,yearweek,indicator,age,value
+sentinel,France,2024-W01,ILIconsultationrate,total,120.5
+sentinel,France,2024-W02,ILIconsultationrate,total,115.3
+sentinel,France,2024-W03,ILIconsultationrate,total,110.8
+sentinel,France,2024-W01,ILIconsultationrate,0-4,250.2
+sentinel,France,2024-W02,ILIconsultationrate,0-4,245.1
+sentinel,France,2024-W01,ILIconsultationrate,65+,89.3
+sentinel,France,2024-W01,ARIconsultationrate,total,350.7
+sentinel,France,2024-W02,ARIconsultationrate,total,340.2
+sentinel,Germany,2024-W01,ILIconsultationrate,total,98.4
+sentinel,Germany,2024-W02,ILIconsultationrate,total,95.1
+sentinel,France,2025-W10,ILIconsultationrate,total,80.0

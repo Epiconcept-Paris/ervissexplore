@@ -1,0 +1,18 @@
+survtype,countryname,yearweek,pathogen,pathogentype,pathogensubtype,indicator,age,value
+sentinel,France,2024-W01,SARS-CoV-2,SARS-CoV-2,,positivity,total,12.5
+sentinel,France,2024-W02,SARS-CoV-2,SARS-CoV-2,,positivity,total,11.3
+sentinel,France,2024-W03,SARS-CoV-2,SARS-CoV-2,,positivity,total,10.1
+sentinel,France,2024-W01,Influenza,Influenza A,,positivity,total,8.2
+sentinel,France,2024-W02,Influenza,Influenza A,,positivity,total,9.5
+sentinel,France,2024-W03,Influenza,Influenza A,,positivity,total,7.8
+sentinel,France,2024-W01,RSV,RSV,,positivity,total,5.3
+sentinel,France,2024-W02,RSV,RSV,,positivity,total,4.9
+sentinel,France,2024-W03,RSV,RSV,,positivity,total,4.2
+sentinel,Germany,2024-W01,SARS-CoV-2,SARS-CoV-2,,positivity,total,15.1
+sentinel,Germany,2024-W02,SARS-CoV-2,SARS-CoV-2,,positivity,total,14.8
+sentinel,Germany,2024-W03,SARS-CoV-2,SARS-CoV-2,,positivity,total,13.5
+sentinel,France,2024-W01,SARS-CoV-2,SARS-CoV-2,,detections,total,150
+sentinel,France,2024-W02,SARS-CoV-2,SARS-CoV-2,,detections,total,130
+sentinel,France,2024-W01,SARS-CoV-2,SARS-CoV-2,,tests,total,1200
+sentinel,France,2024-W02,SARS-CoV-2,SARS-CoV-2,,tests,total,1150
+sentinel,France,2025-W10,SARS-CoV-2,SARS-CoV-2,,positivity,total,6.0

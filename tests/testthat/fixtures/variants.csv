@@ -1,0 +1,15 @@
+countryname,yearweek,variant,indicator,value
+France,2024-W01,XFG,proportion,45.2
+France,2024-W02,XFG,proportion,42.1
+France,2024-W03,XFG,proportion,38.5
+France,2024-W01,LP.8.1,proportion,30.1
+France,2024-W02,LP.8.1,proportion,33.5
+France,2024-W03,LP.8.1,proportion,36.8
+Germany,2024-W01,XFG,proportion,50.3
+Germany,2024-W02,XFG,proportion,48.7
+Germany,2024-W03,XFG,proportion,45.9
+France,2024-W01,XFG,detections,120
+France,2024-W02,XFG,detections,110
+France,2024-W01,LP.8.1,detections,80
+France,2024-W02,LP.8.1,detections,90
+France,2025-W10,XFG,proportion,20.0

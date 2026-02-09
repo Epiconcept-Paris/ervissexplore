@@ -1,0 +1,15 @@
+survtype,countryname,yearweek,pathogen,pathogentype,indicator,age,value
+nonsentinel,France,2024-W01,SARS-CoV-2,SARS-CoV-2,hospitaladmissions,total,450
+nonsentinel,France,2024-W02,SARS-CoV-2,SARS-CoV-2,hospitaladmissions,total,420
+nonsentinel,France,2024-W03,SARS-CoV-2,SARS-CoV-2,hospitaladmissions,total,390
+nonsentinel,France,2024-W01,SARS-CoV-2,SARS-CoV-2,deaths,total,25
+nonsentinel,France,2024-W02,SARS-CoV-2,SARS-CoV-2,deaths,total,22
+nonsentinel,France,2024-W01,SARS-CoV-2,SARS-CoV-2,ICUadmissions,total,45
+nonsentinel,France,2024-W01,SARS-CoV-2,SARS-CoV-2,ICUinpatients,total,120
+nonsentinel,France,2024-W01,SARS-CoV-2,SARS-CoV-2,hospitalinpatients,total,800
+nonsentinel,France,2024-W01,SARS-CoV-2,SARS-CoV-2,hospitaladmissions,0-4,30
+nonsentinel,France,2024-W01,SARS-CoV-2,SARS-CoV-2,hospitaladmissions,65+,200
+nonsentinel,Germany,2024-W01,SARS-CoV-2,SARS-CoV-2,hospitaladmissions,total,550
+nonsentinel,Germany,2024-W02,SARS-CoV-2,SARS-CoV-2,hospitaladmissions,total,510
+nonsentinel,France,2024-W01,Influenza,Influenza,hospitaladmissions,total,180
+nonsentinel,France,2025-W10,SARS-CoV-2,SARS-CoV-2,hospitaladmissions,total,100
