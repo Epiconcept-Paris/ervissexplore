@@ -68,8 +68,13 @@ get_nonsentinel_severity <- function(
   if (any(indicator != "")) {
     assert_indicator(
       indicator,
-      c("deaths", "hospitaladmissions", "ICUadmissions",
-        "ICUinpatients", "hospitalinpatients")
+      c(
+        "deaths",
+        "hospitaladmissions",
+        "ICUadmissions",
+        "ICUinpatients",
+        "hospitalinpatients"
+      )
     )
   }
 
