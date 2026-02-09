@@ -46,7 +46,10 @@ test_that("get_sentineltests_positivity_url returns correct snapshot URL", {
   )
   expect_equal(
     url,
-    paste0(base_url, "/snapshots/2023-11-24_sentinelTestsDetectionsPositivity.csv")
+    paste0(
+      base_url,
+      "/snapshots/2023-11-24_sentinelTestsDetectionsPositivity.csv"
+    )
   )
 })
 
@@ -155,7 +158,10 @@ test_that("URL builders error when snapshot_date is not a Date", {
     "must be a Date object"
   )
   expect_error(
-    get_sentineltests_positivity_url(use_snapshot = TRUE, snapshot_date = 20240101),
+    get_sentineltests_positivity_url(
+      use_snapshot = TRUE,
+      snapshot_date = 20240101
+    ),
     "must be a Date object"
   )
 })

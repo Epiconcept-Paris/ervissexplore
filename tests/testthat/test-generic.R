@@ -252,7 +252,14 @@ test_that("ERVISS_TYPES contains all expected data types", {
   types <- ervissexplore:::ERVISS_TYPES
   expect_equal(
     types,
-    c("positivity", "variants", "ili_ari_rates", "sari_rates",
-      "sari_positivity", "nonsentinel_severity", "nonsentinel_tests")
+    c(
+      "positivity",
+      "variants",
+      "ili_ari_rates",
+      "sari_rates",
+      "sari_positivity",
+      "nonsentinel_severity",
+      "nonsentinel_tests"
+    )
   )
 })

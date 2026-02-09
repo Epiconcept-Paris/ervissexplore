@@ -57,8 +57,13 @@ test_that("get_nonsentinel_severity filters by countries", {
 })
 
 test_that("get_nonsentinel_severity accepts all valid indicators", {
-  for (ind in c("deaths", "hospitaladmissions", "ICUadmissions",
-                "ICUinpatients", "hospitalinpatients")) {
+  for (ind in c(
+    "deaths",
+    "hospitaladmissions",
+    "ICUadmissions",
+    "ICUinpatients",
+    "hospitalinpatients"
+  )) {
     expect_no_error(
       get_nonsentinel_severity(
         csv_file = severity_path,
