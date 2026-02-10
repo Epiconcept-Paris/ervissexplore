@@ -139,6 +139,33 @@ test_that("assert_indicator error message lists valid values", {
   )
 })
 
+test_that("safe_download_csv reads a valid CSV file", {
+  tmp <- tempfile(fileext = ".csv")
+  writeLines("a,b\n1,2\n3,4", tmp)
+  on.exit(unlink(tmp))
+
+  result <- ervissexplore:::safe_download_csv(tmp)
+  expect_s3_class(result, "data.table")
+  expect_equal(nrow(result), 2)
+  expect_equal(names(result), c("a", "b"))
+})
+
+test_that("safe_download_csv errors on invalid path", {
+  expect_error(
+    ervissexplore:::safe_download_csv("/nonexistent/path/file.csv"),
+    "Failed to download or read CSV"
+  )
+})
+
+test_that("safe_download_csv error message includes the path", {
+  bad_path <- "/some/fake/path.csv"
+  expect_error(
+    ervissexplore:::safe_download_csv(bad_path),
+    bad_path,
+    fixed = TRUE
+  )
+})
+
 test_that("warn_if_empty returns the data.table unchanged", {
   dt <- data.table::data.table(x = 1:3, y = letters[1:3])
   result <- ervissexplore:::warn_if_empty(dt)

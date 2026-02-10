@@ -355,3 +355,21 @@ yearweek_to_date <- function(yearweek) {
 
   return(target_monday)
 }
+
+#' @noRd
+safe_download_csv <- function(csv_path) {
+  csv_content <- try(
+    suppressWarnings(
+      data.table::fread(csv_path)
+    ),
+    silent = TRUE
+  )
+
+  if (inherits(csv_content, "try-error")) {
+    cli_abort(sprintf(
+      "Failed to download or read CSV from '%s'. If you tried to retrieve a specific snapshot, check the snapshot_date exists by visiting ERVISS github repository (https://github.com/EU-ECDC/Respiratory_viruses_weekly_data/tree/main/data/snapshots)",
+      csv_path
+    ))
+  }
+  return(csv_content)
+}

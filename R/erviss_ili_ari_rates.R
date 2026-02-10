@@ -63,7 +63,7 @@ get_ili_ari_rates <- function(
     assert_indicator(indicator, c("ILIconsultationrate", "ARIconsultationrate"))
   }
 
-  dt <- data.table::fread(csv_file)
+  dt <- safe_download_csv(csv_file)
   dt[, date := yearweek_to_date(yearweek)]
 
   if (any(indicator != "")) {
