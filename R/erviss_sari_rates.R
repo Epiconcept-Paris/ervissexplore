@@ -54,7 +54,7 @@ get_sari_rates <- function(
   assert_date(date_min, "date_min")
   assert_date(date_max, "date_max")
 
-  dt <- data.table::fread(csv_file)
+  dt <- safe_download_csv(csv_file)
   dt[, date := yearweek_to_date(yearweek)]
 
   if (any(age != "")) {

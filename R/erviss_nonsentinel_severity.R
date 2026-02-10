@@ -78,7 +78,7 @@ get_nonsentinel_severity <- function(
     )
   }
 
-  dt <- data.table::fread(csv_file)
+  dt <- safe_download_csv(csv_file)
   dt[, date := yearweek_to_date(yearweek)]
 
   if (any(pathogen != "")) {

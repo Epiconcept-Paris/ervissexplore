@@ -67,7 +67,7 @@ get_nonsentinel_tests <- function(
     assert_indicator(indicator, c("detections", "tests"))
   }
 
-  dt <- data.table::fread(csv_file)
+  dt <- safe_download_csv(csv_file)
   dt[, date := yearweek_to_date(yearweek)]
 
   if (any(pathogen != "")) {
