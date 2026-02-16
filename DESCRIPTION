@@ -4,7 +4,7 @@ Version: 0.1.0
 Authors@R: 
     person("Yohann", "Mansiaux", , "y.mansiaux@epiconcept.fr", role = c("aut", "cre"))
 Description: Provides easy access to ERVISS (European Respiratory Virus 
-    Surveillance Summary) data from the EU-ECDC. Enables retrieval, filtering,
+    Surveillance Summary) data from the EU-ECDC <https://github.com/EU-ECDC/Respiratory_viruses_weekly_data>. Enables retrieval, filtering,
     and optional visualization of data across European countries. Data is fetched
     directly from the EU-ECDC Respiratory Viruses Weekly Data repository, with
     support for both latest data and historical snapshots for reproducible 
