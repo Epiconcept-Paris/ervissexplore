@@ -129,9 +129,9 @@ plot_sari_rates <- function(
 #' \donttest{
 #' # Quick visualization of SARI rates
 #' quick_plot_sari_rates(
-#'   date_min = as.Date("2024-01-01"),
-#'   date_max = as.Date("2024-12-31"),
-#'   countries = "France",
+#'   date_min = as.Date("2025-01-01"),
+#'   date_max = as.Date("2025-12-31"),
+#'   countries = "Spain",
 #'   date_breaks = "1 month"
 #' )
 #' }
