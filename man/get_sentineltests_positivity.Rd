@@ -49,7 +49,7 @@ from the ERVISS (European Respiratory Virus Surveillance Summary) for a specifie
 date range, pathogen(s), indicator(s), and country(ies).
 }
 \examples{
-\dontrun{
+\donttest{
 # Get latest SARS-CoV-2 positivity data for France
 data <- get_sentineltests_positivity(
   date_min = as.Date("2024-01-01"),

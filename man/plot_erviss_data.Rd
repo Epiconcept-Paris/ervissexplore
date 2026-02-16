@@ -33,7 +33,7 @@ Creates a ggplot2 visualization of ERVISS data, with facets by country.
 This is a generic function that can plot any of the available data types.
 }
 \examples{
-\dontrun{
+\donttest{
 # Plot positivity data
 data <- get_erviss_data("positivity",
   date_min = as.Date("2024-01-01"),

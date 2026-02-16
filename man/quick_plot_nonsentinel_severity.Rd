@@ -64,7 +64,7 @@ For more control, use \code{\link{get_nonsentinel_severity}} followed by
 \code{\link{plot_nonsentinel_severity}}.
 }
 \examples{
-\dontrun{
+\donttest{
 # Quick visualization of hospital admissions
 quick_plot_nonsentinel_severity(
   date_min = as.Date("2024-01-01"),

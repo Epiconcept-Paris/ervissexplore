@@ -52,7 +52,7 @@ For more control, use \code{\link{get_sari_rates}} followed by
 \code{\link{plot_sari_rates}}.
 }
 \examples{
-\dontrun{
+\donttest{
 # Quick visualization of SARI rates
 quick_plot_sari_rates(
   date_min = as.Date("2024-01-01"),

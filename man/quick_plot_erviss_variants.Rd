@@ -58,7 +58,7 @@ For more control, use \code{\link{get_erviss_variants}} followed by
 \code{\link{plot_erviss_variants}}.
 }
 \examples{
-\dontrun{
+\donttest{
 # Quick visualization of latest variant data
 quick_plot_erviss_variants(
   date_min = as.Date("2024-06-01"),

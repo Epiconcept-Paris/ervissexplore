@@ -27,7 +27,7 @@
 #'
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Get ILI consultation rates for France
 #' data <- get_ili_ari_rates(
 #'   date_min = as.Date("2024-01-01"),
@@ -102,7 +102,7 @@ get_ili_ari_rates <- function(
 #'
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data <- get_ili_ari_rates(
 #'   date_min = as.Date("2024-01-01"),
 #'   date_max = as.Date("2024-06-30"),
@@ -142,7 +142,7 @@ plot_ili_ari_rates <- function(
 #' @import data.table
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Quick visualization of ILI rates
 #' quick_plot_ili_ari_rates(
 #'   date_min = as.Date("2024-01-01"),

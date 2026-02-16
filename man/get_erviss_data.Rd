@@ -65,7 +65,7 @@ Virus Surveillance Summary). This is a generic function that can retrieve
 any of the available data types.
 }
 \examples{
-\dontrun{
+\donttest{
 # Get positivity data
 data <- get_erviss_data(
   type = "positivity",

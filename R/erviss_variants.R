@@ -24,7 +24,7 @@
 #'
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Get latest variant data for France
 #' data <- get_erviss_variants(
 #'   date_min = as.Date("2024-01-01"),
@@ -105,7 +105,7 @@ get_erviss_variants <- function(
 #'
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data <- get_erviss_variants(
 #'   date_min = as.Date("2024-06-01"),
 #'   date_max = as.Date("2024-12-31"),
@@ -145,7 +145,7 @@ plot_erviss_variants <- function(
 #' @import data.table
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Quick visualization of latest variant data
 #' quick_plot_erviss_variants(
 #'   date_min = as.Date("2024-06-01"),

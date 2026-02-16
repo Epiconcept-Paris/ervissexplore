@@ -25,7 +25,7 @@ Creates a ggplot2 visualization of SARI positivity data, with facets
 by country and colored by pathogen.
 }
 \examples{
-\dontrun{
+\donttest{
 data <- get_sari_positivity(
   date_min = as.Date("2024-01-01"),
   date_max = as.Date("2024-06-30"),

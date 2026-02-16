@@ -30,7 +30,7 @@
 #'
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Get hospital admissions for SARS-CoV-2 in France
 #' data <- get_nonsentinel_severity(
 #'   date_min = as.Date("2024-01-01"),
@@ -122,7 +122,7 @@ get_nonsentinel_severity <- function(
 #'
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data <- get_nonsentinel_severity(
 #'   date_min = as.Date("2024-01-01"),
 #'   date_max = as.Date("2024-06-30"),
@@ -163,7 +163,7 @@ plot_nonsentinel_severity <- function(
 #' @import data.table
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Quick visualization of hospital admissions
 #' quick_plot_nonsentinel_severity(
 #'   date_min = as.Date("2024-01-01"),

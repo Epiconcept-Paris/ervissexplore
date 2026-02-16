@@ -93,7 +93,7 @@ get_erviss_url <- function(
 #'
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Get positivity data
 #' data <- get_erviss_data(
 #'   type = "positivity",
@@ -234,7 +234,7 @@ get_erviss_data <- function(
 #'
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Plot positivity data
 #' data <- get_erviss_data("positivity",
 #'   date_min = as.Date("2024-01-01"),
@@ -300,7 +300,7 @@ plot_erviss_data <- function(
 #' @import data.table
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Quick visualization of positivity data
 #' quick_plot_erviss_data(
 #'   type = "positivity",

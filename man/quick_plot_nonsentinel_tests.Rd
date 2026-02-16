@@ -62,7 +62,7 @@ For more control, use \code{\link{get_nonsentinel_tests}} followed by
 \code{\link{plot_nonsentinel_tests}}.
 }
 \examples{
-\dontrun{
+\donttest{
 # Quick visualization of non-sentinel detections
 quick_plot_nonsentinel_tests(
   date_min = as.Date("2024-01-01"),

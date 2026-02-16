@@ -25,7 +25,7 @@ Creates a ggplot2 visualization of variant data, with facets by country
 and colored by variant. The y-axis shows percentage of all variants.
 }
 \examples{
-\dontrun{
+\donttest{
 data <- get_erviss_variants(
   date_min = as.Date("2024-06-01"),
   date_max = as.Date("2024-12-31"),

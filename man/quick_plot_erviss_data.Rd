@@ -75,7 +75,7 @@ For more control, use \code{\link{get_erviss_data}} followed by
 \code{\link{plot_erviss_data}}.
 }
 \examples{
-\dontrun{
+\donttest{
 # Quick visualization of positivity data
 quick_plot_erviss_data(
   type = "positivity",

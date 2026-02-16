@@ -29,7 +29,7 @@
 #'
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Get non-sentinel detections for Influenza in France
 #' data <- get_nonsentinel_tests(
 #'   date_min = as.Date("2024-01-01"),
@@ -111,7 +111,7 @@ get_nonsentinel_tests <- function(
 #'
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data <- get_nonsentinel_tests(
 #'   date_min = as.Date("2024-01-01"),
 #'   date_max = as.Date("2024-06-30"),
@@ -152,7 +152,7 @@ plot_nonsentinel_tests <- function(
 #' @import data.table
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Quick visualization of non-sentinel detections
 #' quick_plot_nonsentinel_tests(
 #'   date_min = as.Date("2024-01-01"),

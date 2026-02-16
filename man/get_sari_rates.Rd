@@ -45,7 +45,7 @@ ERVISS (European Respiratory Virus Surveillance Summary) for a specified date
 range, age group(s), and country(ies).
 }
 \examples{
-\dontrun{
+\donttest{
 # Get SARI rates for France
 data <- get_sari_rates(
   date_min = as.Date("2024-01-01"),

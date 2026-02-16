@@ -56,7 +56,7 @@ Summary) for a specified date range, pathogen(s), indicator(s), age group(s),
 and country(ies).
 }
 \examples{
-\dontrun{
+\donttest{
 # Get hospital admissions for SARS-CoV-2 in France
 data <- get_nonsentinel_severity(
   date_min = as.Date("2024-01-01"),

@@ -59,7 +59,7 @@ For more control, use \code{\link{get_ili_ari_rates}} followed by
 \code{\link{plot_ili_ari_rates}}.
 }
 \examples{
-\dontrun{
+\donttest{
 # Quick visualization of ILI rates
 quick_plot_ili_ari_rates(
   date_min = as.Date("2024-01-01"),

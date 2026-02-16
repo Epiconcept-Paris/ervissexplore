@@ -51,7 +51,7 @@ Surveillance Summary) for a specified date range, indicator(s), age group(s),
 and country(ies).
 }
 \examples{
-\dontrun{
+\donttest{
 # Get ILI consultation rates for France
 data <- get_ili_ari_rates(
   date_min = as.Date("2024-01-01"),

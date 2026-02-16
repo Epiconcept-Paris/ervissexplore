@@ -25,7 +25,7 @@ Creates a ggplot2 visualization of positivity data, with facets by country
 and colored by pathogen. The plot title displays mean, min and max positivity values.
 }
 \examples{
-\dontrun{
+\donttest{
 data <- get_sentineltests_positivity(
   date_min = as.Date("2024-01-01"),
   date_max = as.Date("2024-06-30"),

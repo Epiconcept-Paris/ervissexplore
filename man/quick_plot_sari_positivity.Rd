@@ -63,7 +63,7 @@ For more control, use \code{\link{get_sari_positivity}} followed by
 \code{\link{plot_sari_positivity}}.
 }
 \examples{
-\dontrun{
+\donttest{
 # Quick visualization of SARI positivity
 quick_plot_sari_positivity(
   date_min = as.Date("2024-01-01"),

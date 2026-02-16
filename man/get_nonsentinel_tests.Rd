@@ -55,7 +55,7 @@ for a specified date range, pathogen(s), indicator(s), age group(s), and
 country(ies).
 }
 \examples{
-\dontrun{
+\donttest{
 # Get non-sentinel detections for Influenza in France
 data <- get_nonsentinel_tests(
   date_min = as.Date("2024-01-01"),

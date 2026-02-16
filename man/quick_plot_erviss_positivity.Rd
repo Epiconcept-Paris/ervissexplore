@@ -56,7 +56,7 @@ For more control, use \code{\link{get_sentineltests_positivity}} followed by
 \code{\link{plot_erviss_positivity}}.
 }
 \examples{
-\dontrun{
+\donttest{
 # Quick visualization of latest data
 quick_plot_erviss_positivity(
   date_min = as.Date("2024-01-01"),

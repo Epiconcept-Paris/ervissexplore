@@ -25,7 +25,7 @@ Creates a ggplot2 visualization of ILI/ARI consultation rates, with facets
 by country and colored by age group.
 }
 \examples{
-\dontrun{
+\donttest{
 data <- get_ili_ari_rates(
   date_min = as.Date("2024-01-01"),
   date_max = as.Date("2024-06-30"),

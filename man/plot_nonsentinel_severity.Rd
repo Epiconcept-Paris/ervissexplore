@@ -29,7 +29,7 @@ Creates a ggplot2 visualization of non-sentinel severity data, with facets
 by country and colored by pathogen.
 }
 \examples{
-\dontrun{
+\donttest{
 data <- get_nonsentinel_severity(
   date_min = as.Date("2024-01-01"),
   date_max = as.Date("2024-06-30"),

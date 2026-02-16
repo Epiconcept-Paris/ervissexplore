@@ -25,7 +25,7 @@
 #'
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Get latest SARS-CoV-2 positivity data for France
 #' data <- get_sentineltests_positivity(
 #'   date_min = as.Date("2024-01-01"),
@@ -110,7 +110,7 @@ get_sentineltests_positivity <- function(
 #'
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data <- get_sentineltests_positivity(
 #'   date_min = as.Date("2024-01-01"),
 #'   date_max = as.Date("2024-06-30"),
@@ -160,7 +160,7 @@ plot_erviss_positivity <- function(
 #' @import data.table
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Quick visualization of latest data
 #' quick_plot_erviss_positivity(
 #'   date_min = as.Date("2024-01-01"),

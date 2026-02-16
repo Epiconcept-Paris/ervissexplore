@@ -23,7 +23,7 @@
 #'
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Get SARI rates for France
 #' data <- get_sari_rates(
 #'   date_min = as.Date("2024-01-01"),
@@ -88,7 +88,7 @@ get_sari_rates <- function(
 #'
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data <- get_sari_rates(
 #'   date_min = as.Date("2024-01-01"),
 #'   date_max = as.Date("2024-06-30"),
@@ -126,7 +126,7 @@ plot_sari_rates <- function(
 #' @import data.table
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Quick visualization of SARI rates
 #' quick_plot_sari_rates(
 #'   date_min = as.Date("2024-01-01"),

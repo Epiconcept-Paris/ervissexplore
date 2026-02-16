@@ -50,7 +50,7 @@ Retrieves and filters SARS-CoV-2 variant data from the ERVISS (European Respirat
 Virus Surveillance Summary) for a specified date range, variant(s), and country(ies).
 }
 \examples{
-\dontrun{
+\donttest{
 # Get latest variant data for France
 data <- get_erviss_variants(
   date_min = as.Date("2024-01-01"),
