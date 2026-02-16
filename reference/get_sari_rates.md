@@ -61,12 +61,12 @@ survtype, countryname, date, indicator, age, value.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-# Get SARI rates for France
+# \donttest{
+# Get SARI rates for Spain
 data <- get_sari_rates(
-  date_min = as.Date("2024-01-01"),
-  date_max = as.Date("2024-12-31"),
-  countries = "France"
+  date_min = as.Date("2025-01-01"),
+  date_max = as.Date("2025-12-31"),
+  countries = "Spain"
 )
 
 # Get SARI rates for specific age groups
@@ -75,5 +75,5 @@ data <- get_sari_rates(
   date_max = as.Date("2024-12-31"),
   age = c("0-4", "65+")
 )
-} # }
+# }
 ```

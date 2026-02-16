@@ -36,12 +36,13 @@ A ggplot2 object
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# \donttest{
 data <- get_sentineltests_positivity(
   date_min = as.Date("2024-01-01"),
   date_max = as.Date("2024-06-30"),
   pathogen = "SARS-CoV-2"
 )
 plot_erviss_positivity(data, date_breaks = "1 month")
-} # }
+
+# }
 ```

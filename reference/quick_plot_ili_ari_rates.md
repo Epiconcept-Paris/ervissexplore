@@ -81,7 +81,7 @@ and age group
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# \donttest{
 # Quick visualization of ILI rates
 quick_plot_ili_ari_rates(
   date_min = as.Date("2024-01-01"),
@@ -89,5 +89,6 @@ quick_plot_ili_ari_rates(
   indicator = "ILIconsultationrate",
   date_breaks = "1 month"
 )
-} # }
+
+# }
 ```

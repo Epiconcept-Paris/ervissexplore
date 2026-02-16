@@ -84,7 +84,7 @@ A ggplot2 object showing variant proportions over time by country
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# \donttest{
 # Quick visualization of latest variant data
 quick_plot_erviss_variants(
   date_min = as.Date("2024-06-01"),
@@ -92,5 +92,6 @@ quick_plot_erviss_variants(
   variant = c("XFG", "LP.8.1"),
   date_breaks = "1 month"
 )
-} # }
+
+# }
 ```

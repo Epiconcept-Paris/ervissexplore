@@ -75,7 +75,7 @@ pathogensubtype, indicator, age, value.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# \donttest{
 # Get non-sentinel detections for Influenza in France
 data <- get_nonsentinel_tests(
   date_min = as.Date("2024-01-01"),
@@ -90,5 +90,5 @@ data <- get_nonsentinel_tests(
   date_min = as.Date("2024-01-01"),
   date_max = as.Date("2024-12-31")
 )
-} # }
+# }
 ```

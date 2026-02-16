@@ -107,7 +107,7 @@ A ggplot2 object showing the data over time by country
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# \donttest{
 # Quick visualization of positivity data
 quick_plot_erviss_data(
   type = "positivity",
@@ -116,6 +116,7 @@ quick_plot_erviss_data(
   pathogen = "SARS-CoV-2"
 )
 
+
 # Quick visualization of ILI rates
 quick_plot_erviss_data(
   type = "ili_ari_rates",
@@ -123,5 +124,6 @@ quick_plot_erviss_data(
   date_max = as.Date("2024-12-31"),
   indicator = "ILIconsultationrate"
 )
-} # }
+
+# }
 ```

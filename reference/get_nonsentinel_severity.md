@@ -77,7 +77,7 @@ value.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# \donttest{
 # Get hospital admissions for SARS-CoV-2 in France
 data <- get_nonsentinel_severity(
   date_min = as.Date("2024-01-01"),
@@ -93,5 +93,5 @@ data <- get_nonsentinel_severity(
   date_max = as.Date("2024-12-31"),
   pathogen = "SARS-CoV-2"
 )
-} # }
+# }
 ```

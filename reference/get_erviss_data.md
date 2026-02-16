@@ -93,7 +93,7 @@ A data.table containing the filtered data.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# \donttest{
 # Get positivity data
 data <- get_erviss_data(
   type = "positivity",
@@ -120,5 +120,5 @@ data <- get_erviss_data(
   pathogen = "SARS-CoV-2",
   indicator = "hospitaladmissions"
 )
-} # }
+# }
 ```

@@ -87,7 +87,7 @@ A ggplot2 object showing severity data over time by country and pathogen
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# \donttest{
 # Quick visualization of hospital admissions
 quick_plot_nonsentinel_severity(
   date_min = as.Date("2024-01-01"),
@@ -96,5 +96,6 @@ quick_plot_nonsentinel_severity(
   indicator = "hospitaladmissions",
   date_breaks = "1 month"
 )
-} # }
+
+# }
 ```

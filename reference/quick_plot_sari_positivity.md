@@ -87,7 +87,7 @@ pathogen
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# \donttest{
 # Quick visualization of SARI positivity
 quick_plot_sari_positivity(
   date_min = as.Date("2024-01-01"),
@@ -96,5 +96,6 @@ quick_plot_sari_positivity(
   indicator = "positivity",
   date_breaks = "1 month"
 )
-} # }
+
+# }
 ```

@@ -72,7 +72,7 @@ value, variant, countryname, indicator, and other ERVISS fields.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# \donttest{
 # Get latest variant data for France
 data <- get_erviss_variants(
   date_min = as.Date("2024-01-01"),
@@ -87,5 +87,6 @@ data <- get_erviss_variants(
   variant = c("XFG", "LP.8.1"),
   min_value = 5
 )
-} # }
+#> ℹ No data found for the given filters. Try adjusting date range, countries, pathogen, or indicator.
+# }
 ```

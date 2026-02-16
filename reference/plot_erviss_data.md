@@ -46,7 +46,7 @@ A ggplot2 object
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# \donttest{
 # Plot positivity data
 data <- get_erviss_data("positivity",
   date_min = as.Date("2024-01-01"),
@@ -55,6 +55,7 @@ data <- get_erviss_data("positivity",
 )
 plot_erviss_data(data, type = "positivity")
 
+
 # Plot ILI/ARI rates
 data <- get_erviss_data("ili_ari_rates",
   date_min = as.Date("2024-01-01"),
@@ -62,5 +63,6 @@ data <- get_erviss_data("ili_ari_rates",
   indicator = "ILIconsultationrate"
 )
 plot_erviss_data(data, type = "ili_ari_rates")
-} # }
+
+# }
 ```

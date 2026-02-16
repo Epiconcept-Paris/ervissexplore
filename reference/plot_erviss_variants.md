@@ -34,12 +34,13 @@ A ggplot2 object
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# \donttest{
 data <- get_erviss_variants(
   date_min = as.Date("2024-06-01"),
   date_max = as.Date("2024-12-31"),
   variant = c("XFG", "LP.8.1")
 )
 plot_erviss_variants(data, date_breaks = "1 month")
-} # }
+
+# }
 ```

@@ -69,7 +69,7 @@ pathogen, countryname, indicator, and other ERVISS fields.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# \donttest{
 # Get latest SARS-CoV-2 positivity data for France
 data <- get_sentineltests_positivity(
   date_min = as.Date("2024-01-01"),
@@ -93,5 +93,5 @@ data <- get_sentineltests_positivity(
   use_snapshot = TRUE,
   snapshot_date = as.Date("2024-02-23")
 )
-} # }
+# }
 ```

@@ -69,7 +69,7 @@ survtype, countryname, date, indicator, age, value.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# \donttest{
 # Get ILI consultation rates for France
 data <- get_ili_ari_rates(
   date_min = as.Date("2024-01-01"),
@@ -83,5 +83,5 @@ data <- get_ili_ari_rates(
   date_min = as.Date("2024-01-01"),
   date_max = as.Date("2024-12-31")
 )
-} # }
+# }
 ```

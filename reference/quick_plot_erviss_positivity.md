@@ -80,7 +80,7 @@ A ggplot2 object showing positivity over time by country and pathogen
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# \donttest{
 # Quick visualization of latest data
 quick_plot_erviss_positivity(
   date_min = as.Date("2024-01-01"),
@@ -88,5 +88,6 @@ quick_plot_erviss_positivity(
   pathogen = "SARS-CoV-2",
   date_breaks = "1 month"
 )
-} # }
+
+# }
 ```

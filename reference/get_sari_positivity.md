@@ -76,7 +76,7 @@ age, value.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# \donttest{
 # Get SARI positivity data for Influenza in France
 data <- get_sari_positivity(
   date_min = as.Date("2024-01-01"),
@@ -85,6 +85,7 @@ data <- get_sari_positivity(
   indicator = "positivity",
   countries = "France"
 )
+#> ℹ No data found for the given filters. Try adjusting date range, countries, pathogen, or indicator.
 
 # Get all SARI indicators for SARS-CoV-2
 data <- get_sari_positivity(
@@ -92,5 +93,5 @@ data <- get_sari_positivity(
   date_max = as.Date("2024-12-31"),
   pathogen = "SARS-CoV-2"
 )
-} # }
+# }
 ```

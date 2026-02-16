@@ -34,12 +34,13 @@ A ggplot2 object
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# \donttest{
 data <- get_sari_rates(
-  date_min = as.Date("2024-01-01"),
-  date_max = as.Date("2024-06-30"),
-  countries = "France"
+  date_min = as.Date("2025-01-01"),
+  date_max = as.Date("2025-06-30"),
+  countries = "Spain"
 )
 plot_sari_rates(data, date_breaks = "1 month")
-} # }
+
+# }
 ```

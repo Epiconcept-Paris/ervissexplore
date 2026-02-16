@@ -86,7 +86,7 @@ country and pathogen
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# \donttest{
 # Quick visualization of non-sentinel detections
 quick_plot_nonsentinel_tests(
   date_min = as.Date("2024-01-01"),
@@ -95,5 +95,6 @@ quick_plot_nonsentinel_tests(
   indicator = "detections",
   date_breaks = "1 month"
 )
-} # }
+
+# }
 ```
