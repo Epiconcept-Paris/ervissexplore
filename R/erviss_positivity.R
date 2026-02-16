@@ -192,5 +192,9 @@ quick_plot_erviss_positivity <- function(
     snapshot_date
   )
 
+  if (nrow(data) == 0) {
+    return(invisible(NULL))
+  }
+
   plot_erviss_positivity(data, date_breaks, date_format)
 }

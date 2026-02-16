@@ -174,5 +174,9 @@ quick_plot_ili_ari_rates <- function(
     snapshot_date
   )
 
+  if (nrow(data) == 0) {
+    return(invisible(NULL))
+  }
+
   plot_ili_ari_rates(data, date_breaks, date_format)
 }

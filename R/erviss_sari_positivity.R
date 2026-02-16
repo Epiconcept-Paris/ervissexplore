@@ -201,5 +201,9 @@ quick_plot_sari_positivity <- function(
     snapshot_date
   )
 
+  if (nrow(data) == 0) {
+    return(invisible(NULL))
+  }
+
   plot_sari_positivity(data, date_breaks, date_format)
 }

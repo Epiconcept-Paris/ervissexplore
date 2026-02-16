@@ -350,6 +350,10 @@ quick_plot_erviss_data <- function(
     snapshot_date = snapshot_date
   )
 
+  if (nrow(data) == 0) {
+    return(invisible(NULL))
+  }
+
   plot_erviss_data(
     data = data,
     type = type,

@@ -198,5 +198,9 @@ quick_plot_nonsentinel_severity <- function(
     snapshot_date
   )
 
+  if (nrow(data) == 0) {
+    return(invisible(NULL))
+  }
+
   plot_nonsentinel_severity(data, date_breaks, date_format)
 }

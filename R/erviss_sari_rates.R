@@ -156,5 +156,9 @@ quick_plot_sari_rates <- function(
     snapshot_date
   )
 
+  if (nrow(data) == 0) {
+    return(invisible(NULL))
+  }
+
   plot_sari_rates(data, date_breaks, date_format)
 }

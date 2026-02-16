@@ -187,5 +187,9 @@ quick_plot_nonsentinel_tests <- function(
     snapshot_date
   )
 
+  if (nrow(data) == 0) {
+    return(invisible(NULL))
+  }
+
   plot_nonsentinel_tests(data, date_breaks, date_format)
 }

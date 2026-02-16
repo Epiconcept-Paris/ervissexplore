@@ -179,5 +179,9 @@ quick_plot_erviss_variants <- function(
     snapshot_date
   )
 
+  if (nrow(data) == 0) {
+    return(invisible(NULL))
+  }
+
   plot_erviss_variants(data, date_breaks, date_format)
 }
