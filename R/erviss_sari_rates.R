@@ -24,11 +24,11 @@
 #' @export
 #' @examples
 #' \donttest{
-#' # Get SARI rates for France
+#' # Get SARI rates for Spain
 #' data <- get_sari_rates(
-#'   date_min = as.Date("2024-01-01"),
-#'   date_max = as.Date("2024-12-31"),
-#'   countries = "France"
+#'   date_min = as.Date("2025-01-01"),
+#'   date_max = as.Date("2025-12-31"),
+#'   countries = "Spain"
 #' )
 #'
 #' # Get SARI rates for specific age groups
@@ -90,9 +90,9 @@ get_sari_rates <- function(
 #' @examples
 #' \donttest{
 #' data <- get_sari_rates(
-#'   date_min = as.Date("2024-01-01"),
-#'   date_max = as.Date("2024-06-30"),
-#'   countries = "France"
+#'   date_min = as.Date("2025-01-01"),
+#'   date_max = as.Date("2025-06-30"),
+#'   countries = "Spain"
 #' )
 #' plot_sari_rates(data, date_breaks = "1 month")
 #' }
