@@ -257,18 +257,6 @@ data <- get_erviss_variants(
 | `get_nonsentinel_severity_url()`     | Non-sentinel severity URL       |
 | `get_nonsentinel_tests_url()`        | Non-sentinel tests URL          |
 
-## Contributing to `{ervissexplore}`
-
-New contributors are welcome !
-
-You can contribute to the package in many ways:
-
-- By reporting bugs, issues or feature requests: please open an issue on
-  the [GitHub
-  repository](https://github.com/Epiconcept-Paris/ervissexplore/issues).
-- By fixing bugs or improving the package: please clone or fork the
-  repository, work on a dedicated branch and create a pull request.
-
 ## Acknowledgments
 
 We gratefully acknowledge the input of national public health and laboratory staff involved in surveillance activities and submission of surveillance data to The European Surveillance System (TESSy).
@@ -280,3 +268,15 @@ We also gratefully acknowledge the originating and submitting laboratories for S
 European Centre for Disease Prevention and Control. European Respiratory
 Virus Surveillance Summary (ERVISS), 2026, Week 05. Available at
 <https://erviss.org/>.
+
+## Contributing to `{ervissexplore}`
+
+New contributors are welcome !
+
+You can contribute to the package in many ways:
+
+- By reporting bugs, issues or feature requests: please open an issue on
+  the [GitHub
+  repository](https://github.com/Epiconcept-Paris/ervissexplore/issues).
+- By fixing bugs or improving the package: please clone or fork the
+  repository, work on a dedicated branch and create a pull request.
