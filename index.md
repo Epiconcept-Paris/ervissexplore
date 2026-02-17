@@ -87,6 +87,9 @@ To see available snapshot dates, visit the [EU-ECDC Respiratory Viruses
 Weekly Data
 repository](https://github.com/EU-ECDC/Respiratory_viruses_weekly_data/tree/main/data/snapshots).
 
+\*\* Please be aware that data are subject to retrospective update at
+any time.\*\*
+
 ## Examples
 
 ### Retrieve and analyze data
@@ -258,6 +261,18 @@ You can contribute to the package in many ways:
   repository](https://github.com/Epiconcept-Paris/ervissexplore/issues).
 - By fixing bugs or improving the package: please clone or fork the
   repository, work on a dedicated branch and create a pull request.
+
+## Acknowledgments
+
+We gratefully acknowledge the input of national public health and
+laboratory staff involved in surveillance activities and submission of
+surveillance data to The European Surveillance System (TESSy).
+
+We also gratefully acknowledge the originating and submitting
+laboratories for SARS-CoV-2 sequence data in GISAID EpiCoVTM. A complete
+table acknowledging all originating and submitting laboratories can be
+downloaded from the [ECDC
+website](https://www.ecdc.europa.eu/en/publications-data/gisaid-acknowledgements).
 
 ## Citation
 
