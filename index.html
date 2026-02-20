@@ -63,14 +63,18 @@
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
+<p><strong>From CRAN</strong></p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"ervissexplore"</span><span class="op">)</span></span></code></pre></div>
+<p><strong>Development version from Github</strong></p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"pak"</span><span class="op">)</span></span>
 <span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"Epiconcept-Paris/ervissexplore"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="quick-start">Quick Start<a class="anchor" aria-label="anchor" href="#quick-start"></a>
 </h2>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Epiconcept-Paris/ervissexplore" class="external-link">ervissexplore</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Retrieve SARS-CoV-2 positivity data</span></span>
@@ -158,7 +162,7 @@
 <h3 id="latest-data-vs-snapshots">Latest Data vs Snapshots<a class="anchor" aria-label="anchor" href="#latest-data-vs-snapshots"></a>
 </h3>
 <p>By default, functions fetch the latest available data. For reproducibility, you can use historical snapshots:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Use a specific snapshot for reproducible analyses</span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_sentineltests_positivity.html">get_sentineltests_positivity</a></span><span class="op">(</span></span>
 <span>  date_min <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2023-01-01"</span><span class="op">)</span>,</span>
@@ -176,7 +180,7 @@
 <div class="section level3">
 <h3 id="retrieve-and-analyze-data">Retrieve and analyze data<a class="anchor" aria-label="anchor" href="#retrieve-and-analyze-data"></a>
 </h3>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Get positivity data (returns a data.table)</span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_sentineltests_positivity.html">get_sentineltests_positivity</a></span><span class="op">(</span></span>
 <span>  date_min <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-01-01"</span><span class="op">)</span>,</span>
@@ -207,7 +211,7 @@
 <div class="section level3">
 <h3 id="other-data-sources">Other data sources<a class="anchor" aria-label="anchor" href="#other-data-sources"></a>
 </h3>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># ILI consultation rates</span></span>
 <span><span class="va">ili_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_ili_ari_rates.html">get_ili_ari_rates</a></span><span class="op">(</span></span>
 <span>  date_min <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-01-01"</span><span class="op">)</span>,</span>
@@ -238,7 +242,7 @@
 <div class="section level3">
 <h3 id="using-the-generic-function">Using the generic function<a class="anchor" aria-label="anchor" href="#using-the-generic-function"></a>
 </h3>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># All sources accessible via a single function</span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_erviss_data.html">get_erviss_data</a></span><span class="op">(</span></span>
 <span>  type <span class="op">=</span> <span class="st">"nonsentinel_severity"</span>,</span>
@@ -252,7 +256,7 @@
 <h3 id="visualization-optional">Visualization (optional)<a class="anchor" aria-label="anchor" href="#visualization-optional"></a>
 </h3>
 <p>The package includes optional plotting functions for quick exploration. They return <code>ggplot2</code> objects that can be customized freely:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_sentineltests_positivity.html">get_sentineltests_positivity</a></span><span class="op">(</span></span>
 <span>  date_min <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-01-01"</span><span class="op">)</span>,</span>
 <span>  date_max <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-06-30"</span><span class="op">)</span>,</span>
@@ -263,7 +267,7 @@
 <span><span class="fu"><a href="reference/plot_erviss_positivity.html">plot_erviss_positivity</a></span><span class="op">(</span><span class="va">data</span>, date_breaks <span class="op">=</span> <span class="st">"1 month"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-8-1.png" width="100%"></p>
 <p>Or use the quick one-liners:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/quick_plot_ili_ari_rates.html">quick_plot_ili_ari_rates</a></span><span class="op">(</span></span>
 <span>  date_min <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-01-01"</span><span class="op">)</span>,</span>
 <span>  date_max <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2024-12-31"</span><span class="op">)</span>,</span>
@@ -275,7 +279,7 @@
 <div class="section level3">
 <h3 id="using-a-local-csv-file">Using a local CSV file<a class="anchor" aria-label="anchor" href="#using-a-local-csv-file"></a>
 </h3>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># If you have downloaded the data locally</span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_erviss_variants.html">get_erviss_variants</a></span><span class="op">(</span></span>
 <span>  csv_file <span class="op">=</span> <span class="st">"path/to/local/variants.csv"</span>,</span>
@@ -487,6 +491,7 @@
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://github.com/Epiconcept-Paris/ervissexplore/actions/" class="external-link"><img src="https://github.com/Epiconcept-Paris/ervissexplore/actions/workflows/formatting_and_check.yml/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://epiconcept-paris.github.io/ervissexplore/" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/ervissexplore"></a></li>
 </ul>
 </div>
 

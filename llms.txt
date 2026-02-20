@@ -10,6 +10,14 @@ underlying data (see ‘Methods’ in the footer).
 
 ## Installation
 
+**From CRAN**
+
+``` r
+install.packages("ervissexplore")
+```
+
+**Development version from Github**
+
 ``` r
 install.packages("pak")
 pak::pak("Epiconcept-Paris/ervissexplore")
