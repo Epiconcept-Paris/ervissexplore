@@ -25,7 +25,15 @@ Please visit https://erviss.org/ for a detailed description of the underlying da
 
 ## Installation
 
-```{r, eval=FALSE}
+**From CRAN**
+
+``` r
+install.packages("ervissexplore")
+```
+
+**Development version from Github**
+
+``` r
 install.packages("pak")
 pak::pak("Epiconcept-Paris/ervissexplore")
 ```
