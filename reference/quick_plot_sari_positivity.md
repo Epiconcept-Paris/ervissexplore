@@ -96,6 +96,8 @@ quick_plot_sari_positivity(
   indicator = "positivity",
   date_breaks = "1 month"
 )
+#> `geom_line()`: Each group consists of only one observation.
+#> ℹ Do you need to adjust the group aesthetic?
 
 # }
 ```
