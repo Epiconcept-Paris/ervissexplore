@@ -5,7 +5,7 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/Epiconcept-Paris/ervissexplore/actions/workflows/formatting_and_check.yml/badge.svg)](https://github.com/Epiconcept-Paris/ervissexplore/actions/)[![](https://cranlogs.r-pkg.org/badges/ervissexplore)](https://epiconcept-paris.github.io/ervissexplore/)
+[![R-CMD-check](https://github.com/Epiconcept-Paris/ervissexplore/actions/workflows/formatting_and_check.yml/badge.svg)](https://github.com/Epiconcept-Paris/ervissexplore/actions/)[![](https://cranlogs.r-pkg.org/badges/ervissexplore)](https://epiconcept-paris.github.io/ervissexplore/)[![](https://www.r-pkg.org/badges/version/ervissexplore)](https://epiconcept-paris.github.io/ervissexplore/)
 <!-- badges: end -->
 
 An R package to easily retrieve ERVISS (European Respiratory Virus
