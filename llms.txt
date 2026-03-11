@@ -95,8 +95,8 @@ To see available snapshot dates, visit the [EU-ECDC Respiratory Viruses
 Weekly Data
 repository](https://github.com/EU-ECDC/Respiratory_viruses_weekly_data/tree/main/data/snapshots).
 
-\*\* Please be aware that data are subject to retrospective update at
-any time.\*\*
+**Please be aware that data are subject to retrospective update at any
+time.**
 
 ## Examples
 
